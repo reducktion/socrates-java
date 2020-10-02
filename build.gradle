@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id 'checkstyle'
 }
 
 group = 'com.github.reducktion'
@@ -11,4 +12,9 @@ java {
 
     withJavadocJar()
     withSourcesJar()
+}
+
+checkstyle {
+    toolVersion '8.36.2'
+    configFile file('config/checkstyle/checkstyle.xml')
 }
