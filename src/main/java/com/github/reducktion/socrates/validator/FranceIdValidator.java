@@ -2,6 +2,14 @@ package com.github.reducktion.socrates.validator;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * National Identification Number validator for France.
+ *
+ * This validation algorithm is based on documentation released in 22 of March of 2001:
+ * http://resoo.org/docs/_docs/regles-numero-insee.pdf
+ *
+ * An english version is available in wikipedia: https://en.wikipedia.org/wiki/INSEE_code
+ */
 class FranceIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 15;
