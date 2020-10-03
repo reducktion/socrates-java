@@ -10,6 +10,7 @@ class PortugalIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 12;
     private static final int BASE_36_RADIX = 36;
+    private static final int CONTROL_DIGIT = 0;
 
     @Override
     public boolean validate(final String id) {
@@ -23,11 +24,21 @@ class PortugalIdValidator implements IdValidator {
             return false;
         }
 
+        return validateControlDigit(sanitizedId);
+    }
+
+    private String sanitize(final String id) {
+        return id
+            .replace(" ", "")
+            .toUpperCase();
+    }
+
+    private boolean validateControlDigit(final String id) {
         int sum = 0;
         boolean everyOtherDigit = false;
 
-        for (int i = sanitizedId.length() - 1; i >= 0; --i) {
-            int value = Character.digit(sanitizedId.charAt(i), BASE_36_RADIX);
+        for (int i = id.length() - 1; i >= 0; --i) {
+            int value = Character.digit(id.charAt(i), BASE_36_RADIX);
 
             if (everyOtherDigit) {
                 value *= 2;
@@ -40,12 +51,6 @@ class PortugalIdValidator implements IdValidator {
             everyOtherDigit = !everyOtherDigit;
         }
 
-        return (sum % 10) == 0;
-    }
-
-    private String sanitize(final String id) {
-        return id
-            .replace(" ", "")
-            .toUpperCase();
+        return (sum % 10) == CONTROL_DIGIT;
     }
 }
