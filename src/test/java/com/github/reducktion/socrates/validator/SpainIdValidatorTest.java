@@ -48,9 +48,8 @@ class SpainIdValidatorTest {
         assertThat(spainIdValidator.validate(validId), is(true));
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = { "05756786M", "YY597522L", "4020X069V", "XX597591L", "A9730215Y" })
-    void validate_shouldReturnFalse_whenControlCharacterDoesNotMatch(final String invalidId) {
-        assertThat(spainIdValidator.validate(invalidId), is(false));
+    @Test
+    void validate_shouldReturnFalse_whenControlCharacterDoesNotMatch() {
+        assertThat(spainIdValidator.validate("05756786M"), is(false));
     }
 }
