@@ -13,7 +13,6 @@
       - Increased severity to "error", so build fails if check's aren't met
       - Added module "UnusedImports"
       - Added module "UnnecessaryParentheses"
-      - Added module "MagicNumber"
       - Added module "NoClone"
       - Added module "FinalLocalVariable"
       - Removed module "MissingJavadocMethod"
@@ -347,9 +346,6 @@
         </module>
         <module name="UnusedImports"/>
         <module name="UnnecessaryParentheses"/>
-        <module name="MagicNumber">
-            <property name="ignoreAnnotation" value="true"/>
-        </module>
         <module name="NoClone"/>
         <module name="FinalLocalVariable">
             <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/>
