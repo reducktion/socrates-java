@@ -7,10 +7,10 @@ public class IdValidatorFactory {
     private IdValidatorFactory() {}
 
     public static IdValidator getValidator(final Country country) {
-        if (Country.ES == country) {
-            return new SpainIdValidator();
+        switch (country) {
+            case ES: return new SpainIdValidator();
+            case PT: return new PortugalIdValidator();
+            default: throw new UnsupportedOperationException("Country not supported.");
         }
-
-        throw new UnsupportedOperationException("Country not supported.");
     }
 }
