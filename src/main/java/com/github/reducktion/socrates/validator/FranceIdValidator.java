@@ -9,6 +9,9 @@ import org.apache.commons.lang3.StringUtils;
  * http://resoo.org/docs/_docs/regles-numero-insee.pdf
  *
  * An english version is available in wikipedia: https://en.wikipedia.org/wiki/INSEE_code
+ *
+ * Also, there is extra info in https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France,
+ * specially about the algorithm for Corsica (2A -> 19, 2B -> 20).
  */
 class FranceIdValidator implements IdValidator {
 
@@ -21,7 +24,9 @@ class FranceIdValidator implements IdValidator {
             return false;
         }
 
-        final String sanitizedId = sanitize(id);
+        final String sanitizedId = sanitize(id)
+            .replace("2A", "19")
+            .replace("2B", "18");
 
         if (sanitizedId.length() != ID_NUMBER_OF_CHARACTERS) {
             return false;
@@ -35,8 +40,7 @@ class FranceIdValidator implements IdValidator {
     }
 
     private String sanitize(final String id) {
-        return id.trim()
-            .replace(" ", "");
+        return id.replace(" ", "");
     }
 
     private boolean validateControlDigit(final String id) {
