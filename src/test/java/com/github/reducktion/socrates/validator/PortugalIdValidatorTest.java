@@ -34,12 +34,7 @@ class PortugalIdValidatorTest {
 
     @Test
     void validate_shouldIgnoreSpacesAndReturnTrue_whenIdIsValid() {
-        assertThat(portugalIdValidator.validate("11084129 8 ZX8"), is(true));
-    }
-
-    @Test
-    void validate_shouldIgnoreTrailingAndLeadingSpacesAndReturnTrue_whenIdIsValid() {
-        assertThat(portugalIdValidator.validate(" 110841298ZX8 "), is(true));
+        assertThat(portugalIdValidator.validate(" 11084129 8 ZX8 "), is(true));
     }
 
     @ParameterizedTest
