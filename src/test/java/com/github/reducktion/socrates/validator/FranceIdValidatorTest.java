@@ -39,16 +39,11 @@ class FranceIdValidatorTest {
 
     @Test
     void validate_shouldIgnoreSpacesAndReturnTrue_whenIdIsValid() {
-        assertThat(franceIdValidator.validate("2820819398814 09"), is(true));
-    }
-
-    @Test
-    void validate_shouldIgnoreTrailingAndLeadingSpacesAndReturnTrue_whenIdIsValid() {
-        assertThat(franceIdValidator.validate(" 282081939881409 "), is(true));
+        assertThat(franceIdValidator.validate(" 2820819398814 09 "), is(true));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "135045517906116", "238108021456811", "188085870457157", "182089740115475" })
+    @ValueSource(strings = { "238108021456811", "188085870457157", "182089740115475", "199072A22807010" })
     void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
         assertThat(franceIdValidator.validate(validId), is(true));
     }
