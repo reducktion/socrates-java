@@ -48,9 +48,8 @@ class PortugalIdValidatorTest {
         assertThat(portugalIdValidator.validate(validId), is(true));
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = { "154A03556ZX9", "176CD9174ZZ5", "174886000ZX1", "148111754ZY5" })
-    void validate_shouldReturnFalse_whenIdIsInvalid(final String invalidId) {
-        assertThat(portugalIdValidator.validate(invalidId), is(false));
+    @Test
+    void validate_shouldReturnFalse_whenIdIsInvalid() {
+        assertThat(portugalIdValidator.validate("154A03556ZX9"), is(false));
     }
 }
