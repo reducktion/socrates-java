@@ -25,23 +25,24 @@ class SpainIdValidator implements IdValidator {
             return false;
         }
 
-        final String citizen = stripControlCharacter(sanitizedId)
+        final String partialId = stripControlCharacter(sanitizedId)
             .replace("X", "0")
             .replace("Y", "1")
             .replace("Z", "2");
 
-        if (!StringUtils.isNumeric(citizen)) {
+        if (!StringUtils.isNumeric(partialId)) {
             return false;
         }
 
-        final int result = Integer.parseInt(citizen) % CONTROL_CHARACTERS.length();
+        final int result = Integer.parseInt(partialId) % CONTROL_CHARACTERS.length();
         final char expectedControlCharacter = CONTROL_CHARACTERS.charAt(result);
 
         return getControlCharacter(sanitizedId) == expectedControlCharacter;
     }
 
     private String sanitize(final String id) {
-        return id.trim()
+        return id
+            .trim()
             .replace("-", "")
             .toUpperCase();
     }
@@ -51,7 +52,8 @@ class SpainIdValidator implements IdValidator {
     }
 
     private char getControlCharacter(final String id) {
-        return id.substring(id.length() - 1)
+        return id
+            .substring(id.length() - 1)
             .charAt(0);
     }
 }

@@ -22,7 +22,7 @@ import com.github.reducktion.socrates.validator.IdValidator;
  */
 class FranceCitizenExtractor implements CitizenExtractor {
 
-    private static final int DIGIT_MALE = 1;
+    private static final String CHARACTER_MALE = "1";
     private static final int JANUARY = 1;
     private static final int DECEMBER = 12;
     private static final int PSEUDO_FICTITIOUS_JANUARY = 31;
@@ -53,29 +53,29 @@ class FranceCitizenExtractor implements CitizenExtractor {
     }
 
     private String extractGender(final String id) {
-        if (Integer.parseInt(getGenderDigits(id)) == DIGIT_MALE) {
+        if (CHARACTER_MALE.equals(getGenderCharacter(id))) {
             return "M";
         } else {
             return "F";
         }
     }
 
-    private String getGenderDigits(final String id) {
+    private String getGenderCharacter(final String id) {
         return id.substring(0, 1);
     }
 
     private Integer extractYear(final String id) {
         return twoYearFormatter
-            .parse(getYearDigits(id))
+            .parse(getYearCharacters(id))
             .get(ChronoField.YEAR);
     }
 
-    private String getYearDigits(final String id) {
+    private String getYearCharacters(final String id) {
         return id.substring(1, 3);
     }
 
     private Integer extractMonth(final String id) {
-        final int month = Integer.parseInt(getMonthDigits(id));
+        final int month = Integer.parseInt(getMonthCharacters(id));
 
         if (month >= JANUARY && month <= DECEMBER) {
             return month;
@@ -86,21 +86,21 @@ class FranceCitizenExtractor implements CitizenExtractor {
         }
     }
 
-    private String getMonthDigits(final String id) {
+    private String getMonthCharacters(final String id) {
         return id.substring(3, 5);
     }
 
     private String extractPlaceOfBirth(final String id) {
-        final String region = getRegionForCode(getRegionTwoDigits(id));
+        final String region = getRegionForCode(getRegionTwoCharacters(id));
 
-        return !region.isEmpty() ? region : getRegionForCode(getRegionThreeDigits(id));
+        return !region.isEmpty() ? region : getRegionForCode(getRegionThreeCharacters(id));
     }
 
-    private String getRegionTwoDigits(final String id) {
+    private String getRegionTwoCharacters(final String id) {
         return id.substring(5, 7);
     }
 
-    private String getRegionThreeDigits(final String id) {
+    private String getRegionThreeCharacters(final String id) {
         return id.substring(5, 8);
     }
     
