@@ -44,7 +44,7 @@ class PortugalIdValidator implements IdValidator {
     }
 
     private String sanitize(final String id) {
-        return id.trim()
+        return id
             .replace(" ", "")
             .toUpperCase();
     }
