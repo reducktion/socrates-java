@@ -39,13 +39,13 @@ public class Citizen {
     }
 
     public static class Builder {
-        private String gender;
+        private Gender gender;
         private Integer yearOfBirth;
         private Integer monthOfBirth;
         private Integer dayOfBirth;
         private String placeOfBirth;
 
-        public Builder gender(final String gender) {
+        public Builder gender(final Gender gender) {
             this.gender = gender;
             return this;
         }
@@ -76,7 +76,7 @@ public class Citizen {
     }
 
     private Citizen(final Builder builder) {
-        gender = builder.gender;
+        gender = builder.gender == null ? null : builder.gender.name();
         yearOfBirth = builder.yearOfBirth;
         monthOfBirth = builder.monthOfBirth;
         dayOfBirth = builder.dayOfBirth;

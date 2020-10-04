@@ -47,7 +47,7 @@ class FranceCitizenExtractorTest {
                 "2820819398814 09",
                 Citizen
                     .builder()
-                    .gender("F")
+                    .gender(Gender.FEMALE)
                     .yearOfBirth(1982)
                     .monthOfBirth(8)
                     .placeOfBirth("Corrèze")
@@ -57,7 +57,7 @@ class FranceCitizenExtractorTest {
                 "1350455179061 16",
                 Citizen
                     .builder()
-                    .gender("M")
+                    .gender(Gender.MALE)
                     .yearOfBirth(1935)
                     .monthOfBirth(4)
                     .placeOfBirth("Meuse")
@@ -67,7 +67,7 @@ class FranceCitizenExtractorTest {
                 "2381080214568 11",
                 Citizen
                     .builder()
-                    .gender("F")
+                    .gender(Gender.FEMALE)
                     .yearOfBirth(1938)
                     .monthOfBirth(10)
                     .placeOfBirth("Somme")
@@ -77,7 +77,7 @@ class FranceCitizenExtractorTest {
                 "1880858704571 57",
                 Citizen
                     .builder()
-                    .gender("M")
+                    .gender(Gender.MALE)
                     .yearOfBirth(1988)
                     .monthOfBirth(8)
                     .placeOfBirth("Nièvre")
@@ -87,7 +87,7 @@ class FranceCitizenExtractorTest {
                 "1030307795669 72",
                 Citizen
                     .builder()
-                    .gender("M")
+                    .gender(Gender.MALE)
                     .yearOfBirth(2003)
                     .monthOfBirth(3)
                     .placeOfBirth("Ardèche")
@@ -97,7 +97,7 @@ class FranceCitizenExtractorTest {
                 "1820897401154 75",
                 Citizen
                     .builder()
-                    .gender("M")
+                    .gender(Gender.MALE)
                     .yearOfBirth(1982)
                     .monthOfBirth(8)
                     .placeOfBirth("La Réunion")
@@ -107,7 +107,7 @@ class FranceCitizenExtractorTest {
                 "2041098718061 61",
                 Citizen
                     .builder()
-                    .gender("F")
+                    .gender(Gender.FEMALE)
                     .yearOfBirth(2004)
                     .monthOfBirth(10)
                     .placeOfBirth("Polynésie française")
@@ -117,7 +117,7 @@ class FranceCitizenExtractorTest {
                 "1103442505781 11",
                 Citizen
                     .builder()
-                    .gender("M")
+                    .gender(Gender.MALE)
                     .yearOfBirth(2010)
                     .monthOfBirth(4)
                     .placeOfBirth("Loire")
@@ -127,7 +127,7 @@ class FranceCitizenExtractorTest {
                 "2115028242370 20",
                 Citizen
                     .builder()
-                    .gender("F")
+                    .gender(Gender.FEMALE)
                     .yearOfBirth(2011)
                     .placeOfBirth("Eure-et-Loir")
                     .build()
@@ -136,7 +136,7 @@ class FranceCitizenExtractorTest {
                 "199072A228070 10",
                 Citizen
                     .builder()
-                    .gender("M")
+                    .gender(Gender.MALE)
                     .yearOfBirth(1999)
                     .monthOfBirth(7)
                     .placeOfBirth("Corse-du-Sud")
@@ -146,7 +146,7 @@ class FranceCitizenExtractorTest {
                 "257092B844458 87",
                 Citizen
                     .builder()
-                    .gender("F")
+                    .gender(Gender.FEMALE)
                     .yearOfBirth(1957)
                     .monthOfBirth(9)
                     .placeOfBirth("Haute-Corse")

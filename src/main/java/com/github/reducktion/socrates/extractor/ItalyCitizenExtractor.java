@@ -56,13 +56,13 @@ class ItalyCitizenExtractor implements CitizenExtractor {
             .toUpperCase();
     }
 
-    private String extractGender(final String id) {
+    private Gender extractGender(final String id) {
         final String dayOfBirthCharacters = getDayOfBirthCharacters(id);
 
         if (Integer.parseInt(dayOfBirthCharacters) > 40) {
-            return "F";
+            return Gender.FEMALE;
         } else {
-            return "M";
+            return Gender.MALE;
         }
     }
 
