@@ -1,5 +1,7 @@
 package com.github.reducktion.socrates.validator;
 
+import com.github.reducktion.socrates.utils.ItalyOmocodiaSwapper;
+
 /**
  * National Identification Number validator for Italy.
  *
@@ -19,7 +21,7 @@ class ItalyIdValidator implements IdValidator {
             return false;
         }
 
-        final String sanitizedId = sanitize(id);
+        final String sanitizedId = ItalyOmocodiaSwapper.swap(sanitize(id));
 
         if (sanitizedId.length() != ID_NUMBER_OF_CHARACTERS) {
             return false;
