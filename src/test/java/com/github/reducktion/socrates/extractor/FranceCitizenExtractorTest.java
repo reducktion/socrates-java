@@ -43,17 +43,115 @@ class FranceCitizenExtractorTest {
 
     private static List<Arguments> citizensForIds() {
         return Arrays.asList(
-            Arguments.arguments("2820819398814 09", new Citizen("F", 1982, 8, "Corrèze")),
-            Arguments.arguments("1350455179061 16", new Citizen("M", 1935, 4, "Meuse")),
-            Arguments.arguments("2381080214568 11", new Citizen("F", 1938, 10, "Somme")),
-            Arguments.arguments("1880858704571 57", new Citizen("M", 1988, 8, "Nièvre")),
-            Arguments.arguments("1030307795669 72", new Citizen("M", 2003, 3, "Ardèche")),
-            Arguments.arguments("1820897401154 75", new Citizen("M", 1982, 8, "La Réunion")),
-            Arguments.arguments("2041098718061 61", new Citizen("F", 2004, 10, "Polynésie française")),
-            Arguments.arguments("1103442505781 11", new Citizen("M", 2010, 4, "Loire")),
-            Arguments.arguments("2115028242370 20", new Citizen("F", 2011, null, "Eure-et-Loir")),
-            Arguments.arguments("199072A228070 10", new Citizen("M", 1999, 7, "Corse-du-Sud")),
-            Arguments.arguments("257092B844458 87", new Citizen("F", 1957, 9, "Haute-Corse"))
+            Arguments.arguments(
+                "2820819398814 09",
+                Citizen
+                    .builder()
+                    .gender("F")
+                    .yearOfBirth(1982)
+                    .monthOfBirth(8)
+                    .placeOfBirth("Corrèze")
+                    .build()
+            ),
+            Arguments.arguments(
+                "1350455179061 16",
+                Citizen
+                    .builder()
+                    .gender("M")
+                    .yearOfBirth(1935)
+                    .monthOfBirth(4)
+                    .placeOfBirth("Meuse")
+                    .build()
+            ),
+            Arguments.arguments(
+                "2381080214568 11",
+                Citizen
+                    .builder()
+                    .gender("F")
+                    .yearOfBirth(1938)
+                    .monthOfBirth(10)
+                    .placeOfBirth("Somme")
+                    .build()
+            ),
+            Arguments.arguments(
+                "1880858704571 57",
+                Citizen
+                    .builder()
+                    .gender("M")
+                    .yearOfBirth(1988)
+                    .monthOfBirth(8)
+                    .placeOfBirth("Nièvre")
+                    .build()
+            ),
+            Arguments.arguments(
+                "1030307795669 72",
+                Citizen
+                    .builder()
+                    .gender("M")
+                    .yearOfBirth(2003)
+                    .monthOfBirth(3)
+                    .placeOfBirth("Ardèche")
+                    .build()
+            ),
+            Arguments.arguments(
+                "1820897401154 75",
+                Citizen
+                    .builder()
+                    .gender("M")
+                    .yearOfBirth(1982)
+                    .monthOfBirth(8)
+                    .placeOfBirth("La Réunion")
+                    .build()
+            ),
+            Arguments.arguments(
+                "2041098718061 61",
+                Citizen
+                    .builder()
+                    .gender("F")
+                    .yearOfBirth(2004)
+                    .monthOfBirth(10)
+                    .placeOfBirth("Polynésie française")
+                    .build()
+            ),
+            Arguments.arguments(
+                "1103442505781 11",
+                Citizen
+                    .builder()
+                    .gender("M")
+                    .yearOfBirth(2010)
+                    .monthOfBirth(4)
+                    .placeOfBirth("Loire")
+                    .build()
+            ),
+            Arguments.arguments(
+                "2115028242370 20",
+                Citizen
+                    .builder()
+                    .gender("F")
+                    .yearOfBirth(2011)
+                    .placeOfBirth("Eure-et-Loir")
+                    .build()
+            ),
+            Arguments.arguments(
+                "199072A228070 10",
+                Citizen
+                    .builder()
+                    .gender("M")
+                    .yearOfBirth(1999)
+                    .monthOfBirth(7)
+                    .placeOfBirth("Corse-du-Sud")
+                    .build()
+            ),
+            Arguments.arguments(
+                "257092B844458 87",
+                Citizen
+                    .builder()
+                    .gender("F")
+                    .yearOfBirth(1957)
+                    .monthOfBirth(9)
+                    .placeOfBirth("Haute-Corse")
+                    .build()
+            )
         );
     }
 }

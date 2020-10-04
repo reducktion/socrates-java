@@ -43,12 +43,72 @@ class ItalyCitizenExtractorTest {
 
     private static List<Arguments> citizensForIds() {
         return Arrays.asList(
-            Arguments.arguments("MRTMTT25D09F205Z", new Citizen("M", 1925, 4, 9, "MILANO (MI)")),
-            Arguments.arguments("MLLSNT82P65Z404U", new Citizen("F", 1982, 9, 25, "STATI UNITI D'AMERICA")),
-            Arguments.arguments("DLMCTG75B07H227Y", new Citizen("M", 1975, 2, 7, "REINO (BN)")),
-            Arguments.arguments("BRSLSE08D50H987B", new Citizen("F", 2008, 4, 10, "SAN MARTINO ALFIERI (AT)")),
-            Arguments.arguments("MRCDRA01A13A065E", new Citizen("M", 2001, 1, 13, "AFRICO (RC)")),
-            Arguments.arguments("MRCDRALMAMPALSRE", new Citizen("M", 2001, 1, 13, "AFRICO (RC)"))
+            Arguments.arguments(
+                "MRTMTT25D09F205Z",
+                Citizen
+                    .builder()
+                    .gender("M")
+                    .yearOfBirth(1925)
+                    .monthOfBirth(4)
+                    .dayOfBirth(9)
+                    .placeOfBirth("MILANO (MI)")
+                    .build()
+            ),
+            Arguments.arguments(
+                "MLLSNT82P65Z404U",
+                Citizen
+                    .builder()
+                    .gender("F")
+                    .yearOfBirth(1982)
+                    .monthOfBirth(9)
+                    .dayOfBirth(25)
+                    .placeOfBirth("STATI UNITI D'AMERICA")
+                    .build()
+            ),
+            Arguments.arguments(
+                "DLMCTG75B07H227Y",
+                Citizen
+                    .builder()
+                    .gender("M")
+                    .yearOfBirth(1975)
+                    .monthOfBirth(2)
+                    .dayOfBirth(7)
+                    .placeOfBirth("REINO (BN)")
+                    .build()
+            ),
+            Arguments.arguments(
+                "BRSLSE08D50H987B",
+                Citizen
+                    .builder()
+                    .gender("F")
+                    .yearOfBirth(2008)
+                    .monthOfBirth(4)
+                    .dayOfBirth(10)
+                    .placeOfBirth("SAN MARTINO ALFIERI (AT)")
+                    .build()
+            ),
+            Arguments.arguments(
+                "MRCDRA01A13A065E",
+                Citizen
+                    .builder()
+                    .gender("M")
+                    .yearOfBirth(2001)
+                    .monthOfBirth(1)
+                    .dayOfBirth(13)
+                    .placeOfBirth("AFRICO (RC)")
+                    .build()
+            ),
+            Arguments.arguments(
+                "MRCDRALMAMPALSRE",
+                Citizen
+                    .builder()
+                    .gender("M")
+                    .yearOfBirth(2001)
+                    .monthOfBirth(1)
+                    .dayOfBirth(13)
+                    .placeOfBirth("AFRICO (RC)")
+                    .build()
+            )
         );
     }
 }

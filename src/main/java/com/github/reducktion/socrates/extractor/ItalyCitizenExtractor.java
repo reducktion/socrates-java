@@ -38,13 +38,14 @@ class ItalyCitizenExtractor implements CitizenExtractor {
 
         final String sanitizedId = ItalyOmocodiaSwapper.swap(sanitize(id));
 
-        final Citizen citizen = new Citizen(
-            extractGender(sanitizedId),
-            extractYearOfBirth(sanitizedId),
-            extractMonthOfBirth(sanitizedId),
-            extractDayOfBirth(sanitizedId),
-            extractPlaceOfBirth(sanitizedId)
-        );
+        final Citizen citizen = Citizen
+            .builder()
+            .gender(extractGender(sanitizedId))
+            .yearOfBirth(extractYearOfBirth(sanitizedId))
+            .monthOfBirth(extractMonthOfBirth(sanitizedId))
+            .dayOfBirth(extractDayOfBirth(sanitizedId))
+            .placeOfBirth(extractPlaceOfBirth(sanitizedId))
+            .build();
 
         return Optional.of(citizen);
     }

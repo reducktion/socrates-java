@@ -14,33 +14,6 @@ public class Citizen {
     private final Integer dayOfBirth;
     private final String placeOfBirth;
 
-    public Citizen(
-        final String gender,
-        final Integer yearOfBirth,
-        final Integer monthOfBirth,
-        final String placeOfBirth
-    ) {
-        this.gender = gender;
-        this.yearOfBirth = yearOfBirth;
-        this.monthOfBirth = monthOfBirth;
-        this.dayOfBirth = null;
-        this.placeOfBirth = placeOfBirth;
-    }
-
-    public Citizen(
-        final String gender,
-        final Integer yearOfBirth,
-        final Integer monthOfBirth,
-        final Integer dayOfBirth,
-        final String placeOfBirth
-    ) {
-        this.gender = gender;
-        this.yearOfBirth = yearOfBirth;
-        this.monthOfBirth = monthOfBirth;
-        this.dayOfBirth = dayOfBirth;
-        this.placeOfBirth = placeOfBirth;
-    }
-
     public Optional<String> getGender() {
         return Optional.ofNullable(gender);
     }
@@ -59,6 +32,55 @@ public class Citizen {
 
     public Optional<String> getPlaceOfBirth() {
         return Optional.ofNullable(placeOfBirth);
+    }
+
+    public static Citizen.Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private String gender;
+        private Integer yearOfBirth;
+        private Integer monthOfBirth;
+        private Integer dayOfBirth;
+        private String placeOfBirth;
+
+        public Builder gender(final String gender) {
+            this.gender = gender;
+            return this;
+        }
+
+        public Builder yearOfBirth(final Integer yearOfBirth) {
+            this.yearOfBirth = yearOfBirth;
+            return this;
+        }
+
+        public Builder monthOfBirth(final Integer monthOfBirth) {
+            this.monthOfBirth = monthOfBirth;
+            return this;
+        }
+
+        public Builder dayOfBirth(final Integer dayOfBirth) {
+            this.dayOfBirth = dayOfBirth;
+            return this;
+        }
+
+        public Builder placeOfBirth(final String placeOfBirth) {
+            this.placeOfBirth = placeOfBirth;
+            return this;
+        }
+
+        public Citizen build() {
+            return new Citizen(this);
+        }
+    }
+
+    private Citizen(final Builder builder) {
+        gender = builder.gender;
+        yearOfBirth = builder.yearOfBirth;
+        monthOfBirth = builder.monthOfBirth;
+        dayOfBirth = builder.dayOfBirth;
+        placeOfBirth = builder.placeOfBirth;
     }
 
     @Override
