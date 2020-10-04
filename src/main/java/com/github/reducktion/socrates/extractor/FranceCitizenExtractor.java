@@ -4,8 +4,8 @@ import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
+import java.util.Optional;
 
-import com.github.reducktion.socrates.extractor.exceptions.InvalidIdException;
 import com.github.reducktion.socrates.validator.IdValidator;
 
 /**
@@ -33,19 +33,21 @@ class FranceCitizenExtractor implements CitizenExtractor {
         .toFormatter();
 
     @Override
-    public Citizen extractFromId(final String id, final IdValidator idValidator) throws InvalidIdException {
+    public Optional<Citizen> extractFromId(final String id, final IdValidator idValidator) {
         if (!idValidator.validate(id)) {
-            throw new InvalidIdException();
+            return Optional.empty();
         }
 
         final String sanitizedId = sanitize(id);
 
-        return new Citizen(
+        final Citizen citizen = new Citizen(
             extractGender(sanitizedId),
             extractYear(sanitizedId),
             extractMonth(sanitizedId),
             extractPlaceOfBirth(sanitizedId)
         );
+
+        return Optional.of(citizen);
     }
 
     private String sanitize(final String id) {
@@ -93,7 +95,7 @@ class FranceCitizenExtractor implements CitizenExtractor {
     private String extractPlaceOfBirth(final String id) {
         final String region = getRegionForCode(getRegionTwoCharacters(id));
 
-        return !region.isEmpty() ? region : getRegionForCode(getRegionThreeCharacters(id));
+        return region != null ? region : getRegionForCode(getRegionThreeCharacters(id));
     }
 
     private String getRegionTwoCharacters(final String id) {
@@ -215,7 +217,7 @@ class FranceCitizenExtractor implements CitizenExtractor {
             case "987": return "Polynésie française";
             case "988": return "Nouvelle-Calédonie";
             case "989": return "Île de Clipperton";
-            default: return "";
+            default: return null;
         }
     } 
 }
