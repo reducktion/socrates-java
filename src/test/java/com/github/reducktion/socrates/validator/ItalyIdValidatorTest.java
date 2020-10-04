@@ -38,7 +38,7 @@ class ItalyIdValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "MLLSNT82P65Z404U", "DLMCTG75B07H227Y", "BRSLSE08D50H987B", "MRCDRA01A13A065E" })
+    @ValueSource(strings = { "MLLSNT82P65Z404U", "DLMCTG75B07H227Y", "BRSLSE08D50H987B", "MRCDRALMAMPALSRE" })
     void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
         assertThat(italyIdValidator.validate(validId), is(true));
     }
