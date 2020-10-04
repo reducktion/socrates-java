@@ -1,9 +1,10 @@
 package com.github.reducktion.socrates;
 
+import java.util.Optional;
+
 import com.github.reducktion.socrates.extractor.Citizen;
 import com.github.reducktion.socrates.extractor.CitizenExtractor;
 import com.github.reducktion.socrates.extractor.CitizenExtractorFactory;
-import com.github.reducktion.socrates.extractor.exceptions.InvalidIdException;
 import com.github.reducktion.socrates.validator.IdValidator;
 import com.github.reducktion.socrates.validator.IdValidatorFactory;
 
@@ -30,11 +31,10 @@ public class Socrates {
      *
      * @param id the national identification number
      * @param country the country of the national identification number
-     * @return the {@link Citizen} extracted from the {@code id}, if the {@code id} is valid
+     * @return the {@link Citizen} wrapped in an {@link Optional}, if the {@code id} is valid
      * @throws UnsupportedOperationException if the country is not supported
-     * @throws InvalidIdException if the {@code id} is invalid
      */
-    public Citizen extractCitizenFromId(final String id, final Country country) throws InvalidIdException {
+    public Optional<Citizen> extractCitizenFromId(final String id, final Country country) {
         final IdValidator idValidator = IdValidatorFactory.getValidator(country);
         final CitizenExtractor citizenExtractor = CitizenExtractorFactory.getExtractor(country);
         return citizenExtractor.extractFromId(id, idValidator);

@@ -2,18 +2,16 @@ package com.github.reducktion.socrates.extractor;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import com.github.reducktion.socrates.extractor.exceptions.InvalidIdException;
 
 class FranceCitizenExtractorTest {
 
@@ -25,26 +23,22 @@ class FranceCitizenExtractorTest {
     }
 
     @Test
-    void extractFromId_shouldThrowException_whenIdIsInvalid() {
+    void extractFromId_shouldReturnEmptyOptional_whenIdIsInvalid() {
         final FakeIdValidator fakeIdValidator = new FakeIdValidator(false);
 
-        assertThrows(
-            InvalidIdException.class,
-            () -> franceCitizenExtractor.extractFromId("123456789012345", fakeIdValidator)
-        );
+        final Optional<Citizen> citizen = franceCitizenExtractor.extractFromId("123456789012345", fakeIdValidator);
+
+        assertThat(citizen, is(Optional.empty()));
     }
 
     @ParameterizedTest
     @MethodSource("citizensForIds")
-    void extractFromId_shouldReturnCorrectCitizenData_whenIdIsValid(
-        final Citizen expectedCitizen,
-        final String id
-    ) throws InvalidIdException {
+    void extractFromId_shouldReturnCorrectCitizenData_whenIdIsValid(final Citizen expectedCitizen, final String id) {
         final FakeIdValidator fakeIdValidator = new FakeIdValidator(true);
 
-        final Citizen resultCitizen = franceCitizenExtractor.extractFromId(id, fakeIdValidator);
+        final Optional<Citizen> resultCitizen = franceCitizenExtractor.extractFromId(id, fakeIdValidator);
 
-        assertThat(resultCitizen, is(expectedCitizen));
+        assertThat(resultCitizen.get(), is(expectedCitizen));
     }
 
     private static List<Arguments> citizensForIds() {
