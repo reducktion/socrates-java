@@ -36,12 +36,13 @@ class FranceCitizenExtractor implements CitizenExtractor {
 
         final String sanitizedId = sanitize(id);
 
-        final Citizen citizen = new Citizen(
-            extractGender(sanitizedId),
-            extractYear(sanitizedId),
-            extractMonth(sanitizedId),
-            extractPlaceOfBirth(sanitizedId)
-        );
+        final Citizen citizen = Citizen
+            .builder()
+            .gender(extractGender(sanitizedId))
+            .yearOfBirth(extractYearOfBirth(sanitizedId))
+            .monthOfBirth(extractMonthOfBirth(sanitizedId))
+            .placeOfBirth(extractPlaceOfBirth(sanitizedId))
+            .build();
 
         return Optional.of(citizen);
     }
@@ -62,16 +63,16 @@ class FranceCitizenExtractor implements CitizenExtractor {
         return id.substring(0, 1);
     }
 
-    private Integer extractYear(final String id) {
-        return twoYearDateParser.parse(getYearCharacters(id));
+    private Integer extractYearOfBirth(final String id) {
+        return twoYearDateParser.parse(getYearOfBirthCharacters(id));
     }
 
-    private String getYearCharacters(final String id) {
+    private String getYearOfBirthCharacters(final String id) {
         return id.substring(1, 3);
     }
 
-    private Integer extractMonth(final String id) {
-        final int month = Integer.parseInt(getMonthCharacters(id));
+    private Integer extractMonthOfBirth(final String id) {
+        final int month = Integer.parseInt(getMonthOfBirthCharacters(id));
 
         if (month >= JANUARY && month <= DECEMBER) {
             return month;
@@ -82,21 +83,21 @@ class FranceCitizenExtractor implements CitizenExtractor {
         }
     }
 
-    private String getMonthCharacters(final String id) {
+    private String getMonthOfBirthCharacters(final String id) {
         return id.substring(3, 5);
     }
 
     private String extractPlaceOfBirth(final String id) {
-        final String region = getRegionForCode(getRegionTwoCharacters(id));
+        final String region = getRegionForCode(getPlaceOfBirthTwoCharacters(id));
 
-        return region != null ? region : getRegionForCode(getRegionThreeCharacters(id));
+        return region != null ? region : getRegionForCode(getPlaceOfBirthThreeCharacters(id));
     }
 
-    private String getRegionTwoCharacters(final String id) {
+    private String getPlaceOfBirthTwoCharacters(final String id) {
         return id.substring(5, 7);
     }
 
-    private String getRegionThreeCharacters(final String id) {
+    private String getPlaceOfBirthThreeCharacters(final String id) {
         return id.substring(5, 8);
     }
     
