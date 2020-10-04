@@ -1,6 +1,7 @@
 package com.github.reducktion.socrates.extractor;
 
-import com.github.reducktion.socrates.extractor.exceptions.InvalidIdException;
+import java.util.Optional;
+
 import com.github.reducktion.socrates.validator.IdValidator;
 
 /**
@@ -13,8 +14,8 @@ public interface CitizenExtractor {
      *
      * @param id the national identification number
      * @param idValidator the national identification number validator
-     * @return the {@link Citizen}, with the information extracted
-     * @throws InvalidIdException if the {@code id} is invalid
+     * @return the {@link Citizen} wrapped in an {@link Optional}, if the {@code id} is considered valid
+     *         by the {@code idValidator}
      */
-    Citizen extractFromId(String id, IdValidator idValidator) throws InvalidIdException;
+    Optional<Citizen> extractFromId(String id, IdValidator idValidator);
 }
