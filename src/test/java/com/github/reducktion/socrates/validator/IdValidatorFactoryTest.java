@@ -27,7 +27,8 @@ class IdValidatorFactoryTest {
         return Arrays.asList(
             Arguments.arguments(Country.ES, SpainIdValidator.class),
             Arguments.arguments(Country.PT, PortugalIdValidator.class),
-            Arguments.arguments(Country.FR, FranceIdValidator.class)
+            Arguments.arguments(Country.FR, FranceIdValidator.class),
+            Arguments.arguments(Country.IT, ItalyIdValidator.class)
         );
     }
 }
