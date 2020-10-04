@@ -8,14 +8,21 @@ import java.util.Optional;
  */
 public class Citizen {
 
-    private final String gender;
+    private final Gender gender;
     private final Integer yearOfBirth;
     private final Integer monthOfBirth;
     private final Integer dayOfBirth;
     private final String placeOfBirth;
 
-    public Optional<String> getGender() {
+    public Optional<Gender> getGender() {
         return Optional.ofNullable(gender);
+    }
+
+    public Optional<String> getGenderIdentifier() {
+        if (gender != null) {
+            return Optional.of(gender.getIdentifier());
+        }
+        return Optional.empty();
     }
 
     public Optional<Integer> getYearOfBirth() {
@@ -76,7 +83,7 @@ public class Citizen {
     }
 
     private Citizen(final Builder builder) {
-        gender = builder.gender == null ? null : builder.gender.name();
+        gender = builder.gender;
         yearOfBirth = builder.yearOfBirth;
         monthOfBirth = builder.monthOfBirth;
         dayOfBirth = builder.dayOfBirth;
