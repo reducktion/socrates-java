@@ -11,6 +11,7 @@ public class Citizen {
     private final String gender;
     private final Integer yearOfBirth;
     private final Integer monthOfBirth;
+    private final Integer dayOfBirth;
     private final String placeOfBirth;
 
     public Citizen(
@@ -22,6 +23,21 @@ public class Citizen {
         this.gender = gender;
         this.yearOfBirth = yearOfBirth;
         this.monthOfBirth = monthOfBirth;
+        this.dayOfBirth = null;
+        this.placeOfBirth = placeOfBirth;
+    }
+
+    public Citizen(
+        final String gender,
+        final Integer yearOfBirth,
+        final Integer monthOfBirth,
+        final Integer dayOfBirth,
+        final String placeOfBirth
+    ) {
+        this.gender = gender;
+        this.yearOfBirth = yearOfBirth;
+        this.monthOfBirth = monthOfBirth;
+        this.dayOfBirth = dayOfBirth;
         this.placeOfBirth = placeOfBirth;
     }
 
@@ -35,6 +51,10 @@ public class Citizen {
 
     public Optional<Integer> getMonthOfBirth() {
         return Optional.ofNullable(monthOfBirth);
+    }
+
+    public Optional<Integer> getDayOfBirth() {
+        return Optional.ofNullable(dayOfBirth);
     }
 
     public Optional<String> getPlaceOfBirth() {
@@ -56,12 +76,13 @@ public class Citizen {
         return Objects.equals(gender, other.gender)
             && Objects.equals(yearOfBirth, other.yearOfBirth)
             && Objects.equals(monthOfBirth, other.monthOfBirth)
+            && Objects.equals(dayOfBirth, other.dayOfBirth)
             && Objects.equals(placeOfBirth, other.placeOfBirth);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(gender, yearOfBirth, monthOfBirth, placeOfBirth);
+        return Objects.hash(gender, yearOfBirth, monthOfBirth, dayOfBirth, placeOfBirth);
     }
 
     @Override
@@ -70,6 +91,7 @@ public class Citizen {
             + "gender='" + gender + '\''
             + ", yearOfBirth=" + yearOfBirth
             + ", monthOfBirth=" + monthOfBirth
+            + ", dayOfBirth=" + dayOfBirth
             + ", placeOfBirth='" + placeOfBirth + '\''
             + '}';
     }

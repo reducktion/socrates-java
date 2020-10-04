@@ -9,6 +9,7 @@ public class CitizenExtractorFactory {
     public static CitizenExtractor getExtractor(final Country country) {
         switch (country) {
             case FR: return new FranceCitizenExtractor();
+            case IT: return new ItalyCitizenExtractor();
             default: throw new UnsupportedOperationException("Country not supported.");
         }
     }
