@@ -18,13 +18,6 @@ public class Citizen {
         return Optional.ofNullable(gender);
     }
 
-    public Optional<String> getGenderIdentifier() {
-        if (gender != null) {
-            return Optional.of(gender.getIdentifier());
-        }
-        return Optional.empty();
-    }
-
     public Optional<Integer> getYearOfBirth() {
         return Optional.ofNullable(yearOfBirth);
     }
