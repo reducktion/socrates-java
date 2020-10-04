@@ -47,7 +47,7 @@ class ItalyCitizenExtractorTest {
                 "MRTMTT25D09F205Z",
                 Citizen
                     .builder()
-                    .gender("M")
+                    .gender(Gender.MALE)
                     .yearOfBirth(1925)
                     .monthOfBirth(4)
                     .dayOfBirth(9)
@@ -58,7 +58,7 @@ class ItalyCitizenExtractorTest {
                 "MLLSNT82P65Z404U",
                 Citizen
                     .builder()
-                    .gender("F")
+                    .gender(Gender.FEMALE)
                     .yearOfBirth(1982)
                     .monthOfBirth(9)
                     .dayOfBirth(25)
@@ -69,7 +69,7 @@ class ItalyCitizenExtractorTest {
                 "DLMCTG75B07H227Y",
                 Citizen
                     .builder()
-                    .gender("M")
+                    .gender(Gender.MALE)
                     .yearOfBirth(1975)
                     .monthOfBirth(2)
                     .dayOfBirth(7)
@@ -80,7 +80,7 @@ class ItalyCitizenExtractorTest {
                 "BRSLSE08D50H987B",
                 Citizen
                     .builder()
-                    .gender("F")
+                    .gender(Gender.FEMALE)
                     .yearOfBirth(2008)
                     .monthOfBirth(4)
                     .dayOfBirth(10)
@@ -91,7 +91,7 @@ class ItalyCitizenExtractorTest {
                 "MRCDRA01A13A065E",
                 Citizen
                     .builder()
-                    .gender("M")
+                    .gender(Gender.MALE)
                     .yearOfBirth(2001)
                     .monthOfBirth(1)
                     .dayOfBirth(13)
@@ -102,7 +102,7 @@ class ItalyCitizenExtractorTest {
                 "MRCDRALMAMPALSRE",
                 Citizen
                     .builder()
-                    .gender("M")
+                    .gender(Gender.MALE)
                     .yearOfBirth(2001)
                     .monthOfBirth(1)
                     .dayOfBirth(13)

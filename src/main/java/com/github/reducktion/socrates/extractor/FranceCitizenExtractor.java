@@ -51,11 +51,11 @@ class FranceCitizenExtractor implements CitizenExtractor {
         return id.replace(" ", "");
     }
 
-    private String extractGender(final String id) {
+    private Gender extractGender(final String id) {
         if (CHARACTER_MALE.equals(getGenderCharacter(id))) {
-            return "M";
+            return Gender.MALE;
         } else {
-            return "F";
+            return Gender.FEMALE;
         }
     }
 
