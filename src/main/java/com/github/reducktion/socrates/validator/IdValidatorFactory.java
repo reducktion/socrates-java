@@ -11,6 +11,7 @@ public class IdValidatorFactory {
             case ES: return new SpainIdValidator();
             case PT: return new PortugalIdValidator();
             case FR: return new FranceIdValidator();
+            case IT: return new ItalyIdValidator();
             default: throw new UnsupportedOperationException("Country not supported.");
         }
     }
