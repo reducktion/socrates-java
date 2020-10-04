@@ -1,11 +1,9 @@
 package com.github.reducktion.socrates.extractor;
 
 import java.time.Year;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
 import java.util.Optional;
 
+import com.github.reducktion.socrates.utils.TwoYearDateParser;
 import com.github.reducktion.socrates.validator.IdValidator;
 
 /**
@@ -28,9 +26,7 @@ class FranceCitizenExtractor implements CitizenExtractor {
     private static final int PSEUDO_FICTITIOUS_JANUARY = 31;
     private static final int PSEUDO_FICTITIOUS_DECEMBER = 42;
 
-    private final DateTimeFormatter twoYearFormatter = new DateTimeFormatterBuilder()
-        .appendValueReduced(ChronoField.YEAR, 2, 2, Year.now().getValue() - 100) // change time window
-        .toFormatter();
+    private final TwoYearDateParser twoYearDateParser = new TwoYearDateParser(Year.now().getValue());
 
     @Override
     public Optional<Citizen> extractFromId(final String id, final IdValidator idValidator) {
@@ -67,9 +63,7 @@ class FranceCitizenExtractor implements CitizenExtractor {
     }
 
     private Integer extractYear(final String id) {
-        return twoYearFormatter
-            .parse(getYearCharacters(id))
-            .get(ChronoField.YEAR);
+        return twoYearDateParser.parse(getYearCharacters(id));
     }
 
     private String getYearCharacters(final String id) {
