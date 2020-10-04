@@ -5,6 +5,7 @@
     <img src="https://raw.githubusercontent.com/reducktion/socrates-java/master/docs/example.png" alt="Usage example" width="800">
 </p>
 <p align="center">
+    <img alt="Build" src="https://github.com/reducktion/socrates-java/workflows/Build/badge.svg?branch=master">
     <img alt="License" src="https://img.shields.io/github/license/reducktion/socrates">
 </p>
 
