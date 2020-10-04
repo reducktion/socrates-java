@@ -6,12 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Year;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
 import java.util.Optional;
 
 import com.github.reducktion.socrates.utils.ItalyOmocodiaSwapper;
+import com.github.reducktion.socrates.utils.TwoYearDateParser;
 import com.github.reducktion.socrates.validator.IdValidator;
 
 /**
@@ -30,9 +28,7 @@ class ItalyCitizenExtractor implements CitizenExtractor {
     private static final String MONTH_CODES = "ABCDEHLMPRST";
     private static final Path REGIONS_FILE_PATH = Paths.get("./src/main/resources/italy_regions.csv");
 
-    private final DateTimeFormatter twoYearFormatter = new DateTimeFormatterBuilder()
-        .appendValueReduced(ChronoField.YEAR, 2, 2, Year.now().getValue() - 100) // change time window
-        .toFormatter();
+    private final TwoYearDateParser twoYearDateParser = new TwoYearDateParser(Year.now().getValue());
 
     @Override
     public Optional<Citizen> extractFromId(final String id, final IdValidator idValidator) {
@@ -70,9 +66,7 @@ class ItalyCitizenExtractor implements CitizenExtractor {
     }
 
     private Integer extractYearOfBirth(final String id) {
-        return twoYearFormatter
-            .parse(getYearOfBirthCharacters(id))
-            .get(ChronoField.YEAR);
+        return twoYearDateParser.parse(getYearOfBirthCharacters(id));
     }
 
     private String getYearOfBirthCharacters(final String id) {
