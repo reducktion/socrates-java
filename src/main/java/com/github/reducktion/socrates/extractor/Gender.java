@@ -10,6 +10,11 @@ public enum Gender {
         this.identifier = identifier;
     }
 
+    /**
+     * Gender identifier.
+     *
+     * @return "F" if gender is {@link #FEMALE} and "M" if gender if {@link #MALE}
+     */
     public String getIdentifier() {
         return identifier;
     }
