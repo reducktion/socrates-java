@@ -4,6 +4,9 @@
 <p align="center">
     <img src="https://raw.githubusercontent.com/reducktion/socrates-java/master/docs/example.png" alt="Usage example" width="800">
 </p>
+<p align="center">
+    <img alt="License" src="https://img.shields.io/github/license/reducktion/socrates">
+</p>
 
 ## Introduction
 This package is a port of the [php package socrates](https://github.com/reducktion/socrates).
