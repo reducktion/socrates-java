@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 import java.util.Optional;
 
+import com.github.reducktion.socrates.utils.ItalyOmocodiaSwapper;
 import com.github.reducktion.socrates.validator.IdValidator;
 
 /**
@@ -26,8 +27,6 @@ import com.github.reducktion.socrates.validator.IdValidator;
  */
 class ItalyCitizenExtractor implements CitizenExtractor {
 
-    private static final int[] NUMERICAL_CHARACTER_POSITIONS = {6, 7, 9, 10, 12, 13, 14};
-    private static final String NUMERICAL_CHARACTER_SUBSTITUTIONS = "LMNPQRSTUV";
     private static final String MONTH_CODES = "ABCDEHLMPRST";
     private static final Path REGIONS_FILE_PATH = Paths.get("./src/main/resources/italy_regions.csv");
 
@@ -41,7 +40,7 @@ class ItalyCitizenExtractor implements CitizenExtractor {
             return Optional.empty();
         }
 
-        final String sanitizedId = omocodiaSwap(sanitize(id));
+        final String sanitizedId = ItalyOmocodiaSwapper.swap(sanitize(id));
 
         final Citizen citizen = new Citizen(
             extractGender(sanitizedId),
@@ -58,21 +57,6 @@ class ItalyCitizenExtractor implements CitizenExtractor {
         return id
             .replace(" ", "")
             .toUpperCase();
-    }
-
-    // When the alphanumeric expression relating to the first fifteen characters of the code is common to two or more
-    // subjects, it is differentiated for each of the subjects following the first coded subject.
-    // To this end, within the seven numerical characters contained in the code, systematic substitutions of one or
-    // more digits starting from the right one are carried out with corresponding alphabetic characters.
-    private String omocodiaSwap(final String id) {
-        final char[] idCharArray = id.toCharArray();
-
-        for (final int i : NUMERICAL_CHARACTER_POSITIONS) {
-            if (Character.isAlphabetic(idCharArray[i])) {
-                idCharArray[i] = (char) (NUMERICAL_CHARACTER_SUBSTITUTIONS.indexOf(idCharArray[i])  + '0');
-            }
-        }
-        return String.valueOf(idCharArray);
     }
 
     private String extractGender(final String id) {
