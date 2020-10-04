@@ -72,26 +72,16 @@ class ItalyIdValidator implements IdValidator {
 
     private int getValueForOddCharacter(final String oddCharacter) {
         switch (oddCharacter) {
-            case "0":
-            case "A": return 1;
-            case "1":
-            case "B": return 0;
-            case "2":
-            case "C": return 5;
-            case "3":
-            case "D": return 7;
-            case "4":
-            case "F": return 9;
-            case "5":
-            case "E": return 13;
-            case "6":
-            case "G": return 15;
-            case "7":
-            case "H": return 17;
-            case "8":
-            case "I": return 19;
-            case "9":
-            case "J": return 21;
+            case "0": case "A": return 1;
+            case "1": case "B": return 0;
+            case "2": case "C": return 5;
+            case "3": case "D": return 7;
+            case "4": case "F": return 9;
+            case "5": case "E": return 13;
+            case "6": case "G": return 15;
+            case "7": case "H": return 17;
+            case "8": case "I": return 19;
+            case "9": case "J": return 21;
             case "K": return 2;
             case "L": return 4;
             case "M": return 18;
