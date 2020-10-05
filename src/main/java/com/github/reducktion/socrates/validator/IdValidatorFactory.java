@@ -12,7 +12,7 @@ public class IdValidatorFactory {
             case IT: return new ItalyIdValidator();
             case PT: return new PortugalIdValidator();
             case ES: return new SpainIdValidator();
-            case US: return new USAIdValidator();
+            case US: return new UsaIdValidator();
             default: throw new UnsupportedOperationException("Country not supported.");
         }
     }

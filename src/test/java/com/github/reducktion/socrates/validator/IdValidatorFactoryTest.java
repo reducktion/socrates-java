@@ -29,7 +29,7 @@ class IdValidatorFactoryTest {
             Arguments.arguments(Country.IT, ItalyIdValidator.class),
             Arguments.arguments(Country.PT, PortugalIdValidator.class),
             Arguments.arguments(Country.ES, SpainIdValidator.class),
-            Arguments.arguments(Country.US, USAIdValidator.class)
+            Arguments.arguments(Country.US, UsaIdValidator.class)
         );
     }
 }
