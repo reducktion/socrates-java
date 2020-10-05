@@ -23,12 +23,12 @@ class PortugalIdValidatorTest {
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdHasLengthGreaterThanTwelve() {
+    void validate_shouldReturnFalse_whenIdHasMoreThan12Characters() {
         assertThat(portugalIdValidator.validate("1234567890123"), is(false));
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdHasLengthLowerThanTwelve() {
+    void validate_shouldReturnFalse_whenIdHasLessThan12Characters() {
         assertThat(portugalIdValidator.validate("12345678901"), is(false));
     }
 

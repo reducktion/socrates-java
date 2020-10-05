@@ -23,12 +23,12 @@ class FranceIdValidatorTest {
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdHasLengthGreaterThanFifteen() {
+    void validate_shouldReturnFalse_whenIdHasMoreThan15Characters() {
         assertThat(franceIdValidator.validate("1234567890123456"), is(false));
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdHasLengthLowerThanFifteen() {
+    void validate_shouldReturnFalse_whenIdHasLessThan15Characters() {
         assertThat(franceIdValidator.validate("12345678901234"), is(false));
     }
 
