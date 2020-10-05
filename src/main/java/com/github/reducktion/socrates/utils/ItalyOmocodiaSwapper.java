@@ -12,6 +12,7 @@ package com.github.reducktion.socrates.utils;
  */
 public class ItalyOmocodiaSwapper {
 
+    private static final int ID_NUMBER_OF_CHARACTERS = 16;
     private static final int[] NUMERICAL_CHARACTER_POSITIONS = {6, 7, 9, 10, 12, 13, 14};
     private static final String NUMERICAL_CHARACTER_SUBSTITUTIONS = "LMNPQRSTUV";
 
@@ -24,10 +25,14 @@ public class ItalyOmocodiaSwapper {
      * upper case.
      *
      * @param id the identification number
-     * @return the identification number with the characters swapped.
-     * @throws NullPointerException if {@code id} is null
+     * @return the identification number with the characters swapped or {@code id} if the {@code id} is either null or
+     * does not have 16 characters
      */
     public static String swap(final String id) {
+        if (id == null || id.length() != ID_NUMBER_OF_CHARACTERS) {
+            return id;
+        }
+
         final char[] idCharArray = id.toCharArray();
 
         for (final int i : NUMERICAL_CHARACTER_POSITIONS) {
