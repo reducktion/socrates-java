@@ -48,5 +48,11 @@ citizen.ifPresent(c -> {
 });
 ```
 
+## Contributing
+Did you find a problem in any of the algorithms? 
+Do you know how to implement a country which we have missed?
+Are there any improvements that you think should be made to the codebase?
+Any help is appreciated! Take a look at our [contributing guidelines](CONTRIBUTING.md).
+
 ## License
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
