@@ -4,18 +4,18 @@ public enum Gender {
     FEMALE("F"),
     MALE("M");
 
-    private final String identifier;
+    private final String shortHand;
 
-    Gender(final String identifier) {
-        this.identifier = identifier;
+    Gender(final String shortHand) {
+        this.shortHand = shortHand;
     }
 
     /**
-     * Gender identifier.
+     * Gender's short hand.
      *
      * @return "F" if gender is {@link #FEMALE} and "M" if gender if {@link #MALE}
      */
-    public String getIdentifier() {
-        return identifier;
+    public String getShortHand() {
+        return shortHand;
     }
 }
