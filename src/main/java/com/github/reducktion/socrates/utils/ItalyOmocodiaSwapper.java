@@ -26,7 +26,7 @@ public class ItalyOmocodiaSwapper {
      *
      * @param id the identification number
      * @return the identification number with the characters swapped or {@code id} if the {@code id} is either null or
-     * does not have 16 characters
+     *         does not have 16 characters
      */
     public static String swap(final String id) {
         if (id == null || id.length() != ID_NUMBER_OF_CHARACTERS) {
