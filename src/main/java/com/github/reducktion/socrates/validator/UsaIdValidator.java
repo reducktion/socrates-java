@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * Blacklisted SSN can be found in: https://www.ssa.gov/history/ssn/misused.html
  **/
-class USAIdValidator implements IdValidator {
+class UsaIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 9;
     private static final List<String> BLACKLISTED_IDS = Arrays.asList("078051120", "219099999", "457555462");
