@@ -1,0 +1,61 @@
+package com.github.reducktion.socrates.validator;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+class USAIdValidatorTest {
+
+    private USAIdValidator usaIdValidator;
+
+    @BeforeEach
+    void setup() {
+        usaIdValidator = new USAIdValidator();
+    }
+
+    @Test
+    void validate_shouldReturnFalse_whenIdIsNull() {
+        assertThat(usaIdValidator.validate(null), is(false));
+    }
+
+    @Test
+    void validate_shouldReturnFalse_whenIdHasMoreThan9Characters() {
+        assertThat(usaIdValidator.validate("1234567890"), is(false));
+    }
+
+    @Test
+    void validate_shouldReturnFalse_whenIdHasLessThan9Characters() {
+        assertThat(usaIdValidator.validate("12345678"), is(false));
+    }
+
+    @Test
+    void validate_shouldIgnoreDashesAndReturnTrue_whenAreaCodeIsValid() {
+        assertThat(usaIdValidator.validate("167-38-1265"), is(true));
+    }
+
+    @Test
+    void validate_shouldIgnoreTrailingAndLeadingSpacesAndReturnTrue_whenAreaCodeIsValid() {
+        assertThat(usaIdValidator.validate(" 167-38-1265 "), is(true));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "078051120", "219099999", "457555462" })
+    void validate_shouldReturnFalse_whenIdIsBlacklisted(final String validId) {
+        assertThat(usaIdValidator.validate(validId), is(false));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "536228726", "536225232", "574227664", "671269121" })
+    void validate_shouldReturnTrue_whenAreaCodeIsValid(final String validId) {
+        assertThat(usaIdValidator.validate(validId), is(true));
+    }
+
+    @Test
+    void validate_shouldReturnFalse_whenAreaCodeIsInvalid() {
+        assertThat(usaIdValidator.validate("078-05-1120"), is(false));
+    }
+}
