@@ -14,19 +14,19 @@ class ItalyOmocodiaSwapperTest {
     }
 
     @Test
-    void swap_shouldReturnSameId_whenIdHasLengthGreaterThanSixteen() {
+    void swap_shouldReturnSameId_whenIdHasMoreThan16Characters() {
         final String id = "12345678901234567";
         assertThat(ItalyOmocodiaSwapper.swap(id), is(id));
     }
 
     @Test
-    void swap_shouldReturnSameId_whenIdHasLengthLowerThanSixteen() {
+    void swap_shouldReturnSameId_whenIdHasLessThan16Characters() {
         final String id = "123456789012345";
         assertThat(ItalyOmocodiaSwapper.swap(id), is(id));
     }
 
     @Test
-    void swap_shouldSwapCorrectCharacters_whenIdHasLengthSixteenAndDoesNotHaveSpecialCharacters() {
+    void swap_shouldSwapCorrectCharacters_whenIdHas16CharactersAndDoesNotHaveSpecialCharacters() {
         assertThat(ItalyOmocodiaSwapper.swap("MRCDRALMAMPALSRE"), is("MRCDRA01A13A065E"));
     }
 }

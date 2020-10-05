@@ -23,12 +23,12 @@ class SpainIdValidatorTest {
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdHasLengthGreaterThanNine() {
+    void validate_shouldReturnFalse_whenIdHasMoreThan9Characters() {
         assertThat(spainIdValidator.validate("1234567890"), is(false));
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdHasLengthLowerThanNine() {
+    void validate_shouldReturnFalse_whenIdHasLessThan9Characters() {
         assertThat(spainIdValidator.validate("12345678"), is(false));
     }
 

@@ -23,12 +23,12 @@ class ItalyIdValidatorTest {
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdHasLengthGreaterThanSixteen() {
+    void validate_shouldReturnFalse_whenIdHasMoreThan16Characters() {
         assertThat(italyIdValidator.validate("12345678901234567"), is(false));
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdHasLengthLowerThanSixteen() {
+    void validate_shouldReturnFalse_whenIdHasLessThan16Characters() {
         assertThat(italyIdValidator.validate("123456789012345"), is(false));
     }
 
