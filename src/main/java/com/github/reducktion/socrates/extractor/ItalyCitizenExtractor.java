@@ -67,7 +67,9 @@ class ItalyCitizenExtractor implements CitizenExtractor {
     }
 
     private Integer extractYearOfBirth(final String id) {
-        return twoYearDateParser.parse(getYearOfBirthCharacters(id));
+        return twoYearDateParser
+            .parse(getYearOfBirthCharacters(id))
+            .orElse(null);
     }
 
     private String getYearOfBirthCharacters(final String id) {
