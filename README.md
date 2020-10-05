@@ -9,6 +9,7 @@
     <img alt="License" src="https://img.shields.io/github/license/reducktion/socrates">
 </p>
 
+---
 ## Introduction
 This package is a port of the [php package socrates](https://github.com/reducktion/socrates).
 
