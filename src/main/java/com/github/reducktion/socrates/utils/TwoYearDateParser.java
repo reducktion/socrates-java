@@ -27,7 +27,8 @@ public class TwoYearDateParser {
      *
      * @param yearLastTwoDigits the last two digits of the year
      * @return the respective year
-     * @throws DateTimeParseException when {@code yearLastTwoDigits} is less than zero
+     * @throws NullPointerException if {@code yearLastTwoDigits} is null
+     * @throws DateTimeParseException if {@code yearLastTwoDigits} is less than zero
      */
     public int parse(final String yearLastTwoDigits) {
         return twoYearFormatter
