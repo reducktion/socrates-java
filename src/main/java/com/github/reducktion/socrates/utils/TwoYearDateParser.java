@@ -2,8 +2,10 @@ package com.github.reducktion.socrates.utils;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoField;
+import java.util.Optional;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Date time parser that is capable of returning a year (e.g. 1999), given the last two digits of the year as a
@@ -26,13 +28,18 @@ public class TwoYearDateParser {
      * Returns the year, given the last two digits (of the year).
      *
      * @param yearLastTwoDigits the last two digits of the year
-     * @return the respective year
-     * @throws NullPointerException if {@code yearLastTwoDigits} is null
-     * @throws DateTimeParseException if {@code yearLastTwoDigits} is less than zero
+     * @return the respective year wrapped in an {@link Optional} if {@code yearLastTwoDigits} represents a
+     *         non-negative integer and {@link Optional#empty()} otherwise.
      */
-    public int parse(final String yearLastTwoDigits) {
-        return twoYearFormatter
+    public Optional<Integer> parse(final String yearLastTwoDigits) {
+        if (!StringUtils.isNumeric(yearLastTwoDigits) || Integer.parseInt(yearLastTwoDigits) < 0) {
+            return Optional.empty();
+        }
+
+        final int year = twoYearFormatter
             .parse(yearLastTwoDigits)
             .get(ChronoField.YEAR);
+
+        return Optional.of(year);
     }
 }
