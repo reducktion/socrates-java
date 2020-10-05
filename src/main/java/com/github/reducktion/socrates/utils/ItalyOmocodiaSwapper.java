@@ -25,6 +25,7 @@ public class ItalyOmocodiaSwapper {
      *
      * @param id the identification number
      * @return the identification number with the characters swapped.
+     * @throws NullPointerException if {@code id} is null
      */
     public static String swap(final String id) {
         final char[] idCharArray = id.toCharArray();
