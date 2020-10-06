@@ -51,8 +51,8 @@ public class LuhnAlgorithm {
         int sum = 0;
         boolean everyOtherDigit = false;
 
-        for (final char c : id.toCharArray()) {
-            int value = Character.digit(c, radix);
+        for (int i = id.length() - 1; i >= 0; --i) {
+            int value = Character.digit(id.charAt(i), radix);
 
             if (everyOtherDigit) {
                 value *= 2;
@@ -96,7 +96,8 @@ public class LuhnAlgorithm {
             return Optional.empty();
         }
 
-        final int checkDigit = (sum(id, radix) * 9) % 10;
+        final int sum = sum(id + "0", radix);
+        final int checkDigit = (sum * 9) % 10;
         return Optional.of(checkDigit);
     }
 }

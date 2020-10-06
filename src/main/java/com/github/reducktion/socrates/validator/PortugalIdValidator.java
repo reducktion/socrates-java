@@ -25,21 +25,12 @@ class PortugalIdValidator implements IdValidator {
             return false;
         }
 
-        final String reversedId = reverseId(sanitizedId);
-        return LuhnAlgorithm.validate(reversedId, BASE_36_RADIX);
+        return LuhnAlgorithm.validate(sanitizedId, BASE_36_RADIX);
     }
 
     private String sanitize(final String id) {
         return id
             .replace(" ", "")
             .toUpperCase();
-    }
-
-    private String reverseId(final String id) {
-        final StringBuilder stringBuilder = new StringBuilder();
-        for (int i = id.length() - 1; i >= 0; --i) {
-            stringBuilder.append(id.charAt(i));
-        }
-        return stringBuilder.toString();
     }
 }

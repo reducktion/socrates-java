@@ -26,7 +26,7 @@ class LuhnAlgorithmTest {
     void validate_shouldReturnTrue_whenIdIsValid() {
         assertThat(LuhnAlgorithm.validate("1983081246783"), is(true));
         assertThat(LuhnAlgorithm.validate("79927398713"), is(true));
-        assertThat(LuhnAlgorithm.validate("8XZ892148011", BASE_36_RADIX), is(true));
+        assertThat(LuhnAlgorithm.validate("110841298ZX8", BASE_36_RADIX), is(true));
     }
 
     @Test
