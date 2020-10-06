@@ -8,5 +8,6 @@ public enum Country {
     IT,
     PT,
     ES,
-    US
+    US,
+    CA
 }
