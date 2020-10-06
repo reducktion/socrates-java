@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CanadaIdValidatorTest {
+
     private CanadaIdValidator canadaIdValidator;
 
     @BeforeEach
@@ -16,7 +17,6 @@ class CanadaIdValidatorTest {
 
     @Test
     void validate_shouldReturnFalse_whenIdIsNull() {
-
         assertThat(canadaIdValidator.validate(null), is(false));
     }
 

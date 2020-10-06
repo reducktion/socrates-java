@@ -2,6 +2,7 @@
 
 | Country                     | Country Code |     Validation     |     Extraction     |
 |-----------------------------|--------------|--------------------|--------------------|
+| Canada 🇨🇦                   |      CA      | :heavy_check_mark: | :x:                |
 | France 🇫🇷                   |      FR      | :heavy_check_mark: | :heavy_check_mark: |
 | Italy 🇮🇹                    |      IT      | :heavy_check_mark: | :heavy_check_mark: |
 | Portugal 🇵🇹                 |      PT      | :heavy_check_mark: | :x:                |
