@@ -32,13 +32,14 @@ class ItalyIdValidatorTest {
         assertThat(italyIdValidator.validate("123456789012345"), is(false));
     }
 
-    @Test
-    void validate_shouldIgnoreSpacesAndReturnTrue_whenIdIsValid() {
-        assertThat(italyIdValidator.validate(" MRTMTT25D09F20 5Z "), is(true));
-    }
-
     @ParameterizedTest
-    @ValueSource(strings = { "MLLSNT82P65Z404U", "DLMCTG75B07H227Y", "BRSLSE08D50H987B", "MRCDRALMAMPALSRE" })
+    @ValueSource(strings = {
+        " MRTMTT25D09F20 5Z ",
+        "MLLSNT82P65Z404U",
+        "DLMCTG75B07H227Y",
+        "BRSLSE08D50H987B",
+        "MRCDRALMAMPALSRE"
+    })
     void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
         assertThat(italyIdValidator.validate(validId), is(true));
     }
