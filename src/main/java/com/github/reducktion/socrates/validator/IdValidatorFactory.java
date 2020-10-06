@@ -8,6 +8,7 @@ public class IdValidatorFactory {
 
     public static IdValidator getValidator(final Country country) {
         switch (country) {
+            case BR: return new BrazilIdValidator();
             case CA: return new CanadaIdValidator();
             case FR: return new FranceIdValidator();
             case IT: return new ItalyIdValidator();

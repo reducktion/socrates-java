@@ -25,6 +25,7 @@ class IdValidatorFactoryTest {
 
     private static List<Arguments> validatorsForCountries() {
         return Arrays.asList(
+            Arguments.arguments(Country.BR, BrazilIdValidator.class),
             Arguments.arguments(Country.CA, CanadaIdValidator.class),
             Arguments.arguments(Country.FR, FranceIdValidator.class),
             Arguments.arguments(Country.IT, ItalyIdValidator.class),
