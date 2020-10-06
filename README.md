@@ -27,7 +27,7 @@ Socrates provides two methods:
 * `validateId`, which returns a boolean indicating if an id is valid in a specific country
 * `extractCitizenFromId`, which returns an Optional `Citizen` with information retrievable from the identifier (gender, date of birth, ...)
 
-The list of supported countries is available via the `Country` enum.
+You can find a list of supported countries [here](COUNTRIES.md).
 
 ### validateId
 ```java
@@ -51,9 +51,6 @@ citizen.ifPresent(c -> {
 #### Gender
 `Gender` is an enum that represents the gender of the `Citizen` extracted from the ID. It can have the values `FEMALE` or `MALE`. However, you can get the
 short hand "F" and "M" for `FEMALE` and `MALE` respectively, by using the method `getShortHand()` present in the class.
-
-## Supported Countries
-You can find a list of supported countries [here](COUNTRIES.md).
 
 ## Contributing
 Did you find a problem in any of the algorithms? 
