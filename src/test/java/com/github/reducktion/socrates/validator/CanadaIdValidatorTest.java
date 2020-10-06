@@ -47,7 +47,7 @@ class CanadaIdValidatorTest {
 
     @Test
     void validate_shouldReturnTrue_whenIdHasNoSpaces() {
-        assertThat(canadaIdValidator.validate("046 454 286"), is(true));
+        assertThat(canadaIdValidator.validate("046454286"), is(true));
     }
 
 }
