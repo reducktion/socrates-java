@@ -23,12 +23,12 @@ class TwoYearDateParserTest {
     }
 
     @Test
-    void parse_shouldReturnEmptyOptional_whenArgumentIsNotNumeric() {
+    void parse_shouldReturnEmptyOptional_whenArgumentHasAlphaCharacters() {
         assertThat(twoYearDateParser.parse("AB"), is(Optional.empty()));
     }
 
     @Test
-    void parse_shouldReturnEmptyOptional_whenYearLastTwoDigitsIsNegativeNumber() {
+    void parse_shouldReturnEmptyOptional_whenArgumentRepresentsNegativeNumber() {
         assertThat(twoYearDateParser.parse("-1"), is(Optional.empty()));
     }
 
