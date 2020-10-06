@@ -32,13 +32,8 @@ class PortugalIdValidatorTest {
         assertThat(portugalIdValidator.validate("12345678901"), is(false));
     }
 
-    @Test
-    void validate_shouldIgnoreSpacesAndReturnTrue_whenIdIsValid() {
-        assertThat(portugalIdValidator.validate(" 11084129 8 ZX8 "), is(true));
-    }
-
     @ParameterizedTest
-    @ValueSource(strings = { "154203556ZX9", "176539174ZZ5", "174886721ZX1", "148984754ZY5" })
+    @ValueSource(strings = {" 11084129 8 ZX8 ", "154203556ZX9", "176539174ZZ5", "174886721ZX1", "148984754ZY5" })
     void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
         assertThat(portugalIdValidator.validate(validId), is(true));
     }

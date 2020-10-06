@@ -32,24 +32,14 @@ class SpainIdValidatorTest {
         assertThat(spainIdValidator.validate("12345678"), is(false));
     }
 
-    @Test
-    void validate_shouldIgnoreDashesAndReturnTrue_whenControlCharacterMatches() {
-        assertThat(spainIdValidator.validate("843-456-42L"), is(true));
-    }
-
-    @Test
-    void validate_shouldIgnoreTrailingAndLeadingSpacesAndReturnTrue_whenControlCharacterMatches() {
-        assertThat(spainIdValidator.validate(" 84345642L "), is(true));
-    }
-
     @ParameterizedTest
-    @ValueSource(strings = { "84345642L", "Y3338121F", "40298386V", "Y0597591L", "09730915Y" })
-    void validate_shouldReturnTrue_whenControlCharacterMatches(final String validId) {
+    @ValueSource(strings = { "843-456-42L", " Y3338121F ", "40298386V", "Y0597591L", "09730915Y" })
+    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
         assertThat(spainIdValidator.validate(validId), is(true));
     }
 
     @Test
-    void validate_shouldReturnFalse_whenControlCharacterDoesNotMatch() {
+    void validate_shouldReturnFalse_whenIdIsInvalid() {
         assertThat(spainIdValidator.validate("05756786M"), is(false));
     }
 }

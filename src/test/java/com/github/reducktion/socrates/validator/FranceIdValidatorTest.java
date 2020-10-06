@@ -33,17 +33,18 @@ class FranceIdValidatorTest {
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdHasAlpha() {
+    void validate_shouldReturnFalse_whenIdHasAlphaCharacters() {
         assertThat(franceIdValidator.validate("12345678901234A"), is(false));
     }
 
-    @Test
-    void validate_shouldIgnoreSpacesAndReturnTrue_whenIdIsValid() {
-        assertThat(franceIdValidator.validate(" 2820819398814 09 "), is(true));
-    }
-
     @ParameterizedTest
-    @ValueSource(strings = { "238108021456811", "188085870457157", "182089740115475", "199072A22807010" })
+    @ValueSource(strings = {
+        " 2820819398814 09 ",
+        "238108021456811",
+        "188085870457157",
+        "182089740115475",
+        "199072A22807010"
+    })
     void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
         assertThat(franceIdValidator.validate(validId), is(true));
     }

@@ -37,21 +37,11 @@ class BrazilIdValidatorTest {
         assertThat(brazilIdValidator.validate("1234567AB"), is(false));
     }
 
-    @Test
-    void validate_shouldIgnoreDashesAndDotsAndReturnTrue_whenIdIsValid() {
-        assertThat(brazilIdValidator.validate("144-416-762.63"), is(true));
-    }
-
-    @Test
-    void validate_shouldIgnoreTrailingAndLeadingSpacesAndReturnTrue_whenIdIsValid() {
-        assertThat(brazilIdValidator.validate(" 14441676263 "), is(true));
-    }
-
     @ParameterizedTest
     @ValueSource(strings = {
         // one per state
-        "14441676263",
-        "62363568400",
+        "144-416-762.63",
+        " 62363568400 ",
         "92205820230",
         "88958056231",
         "90701066555",

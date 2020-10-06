@@ -37,16 +37,6 @@ class UsaIdValidatorTest {
         assertThat(usaIdValidator.validate("12345678A"), is(false));
     }
 
-    @Test
-    void validate_shouldIgnoreDashesAndReturnTrue_whenAreaCodeIsValid() {
-        assertThat(usaIdValidator.validate("167-38-1265"), is(true));
-    }
-
-    @Test
-    void validate_shouldIgnoreTrailingAndLeadingSpacesAndReturnTrue_whenAreaCodeIsValid() {
-        assertThat(usaIdValidator.validate(" 167381265 "), is(true));
-    }
-
     @ParameterizedTest
     @ValueSource(strings = { "078051120", "219099999", "457555462" })
     void validate_shouldReturnFalse_whenIdIsBlacklisted(final String validId) {
@@ -54,13 +44,13 @@ class UsaIdValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "536228726", "536225232", "574227664", "671269121" })
-    void validate_shouldReturnTrue_whenAreaCodeIsValid(final String validId) {
+    @ValueSource(strings = { "167-38-1265", " 536228726 ", "536225232", "574227664", "671269121" })
+    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
         assertThat(usaIdValidator.validate(validId), is(true));
     }
 
     @Test
-    void validate_shouldReturnFalse_whenAreaCodeIsInvalid() {
+    void validate_shouldReturnFalse_whenIdIsInvalid() {
         assertThat(usaIdValidator.validate("078051120"), is(false));
     }
 }
