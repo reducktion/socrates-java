@@ -1,19 +1,22 @@
 package com.github.reducktion.socrates.validator;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class CanadaIdValidatorTest {
     private CanadaIdValidator canadaIdValidator;
 
     @BeforeEach
-    void setup() { canadaIdValidator = new CanadaIdValidator();}
+    void setup() {
+        canadaIdValidator = new CanadaIdValidator();
+    }
 
     @Test
     void validate_shouldReturnFalse_whenIdIsNull() {
+
         assertThat(canadaIdValidator.validate(null), is(false));
     }
 
