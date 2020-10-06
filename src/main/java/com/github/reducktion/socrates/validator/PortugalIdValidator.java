@@ -1,5 +1,7 @@
 package com.github.reducktion.socrates.validator;
 
+import com.github.reducktion.socrates.utils.LuhnAlgorithm;
+
 /**
  * National Identification Number validator for Portugal.
  *
@@ -10,7 +12,6 @@ class PortugalIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 12;
     private static final int BASE_36_RADIX = 36;
-    private static final int CONTROL_DIGIT = 0;
 
     @Override
     public boolean validate(final String id) {
@@ -24,7 +25,8 @@ class PortugalIdValidator implements IdValidator {
             return false;
         }
 
-        return validateControlDigit(sanitizedId);
+        final String reversedId = reverseId(sanitizedId);
+        return LuhnAlgorithm.validate(reversedId, BASE_36_RADIX);
     }
 
     private String sanitize(final String id) {
@@ -33,24 +35,11 @@ class PortugalIdValidator implements IdValidator {
             .toUpperCase();
     }
 
-    private boolean validateControlDigit(final String id) {
-        int sum = 0;
-        boolean everyOtherDigit = false;
-
+    private String reverseId(final String id) {
+        final StringBuilder stringBuilder = new StringBuilder();
         for (int i = id.length() - 1; i >= 0; --i) {
-            int value = Character.digit(id.charAt(i), BASE_36_RADIX);
-
-            if (everyOtherDigit) {
-                value *= 2;
-
-                if (value > 9) {
-                    value -= 9;
-                }
-            }
-            sum += value;
-            everyOtherDigit = !everyOtherDigit;
+            stringBuilder.append(id.charAt(i));
         }
-
-        return (sum % 10) == CONTROL_DIGIT;
+        return stringBuilder.toString();
     }
 }
