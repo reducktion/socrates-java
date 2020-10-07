@@ -34,12 +34,12 @@ class PortugalIdValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {" 11084129 8 ZX8 ", "154203556ZX9", "176539174ZZ5", "174886721ZX1", "148984754ZY5" })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void validate_shouldReturnTrue_whenLuhnAlgorithmPasses(final String validId) {
         assertThat(portugalIdValidator.validate(validId), is(true));
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsInvalid() {
+    void validate_shouldReturnFalse_whenLuhnAlgorithmFails() {
         assertThat(portugalIdValidator.validate("154A03556ZX9"), is(false));
     }
 }

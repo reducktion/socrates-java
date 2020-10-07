@@ -34,12 +34,12 @@ class SpainIdValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = { "843-456-42L", " Y3338121F ", "40298386V", "Y0597591L", "09730915Y" })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void validate_shouldReturnTrue_whenControlCharacterMatches(final String validId) {
         assertThat(spainIdValidator.validate(validId), is(true));
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsInvalid() {
+    void validate_shouldReturnFalse_whenControlCharacterDoesNotMatch() {
         assertThat(spainIdValidator.validate("05756786M"), is(false));
     }
 }

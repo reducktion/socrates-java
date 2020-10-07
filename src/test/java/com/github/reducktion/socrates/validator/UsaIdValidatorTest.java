@@ -45,12 +45,12 @@ class UsaIdValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = { "167-38-1265", " 536228726 ", "536225232", "574227664", "671269121" })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void validate_shouldReturnTrue_whenAreaCodesAreValid(final String validId) {
         assertThat(usaIdValidator.validate(validId), is(true));
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsInvalid() {
+    void validate_shouldReturnFalse_whenAreaCodesAreInvalid() {
         assertThat(usaIdValidator.validate("078051120"), is(false));
     }
 }
