@@ -2,6 +2,7 @@ package com.github.reducktion.socrates.extractor;
 
 import java.util.Optional;
 
+import com.github.reducktion.socrates.Country;
 import com.github.reducktion.socrates.validator.IdValidator;
 
 /**
@@ -18,4 +19,19 @@ public interface CitizenExtractor {
      *         by the {@code idValidator}
      */
     Optional<Citizen> extractFromId(String id, IdValidator idValidator);
+
+    /**
+     * Return a new instance of {@link CitizenExtractor}, that is specific for the country parameter.
+     *
+     * @param country the {@link Country}
+     * @return a new instance of {@link CitizenExtractor}
+     * @throws UnsupportedOperationException if the country is not supported
+     */
+    static CitizenExtractor newInstance(final Country country) {
+        switch (country) {
+            case FR: return new FranceCitizenExtractor();
+            case IT: return new ItalyCitizenExtractor();
+            default: throw new UnsupportedOperationException("Country not supported.");
+        }
+    }
 }

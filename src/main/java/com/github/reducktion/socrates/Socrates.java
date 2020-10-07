@@ -4,9 +4,7 @@ import java.util.Optional;
 
 import com.github.reducktion.socrates.extractor.Citizen;
 import com.github.reducktion.socrates.extractor.CitizenExtractor;
-import com.github.reducktion.socrates.extractor.CitizenExtractorFactory;
 import com.github.reducktion.socrates.validator.IdValidator;
-import com.github.reducktion.socrates.validator.IdValidatorFactory;
 
 /**
  * Socrates allows you to validate and retrieve personal data from National Identification Numbers across the world.
@@ -22,7 +20,7 @@ public class Socrates {
      * @throws UnsupportedOperationException if the country is not supported
      */
     public boolean validateId(final String id, final Country country) {
-        final IdValidator idValidator = IdValidatorFactory.getValidator(country);
+        final IdValidator idValidator = IdValidator.newInstance(country);
         return idValidator.validate(id);
     }
 
@@ -35,8 +33,8 @@ public class Socrates {
      * @throws UnsupportedOperationException if the country is not supported
      */
     public Optional<Citizen> extractCitizenFromId(final String id, final Country country) {
-        final IdValidator idValidator = IdValidatorFactory.getValidator(country);
-        final CitizenExtractor citizenExtractor = CitizenExtractorFactory.getExtractor(country);
+        final IdValidator idValidator = IdValidator.newInstance(country);
+        final CitizenExtractor citizenExtractor = CitizenExtractor.newInstance(country);
         return citizenExtractor.extractFromId(id, idValidator);
     }
 }

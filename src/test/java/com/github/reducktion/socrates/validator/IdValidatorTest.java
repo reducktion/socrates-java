@@ -13,12 +13,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.github.reducktion.socrates.Country;
 
-class IdValidatorFactoryTest {
+class IdValidatorTest {
 
     @ParameterizedTest
     @MethodSource("validatorsForCountries")
-    void getValidator_shouldReturnCorrectValidatorForCountry(final Country country, final Class clazz) {
-        final IdValidator idValidator = IdValidatorFactory.getValidator(country);
+    void newInstance_shouldReturnCorrectValidatorForCountry(final Country country, final Class clazz) {
+        final IdValidator idValidator = IdValidator.newInstance(country);
 
         assertThat(idValidator, is(instanceOf(clazz)));
     }
