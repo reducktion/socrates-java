@@ -29,6 +29,7 @@ class IdValidatorTest {
             Arguments.arguments(Country.CA, CanadaIdValidator.class),
             Arguments.arguments(Country.FR, FranceIdValidator.class),
             Arguments.arguments(Country.IT, ItalyIdValidator.class),
+            Arguments.arguments(Country.MX, MexicoIdValidator.class),
             Arguments.arguments(Country.PT, PortugalIdValidator.class),
             Arguments.arguments(Country.ES, SpainIdValidator.class),
             Arguments.arguments(Country.US, UsaIdValidator.class)

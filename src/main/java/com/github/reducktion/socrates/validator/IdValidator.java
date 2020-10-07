@@ -19,6 +19,7 @@ public interface IdValidator {
             case CA: return new CanadaIdValidator();
             case FR: return new FranceIdValidator();
             case IT: return new ItalyIdValidator();
+            case MX: return new MexicoIdValidator();
             case PT: return new PortugalIdValidator();
             case ES: return new SpainIdValidator();
             case US: return new UsaIdValidator();
