@@ -13,12 +13,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.github.reducktion.socrates.Country;
 
-class CitizenExtractorFactoryTest {
+class CitizenExtractorTest {
 
     @ParameterizedTest
     @MethodSource("extractorsForCountries")
-    void getValidator_shouldReturnCorrectValidatorForCountry(final Country country, final Class clazz) {
-        final CitizenExtractor citizenExtractor = CitizenExtractorFactory.getExtractor(country);
+    void newInstance_shouldReturnCorrectValidatorForCountry(final Country country, final Class clazz) {
+        final CitizenExtractor citizenExtractor = CitizenExtractor.newInstance(country);
 
         assertThat(citizenExtractor, is(instanceOf(clazz)));
     }
