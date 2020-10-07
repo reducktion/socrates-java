@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * Source: https://en.wikipedia.org/wiki/Luhn_algorithm
  */
-public class LuhnAlgorithm {
+public final class LuhnAlgorithm {
 
     private static final int DEFAULT_RADIX = 10;
 

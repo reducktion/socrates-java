@@ -2,7 +2,7 @@ package com.github.reducktion.socrates.extractor;
 
 import com.github.reducktion.socrates.Country;
 
-public class CitizenExtractorFactory {
+public final class CitizenExtractorFactory {
 
     private CitizenExtractorFactory() {}
 
