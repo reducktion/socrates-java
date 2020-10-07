@@ -1,8 +1,7 @@
 package com.github.reducktion.socrates.extractor;
 
-import org.junit.jupiter.api.Test;
-
 import nl.jqno.equalsverifier.EqualsVerifier;
+import org.junit.jupiter.api.Test;
 
 class CitizenTest {
 
