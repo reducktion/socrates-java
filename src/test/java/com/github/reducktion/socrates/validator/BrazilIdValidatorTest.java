@@ -68,12 +68,12 @@ class BrazilIdValidatorTest {
         "26363102820",
         "17758534112"
     })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void validate_shouldReturnTrue_whenChecksumMatches(final String validId) {
         assertThat(brazilIdValidator.validate(validId), is(true));
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsInvalid() {
+    void validate_shouldReturnFalse_whenChecksumDoesNotMatch() {
         assertThat(brazilIdValidator.validate("23294954040"), is(false));
     }
 }
