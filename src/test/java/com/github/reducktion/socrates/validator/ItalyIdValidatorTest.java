@@ -40,12 +40,12 @@ class ItalyIdValidatorTest {
         "BRSLSE08D50H987B",
         "MRCDRALMAMPALSRE"
     })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void validate_shouldReturnTrue_whenControlCharacterMatches(final String validId) {
         assertThat(italyIdValidator.validate(validId), is(true));
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsInvalid() {
+    void validate_shouldReturnFalse_whenControlCharacterDoesNotMatch() {
         assertThat(italyIdValidator.validate("MECDRE01A11A025E"), is(false));
     }
 }

@@ -45,12 +45,12 @@ class FranceIdValidatorTest {
         "182089740115475",
         "199072A22807010"
     })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void validate_shouldReturnTrue_whenControlDigitMatches(final String validId) {
         assertThat(franceIdValidator.validate(validId), is(true));
     }
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsInvalid() {
+    void validate_shouldReturnFalse_whenControlDigitDoesNotMatch() {
         assertThat(franceIdValidator.validate("103162989566972"), is(false));
     }
 }
