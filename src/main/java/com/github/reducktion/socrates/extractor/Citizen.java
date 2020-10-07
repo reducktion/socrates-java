@@ -6,7 +6,7 @@ import java.util.Optional;
 /**
  * Class that represents a citizen, with the information extracted from the National Identification Number.
  */
-public class Citizen {
+public final class Citizen {
 
     private final Gender gender;
     private final Integer yearOfBirth;

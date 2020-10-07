@@ -2,7 +2,7 @@ package com.github.reducktion.socrates.validator;
 
 import com.github.reducktion.socrates.Country;
 
-public class IdValidatorFactory {
+public final class IdValidatorFactory {
 
     private IdValidatorFactory() {}
 

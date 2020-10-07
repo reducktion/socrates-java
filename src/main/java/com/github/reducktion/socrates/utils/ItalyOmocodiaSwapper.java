@@ -10,7 +10,7 @@ package com.github.reducktion.socrates.utils;
  * The algorithm for Italy is explained in http://www.dossier.net/utilities/codice-fiscale/decreto1974_2227.html
  * (art. 6).
  */
-public class ItalyOmocodiaSwapper {
+public final class ItalyOmocodiaSwapper {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 16;
     private static final int[] NUMERICAL_CHARACTER_POSITIONS = {6, 7, 9, 10, 12, 13, 14};
