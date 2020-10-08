@@ -31,6 +31,7 @@ public interface CitizenExtractor {
         switch (country) {
             case FR: return new FranceCitizenExtractor();
             case IT: return new ItalyCitizenExtractor();
+            case MX: return new MexicoCitizenExtractor();
             default: throw new UnsupportedOperationException("Country not supported.");
         }
     }
