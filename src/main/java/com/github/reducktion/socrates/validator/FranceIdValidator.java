@@ -28,11 +28,9 @@ class FranceIdValidator implements IdValidator {
             .replace("2A", "19")
             .replace("2B", "18");
 
-        if (sanitizedId.length() != ID_NUMBER_OF_CHARACTERS) {
-            return false;
-        }
-
-        if (!StringUtils.isNumeric(sanitizedId)) {
+        if (sanitizedId.length() != ID_NUMBER_OF_CHARACTERS
+            || !StringUtils.isNumeric(sanitizedId)
+        ) {
             return false;
         }
 
