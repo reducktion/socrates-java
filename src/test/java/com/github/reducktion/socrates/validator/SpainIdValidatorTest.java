@@ -22,18 +22,23 @@ class SpainIdValidatorTest {
         assertThat(spainIdValidator.validate(null), is(false));
     }
 
-    @Test
-    void validate_shouldReturnFalse_whenIdHasMoreThan9Characters() {
-        assertThat(spainIdValidator.validate("1234567890"), is(false));
-    }
-
-    @Test
-    void validate_shouldReturnFalse_whenIdHasLessThan9Characters() {
-        assertThat(spainIdValidator.validate("12345678"), is(false));
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "12345678",
+        "1234567890"
+    })
+    void validate_shouldReturnFalse_whenIdLengthIsNot9(final String idOfInvalidLength) {
+        assertThat(spainIdValidator.validate(idOfInvalidLength), is(false));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "843-456-42L", " Y3338121F ", "40298386V", "Y0597591L", "09730915Y" })
+    @ValueSource(strings = {
+        "843-456-42L",
+        " Y3338121F ",
+        "40298386V",
+        "Y0597591L",
+        "09730915Y"
+    })
     void validate_shouldReturnTrue_whenControlCharacterMatches(final String validId) {
         assertThat(spainIdValidator.validate(validId), is(true));
     }

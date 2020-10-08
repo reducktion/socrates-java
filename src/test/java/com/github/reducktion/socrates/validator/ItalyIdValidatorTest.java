@@ -22,14 +22,13 @@ class ItalyIdValidatorTest {
         assertThat(italyIdValidator.validate(null), is(false));
     }
 
-    @Test
-    void validate_shouldReturnFalse_whenIdHasMoreThan16Characters() {
-        assertThat(italyIdValidator.validate("12345678901234567"), is(false));
-    }
-
-    @Test
-    void validate_shouldReturnFalse_whenIdHasLessThan16Characters() {
-        assertThat(italyIdValidator.validate("123456789012345"), is(false));
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "123456789012345",
+        "12345678901234567"
+    })
+    void validate_shouldReturnFalse_whenIdLengthIsNot16(final String idOfInvalidLength) {
+        assertThat(italyIdValidator.validate(idOfInvalidLength), is(false));
     }
 
     @ParameterizedTest

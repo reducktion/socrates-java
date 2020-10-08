@@ -27,14 +27,13 @@ class LuxembourgValidatorTest {
         assertThat(luxembourgIdValidator.validate("12345678901AB"), is(false));
     }
 
-    @Test
-    void validate_shouldReturnFalse_whenIdHasMoreThan13Characters() {
-        assertThat(luxembourgIdValidator.validate("12345678901234"), is(false));
-    }
-
-    @Test
-    void validate_shouldReturnFalse_whenIdHasLessThan13Characters() {
-        assertThat(luxembourgIdValidator.validate("123456789012"), is(false));
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "123456789012",
+        "12345678901234"
+    })
+    void validate_shouldReturnFalse_whenIdLengthIsNot13(final String idOfInvalidLength) {
+        assertThat(luxembourgIdValidator.validate(idOfInvalidLength), is(false));
     }
 
     @ParameterizedTest
