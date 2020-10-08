@@ -29,6 +29,7 @@ public interface CitizenExtractor {
      */
     static CitizenExtractor newInstance(final Country country) {
         switch (country) {
+            case DK: return new DenmarkCitizenExtractor();
             case FR: return new FranceCitizenExtractor();
             case IT: return new ItalyCitizenExtractor();
             case MX: return new MexicoCitizenExtractor();
