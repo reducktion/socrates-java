@@ -9,7 +9,7 @@ import com.github.reducktion.socrates.validator.IdValidator;
 /**
  * {@link Citizen} extractor for Mexico.
  *
- * Information about the ID can be found in here: http://sistemas.uaeh.edu.mx/dce/admisiones/docs/guia_CURP.pdf
+ * Information about the ID can be found in at: http://sistemas.uaeh.edu.mx/dce/admisiones/docs/guia_CURP.pdf
  *
  * Also, there is this wikipedia article: https://en.wikipedia.org/wiki/Unique_Population_Registry_Code
  */
