@@ -22,19 +22,24 @@ class PortugalIdValidatorTest {
         assertThat(portugalIdValidator.validate(null), is(false));
     }
 
-    @Test
-    void validate_shouldReturnFalse_whenIdHasMoreThan12Characters() {
-        assertThat(portugalIdValidator.validate("1234567890123"), is(false));
-    }
-
-    @Test
-    void validate_shouldReturnFalse_whenIdHasLessThan12Characters() {
-        assertThat(portugalIdValidator.validate("12345678901"), is(false));
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "12345678901",
+        "1234567890123"
+    })
+    void validate_shouldReturnFalse_whenIdLengthIsNot12(final String idOfIncorrectLength) {
+        assertThat(portugalIdValidator.validate(idOfIncorrectLength), is(false));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {" 11084129 8 ZX8 ", "154203556ZX9", "176539174ZZ5", "174886721ZX1", "148984754ZY5" })
-    void validate_shouldReturnTrue_whenLuhnAlgorithmPasses(final String validId) {
+    @ValueSource(strings = {
+        " 11084129 8 ZX8 ",
+        "154203556ZX9",
+        "176539174ZZ5",
+        "174886721ZX1",
+        "148984754ZY5"
+    })
+    void validate_shouldReturnTrue_whenLuhnAlgorithmSucceeds(final String validId) {
         assertThat(portugalIdValidator.validate(validId), is(true));
     }
 
