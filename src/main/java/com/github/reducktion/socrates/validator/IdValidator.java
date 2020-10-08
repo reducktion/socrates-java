@@ -15,6 +15,7 @@ public interface IdValidator {
      */
     static IdValidator newInstance(final Country country) {
         switch (country) {
+            case BE: return new BelgiumIdValidator();
             case BR: return new BrazilIdValidator();
             case CA: return new CanadaIdValidator();
             case FR: return new FranceIdValidator();
