@@ -2,8 +2,6 @@ package com.github.reducktion.socrates.validator;
 
 import java.time.LocalDate;
 import java.time.Year;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -22,8 +20,6 @@ class DenmarkIdValidator implements IdValidator {
     private static final int[] MULTIPLIERS = { 4, 3, 2, 7, 6, 5, 4, 3, 2, 1 };
 
     private final TwoYearDateParser twoYearDateParser = new TwoYearDateParser(Year.now().getValue());
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuuMMdd")
-        .withResolverStyle(ResolverStyle.STRICT); // dates should be checked for sanity
 
     @Override
     public boolean validate(final String id) {
@@ -33,14 +29,11 @@ class DenmarkIdValidator implements IdValidator {
 
         final String sanitizedId = sanitize(id);
 
-        if (sanitizedId.length() != ID_NUMBER_OF_CHARACTERS
-            || !StringUtils.isNumeric(sanitizedId)
-        ) {
+        if (sanitizedId.length() != ID_NUMBER_OF_CHARACTERS || !StringUtils.isNumeric(sanitizedId)) {
             return false;
         }
 
-        return validateDateOfBirth(sanitizedId)
-            && validateChecksum(sanitizedId);
+        return validateDateOfBirth(sanitizedId) && validateChecksum(sanitizedId);
     }
 
     private String sanitize(final String id) {
@@ -66,10 +59,9 @@ class DenmarkIdValidator implements IdValidator {
         }
 
         // sanity check
-        if (year != 0 && month != 0 && day != 0) {
-            final String formattedDate = String.format("%04d%02d%02d", year, month, day);
+        if (day != 0 && month != 0 && year != 0) {
             try {
-                LocalDate.parse(formattedDate, formatter);
+                LocalDate.of(year, month, day);
             } catch (final Exception e) {
                 return false;
             }
