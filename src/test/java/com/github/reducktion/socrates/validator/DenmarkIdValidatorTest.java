@@ -38,10 +38,10 @@ class DenmarkIdValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {
-        "161301-001", // month too high
-        "311101-001", // November has 30 days
-        "321201-001", // day too high
-        "290201-001", // 29 February only exists in leap year
+        "161301-0001", // month too high
+        "311101-0001", // November has 30 days
+        "321201-0001", // day too high
+        "290201-0001", // 29 February only exists in leap year
     })
     void validate_shouldReturnFalse_whenDateOfBirthDoesNotExist(final String idWithNonExistingDateOfBirth) {
         assertThat(denmarkIdValidator.validate(idWithNonExistingDateOfBirth), is(false));
