@@ -25,6 +25,7 @@ class CitizenExtractorTest {
 
     private static List<Arguments> extractorsForCountries() {
         return Arrays.asList(
+            Arguments.arguments(Country.DK, DenmarkCitizenExtractor.class),
             Arguments.arguments(Country.FR, FranceCitizenExtractor.class),
             Arguments.arguments(Country.IT, ItalyCitizenExtractor.class),
             Arguments.arguments(Country.MX, MexicoCitizenExtractor.class)
