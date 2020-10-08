@@ -64,17 +64,15 @@ class FranceCitizenExtractor implements CitizenExtractor {
     }
 
     private Integer extractYearOfBirth(final String id) {
+        final String yearOfBirthCharacters = id.substring(1, 3);
         return twoYearDateParser
-            .parse(getYearOfBirthCharacters(id))
+            .parse(yearOfBirthCharacters)
             .orElse(null);
     }
 
-    private String getYearOfBirthCharacters(final String id) {
-        return id.substring(1, 3);
-    }
-
     private Integer extractMonthOfBirth(final String id) {
-        final int month = Integer.parseInt(getMonthOfBirthCharacters(id));
+        final String monthOfBirthCharacters = id.substring(3, 5);
+        final int month = Integer.parseInt(monthOfBirthCharacters);
 
         if (month >= JANUARY && month <= DECEMBER) {
             return month;
@@ -85,24 +83,15 @@ class FranceCitizenExtractor implements CitizenExtractor {
         }
     }
 
-    private String getMonthOfBirthCharacters(final String id) {
-        return id.substring(3, 5);
-    }
-
     private String extractPlaceOfBirth(final String id) {
-        final String region = getRegionForCode(getPlaceOfBirthTwoCharacters(id));
+        final String placeOfBirthTwoCharacters = id.substring(5, 7);
+        final String placeOfBirthThreeCharacters = id.substring(5, 8);
 
-        return region != null ? region : getRegionForCode(getPlaceOfBirthThreeCharacters(id));
+        final String region = getRegionForCode(placeOfBirthTwoCharacters);
+
+        return region != null ? region : getRegionForCode(placeOfBirthThreeCharacters);
     }
 
-    private String getPlaceOfBirthTwoCharacters(final String id) {
-        return id.substring(5, 7);
-    }
-
-    private String getPlaceOfBirthThreeCharacters(final String id) {
-        return id.substring(5, 8);
-    }
-    
     private String getRegionForCode(final String code) {
         switch (code) {
             case "01": return "Ain";

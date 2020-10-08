@@ -66,24 +66,21 @@ class ItalyCitizenExtractor implements CitizenExtractor {
         }
     }
 
+    private String getDayOfBirthCharacters(final String id) {
+        return id.substring(9, 11);
+    }
+
     private Integer extractYearOfBirth(final String id) {
+        final String yearOfBirthCharacters = id.substring(6, 8);
         return twoYearDateParser
-            .parse(getYearOfBirthCharacters(id))
+            .parse(yearOfBirthCharacters)
             .orElse(null);
     }
 
-    private String getYearOfBirthCharacters(final String id) {
-        return id.substring(6, 8);
-    }
-
     private Integer extractMonthOfBirth(final String id) {
-        final String monthOfBirthCharacter = getMonthOfBirthCharacter(id);
+        final String monthOfBirthCharacter = id.substring(8, 9);
 
         return MONTH_CODES.indexOf(monthOfBirthCharacter) + 1;
-    }
-
-    private String getMonthOfBirthCharacter(final String id) {
-        return id.substring(8, 9);
     }
 
     private Integer extractDayOfBirth(final String id) {
@@ -91,10 +88,6 @@ class ItalyCitizenExtractor implements CitizenExtractor {
         final int dayOfBirth = Integer.parseInt(dayOfBirthCharacter);
 
         return dayOfBirth > 40 ? dayOfBirth - 40 : dayOfBirth;
-    }
-
-    private String getDayOfBirthCharacters(final String id) {
-        return id.substring(9, 11);
     }
 
     private String extractPlaceOfBirth(final String id) {
