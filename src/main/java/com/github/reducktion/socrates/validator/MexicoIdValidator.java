@@ -17,7 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 class MexicoIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 18;
-    private static final String DICTIONARY = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    private static final String DICTIONARY = "0123456789ABCDEFGHIJKLMN&OPQRSTUVWXYZ";
     private static final String[] INAPPROPRIATE_WORDS = {
         "BUEI",
         "CACA",
@@ -102,15 +102,12 @@ class MexicoIdValidator implements IdValidator {
 
     private int computeCheckDigit(final String id) {
         int sum = 0;
-        int counter = id.length();
 
-        for (int i = 0; i <= 15; i++) {
-            sum += DICTIONARY.indexOf(id.charAt(i)) * counter;
-            counter--;
+        for (int i = 0; i < id.length() - 1; i++) {
+            sum += DICTIONARY.indexOf(id.charAt(i)) * (id.length() - i);
         }
 
-        final int checkDigit = 10 - (sum % 10);
-        return checkDigit == 10 ? 0 : checkDigit;
+        return (10 - (sum % 10)) % 10;
     }
 
     private int getCheckDigit(final String id) {
