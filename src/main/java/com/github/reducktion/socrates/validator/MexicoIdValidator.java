@@ -11,6 +11,9 @@ import org.apache.commons.lang3.StringUtils;
  * The validation algorithm was based on the following wikipedia source:
  * https://en.wikipedia.org/wiki/Unique_Population_Registry_Code
  *
+ * More information about each field of the ID can be found at:
+ * http://sistemas.uaeh.edu.mx/dce/admisiones/docs/guia_CURP.pdf
+ *
  * The list of inappropriate words can be found at:
  * https://solucionfactible.com/sfic/resources/files/palabrasInconvenientes-rfc.pdf
  */
