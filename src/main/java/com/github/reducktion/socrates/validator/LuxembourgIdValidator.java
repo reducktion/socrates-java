@@ -23,8 +23,8 @@ class LuxembourgIdValidator implements IdValidator {
         final String sanitizedId = sanitize(id);
 
         if (sanitizedId.length() != ID_NUMBER_OF_CHARACTERS
-            || !StringUtils.isNumeric(sanitizedId))
-        {
+            || !StringUtils.isNumeric(sanitizedId)
+        ) {
             return false;
         }
 
