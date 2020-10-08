@@ -22,14 +22,13 @@ class UsaIdValidatorTest {
         assertThat(usaIdValidator.validate(null), is(false));
     }
 
-    @Test
-    void validate_shouldReturnFalse_whenIdHasMoreThan9Characters() {
-        assertThat(usaIdValidator.validate("1234567890"), is(false));
-    }
-
-    @Test
-    void validate_shouldReturnFalse_whenIdHasLessThan9Characters() {
-        assertThat(usaIdValidator.validate("12345678"), is(false));
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "12345678",
+        "1234567890"
+    })
+    void validate_shouldReturnFalse_whenIdLengthIsNot9(final String idOfIncorrectLength) {
+        assertThat(usaIdValidator.validate(idOfIncorrectLength), is(false));
     }
 
     @Test
@@ -38,19 +37,29 @@ class UsaIdValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "078051120", "219099999", "457555462" })
+    @ValueSource(strings = {
+        "078051120",
+        "219099999",
+        "457555462"
+    })
     void validate_shouldReturnFalse_whenIdIsBlacklisted(final String validId) {
         assertThat(usaIdValidator.validate(validId), is(false));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "167-38-1265", " 536228726 ", "536225232", "574227664", "671269121" })
+    @ValueSource(strings = {
+        "167-38-1265",
+        " 536228726 ",
+        "536225232",
+        "574227664",
+        "671269121"
+    })
     void validate_shouldReturnTrue_whenAreaCodesAreValid(final String validId) {
         assertThat(usaIdValidator.validate(validId), is(true));
     }
 
     @Test
-    void validate_shouldReturnFalse_whenAreaCodesAreInvalid() {
+    void validate_shouldReturnFalse_whenAreaCodesAreNotValid() {
         assertThat(usaIdValidator.validate("078051120"), is(false));
     }
 }

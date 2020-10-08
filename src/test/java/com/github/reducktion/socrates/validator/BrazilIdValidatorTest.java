@@ -22,14 +22,13 @@ class BrazilIdValidatorTest {
         assertThat(brazilIdValidator.validate(null), is(false));
     }
 
-    @Test
-    void validate_shouldReturnFalse_whenIdHasMoreThan11Characters() {
-        assertThat(brazilIdValidator.validate("123456789012"), is(false));
-    }
-
-    @Test
-    void validate_shouldReturnFalse_whenIdHasLessThan11Characters() {
-        assertThat(brazilIdValidator.validate("123456789"), is(false));
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "123456789",
+        "123456789012"
+    })
+    void validate_shouldReturnFalse_whenIdLengthIsNot11(final String idOfIncorrectLength) {
+        assertThat(brazilIdValidator.validate(idOfIncorrectLength), is(false));
     }
 
     @Test
