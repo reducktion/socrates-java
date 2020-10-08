@@ -79,7 +79,9 @@ class MexicoIdValidator implements IdValidator {
     }
 
     private String sanitize(final String id) {
-        return id.replace(" ", "");
+        return id
+            .replace(" ", "")
+            .toUpperCase();
     }
 
     private boolean validateCharacters(final String id) {
