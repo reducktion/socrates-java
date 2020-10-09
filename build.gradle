@@ -1,10 +1,18 @@
 plugins {
     id 'java-library'
     id 'checkstyle'
+    id 'com.jfrog.bintray' version '1.8.5'
+    id 'maven-publish'
 }
 
-group = 'com.github.reducktion'
-version = '1.0.0'
+ext {
+    projectGroup = 'com.github.reducktion'
+    projectRepository = 'https://github.com/reducktion/socrates-java'
+    projectDescription = 'Socrates allows you to validate and retrieve personal data from National Identification Numbers across the world.'
+}
+
+group = projectGroup
+version = System.getenv('RELEASE_VERSION')
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -36,6 +44,72 @@ dependencies {
 test {
     useJUnitPlatform()
     testLogging {
-        events "passed", "skipped", "failed"
+        events 'passed', 'skipped', 'failed'
+    }
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_API_KEY')
+
+    publications = ['mavenJava']
+
+    pkg {
+        repo = projectGroup
+        name = project.name
+        desc = projectDescription
+        websiteUrl = projectRepository
+        issueTrackerUrl = projectRepository + '/issues'
+        vcsUrl = projectRepository
+        licenses = ['MIT']
+        labels = ['java', 'identity', 'validation', 'identification-number', 'national-id-validator']
+
+        version {
+            name = System.getenv('RELEASE_VERSION')
+            desc = projectDescription
+            released  = new Date()
+            vcsTag = System.getenv('RELEASE_VERSION')
+            gpg {
+                sign = true
+            }
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            artifactId = project.name
+            group = projectGroup
+            version = System.getenv('RELEASE_VERSION')
+
+            pom {
+                name = 'Socrates Java'
+                description = projectDescription
+                url = projectRepository
+
+                licenses {
+                    license {
+                        name = 'MIT'
+                        url =  projectRepository + '/master/LICENSE.md'
+                        distribution = projectRepository
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = System.getenv('DEVELOPER_ID')
+                        name =System.getenv('DEVELOPER_NAME')
+                        email = System.getenv('DEVELOPER_EMAIL')
+                    }
+                }
+
+                scm {
+                    url = projectRepository
+                }
+            }
+        }
     }
 }
