@@ -2,7 +2,7 @@
 
 | Country                     | Country Code |     Validation     |     Extraction     |
 |-----------------------------|--------------|--------------------|--------------------|
-| Belgium 🇧🇪                  |      BE      | :heavy_check_mark: | :x:                |
+| Belgium 🇧🇪                  |      BE      | :heavy_check_mark: | :heavy_check_mark: |
 | Brazil 🇧🇷                   |      BR      | :heavy_check_mark: | :x:                |
 | Canada 🇨🇦                   |      CA      | :heavy_check_mark: | :x:                |
 | Denmark 🇩🇰                  |      DK      | :heavy_check_mark: | :heavy_check_mark: |
