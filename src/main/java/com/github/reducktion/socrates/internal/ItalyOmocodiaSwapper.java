@@ -1,4 +1,4 @@
-package com.github.reducktion.socrates.utils;
+package com.github.reducktion.socrates.internal;
 
 /**
  * When the alphanumeric expression relating to the first fifteen characters of the code is common to two or more

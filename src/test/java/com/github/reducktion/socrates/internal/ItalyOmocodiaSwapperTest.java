@@ -1,4 +1,4 @@
-package com.github.reducktion.socrates.utils;
+package com.github.reducktion.socrates.internal;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;

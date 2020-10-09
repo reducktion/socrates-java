@@ -1,6 +1,6 @@
 package com.github.reducktion.socrates.validator;
 
-import com.github.reducktion.socrates.utils.ItalyOmocodiaSwapper;
+import com.github.reducktion.socrates.internal.ItalyOmocodiaSwapper;
 
 /**
  * National Identification Number validator for Italy.
