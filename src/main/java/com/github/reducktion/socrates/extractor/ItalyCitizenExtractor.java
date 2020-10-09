@@ -8,8 +8,8 @@ import java.nio.file.Paths;
 import java.time.Year;
 import java.util.Optional;
 
-import com.github.reducktion.socrates.utils.ItalyOmocodiaSwapper;
-import com.github.reducktion.socrates.utils.TwoYearDateParser;
+import com.github.reducktion.socrates.internal.ItalyOmocodiaSwapper;
+import com.github.reducktion.socrates.internal.TwoYearDateParser;
 import com.github.reducktion.socrates.validator.IdValidator;
 
 /**

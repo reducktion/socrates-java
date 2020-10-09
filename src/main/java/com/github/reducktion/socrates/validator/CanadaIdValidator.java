@@ -2,7 +2,7 @@ package com.github.reducktion.socrates.validator;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.github.reducktion.socrates.utils.LuhnAlgorithm;
+import com.github.reducktion.socrates.internal.LuhnAlgorithm;
 
 /**
  * National Identification Number validator for Canada.
