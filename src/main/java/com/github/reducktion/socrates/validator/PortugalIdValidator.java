@@ -1,6 +1,6 @@
 package com.github.reducktion.socrates.validator;
 
-import com.github.reducktion.socrates.utils.LuhnAlgorithm;
+import com.github.reducktion.socrates.internal.LuhnAlgorithm;
 
 /**
  * National Identification Number validator for Portugal.

@@ -4,8 +4,8 @@ import java.time.Year;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.github.reducktion.socrates.utils.DateValidator;
-import com.github.reducktion.socrates.utils.TwoYearDateParser;
+import com.github.reducktion.socrates.internal.DateValidator;
+import com.github.reducktion.socrates.internal.TwoYearDateParser;
 
 /**
  * National Identification Number validator for Denmark.
