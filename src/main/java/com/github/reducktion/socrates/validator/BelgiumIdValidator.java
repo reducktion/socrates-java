@@ -1,10 +1,8 @@
 package com.github.reducktion.socrates.validator;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
-
 import org.apache.commons.lang3.StringUtils;
+
+import com.github.reducktion.socrates.internal.DateValidator;
 
 /**
  * National Identification Number validator for Belgium.
@@ -15,9 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 class BelgiumIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 11;
-
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuuMMdd")
-        .withResolverStyle(ResolverStyle.STRICT); // dates should checked for sanity
 
     @Override
     public boolean validate(final String id) {
@@ -61,6 +56,7 @@ class BelgiumIdValidator implements IdValidator {
     }
 
     private boolean validateDateOfBirth(final String id, final boolean y2k) {
+        int year = Integer.parseInt(id.substring(0, 2));
         final int month = Integer.parseInt(id.substring(2, 4)); // is allowed to be 00 if unknown
         final int day = Integer.parseInt(id.substring(4, 6)); // is allowed to be 00 if unknown
 
@@ -70,12 +66,8 @@ class BelgiumIdValidator implements IdValidator {
 
         // sanity check
         if (month != 0 && day != 0) {
-            final String formattedDate = String.format("%s%02d%02d",
-                (y2k ? "20" : "19") + id.substring(0, 2),
-                month, day);
-            try {
-                LocalDate.parse(formattedDate, formatter);
-            } catch (final Exception e) {
+            year = y2k ? 2000 : 1900 + year;
+            if (!DateValidator.validate(year, month, day)) {
                 return false;
             }
         }

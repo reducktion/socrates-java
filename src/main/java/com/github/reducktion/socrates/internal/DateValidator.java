@@ -7,6 +7,8 @@ import java.time.LocalDate;
  */
 public final class DateValidator {
 
+    private DateValidator() {}
+
     /**
      * Validate the date, given the {@code year}, {@code month} and {@code day}.
      *
