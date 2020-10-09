@@ -1,10 +1,10 @@
 package com.github.reducktion.socrates.validator;
 
-import java.time.LocalDate;
 import java.time.Year;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.github.reducktion.socrates.utils.DateValidator;
 import com.github.reducktion.socrates.utils.TwoYearDateParser;
 
 /**
@@ -54,18 +54,6 @@ class DenmarkIdValidator implements IdValidator {
         final int month = Integer.parseInt(id.substring(2, 4));
         final int year = twoYearDateParser.parse(id.substring(4, 6)).orElse(0);
 
-        if (month > 12 || day > 31) {
-            return false;
-        }
-
-        // sanity check
-        if (day != 0 && month != 0 && year != 0) {
-            try {
-                LocalDate.of(year, month, day);
-            } catch (final Exception e) {
-                return false;
-            }
-        }
-        return true;
+        return DateValidator.validate(year, month, day);
     }
 }
