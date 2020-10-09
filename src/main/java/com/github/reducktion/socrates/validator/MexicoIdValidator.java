@@ -1,9 +1,11 @@
 package com.github.reducktion.socrates.validator;
 
-import java.text.Normalizer;
+import java.time.Year;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringUtils;
+import com.github.reducktion.socrates.utils.DateValidator;
+import com.github.reducktion.socrates.utils.TwoYearDateParser;
 
 /**
  * National Identification Number validator for Mexico.
@@ -20,6 +22,8 @@ import org.apache.commons.lang3.StringUtils;
 class MexicoIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 18;
+    private static final Pattern ID_PATTERN =
+        Pattern.compile("[A-Z]{4}[0-9]{6}[HM][A-Z]{2}[B-DF-HJ-NP-TV-Z]{3}[A-Z0-9][0-9]");
     private static final String DICTIONARY = "0123456789ABCDEFGHIJKLMN&OPQRSTUVWXYZ";
     private static final String[] INAPPROPRIATE_WORDS = {
         "BUEI",
@@ -64,6 +68,8 @@ class MexicoIdValidator implements IdValidator {
         "RATA",
     };
 
+    private final TwoYearDateParser twoYearDateParser = new TwoYearDateParser(Year.now().getValue());
+
     @Override
     public boolean validate(final String id) {
         if (id == null) {
@@ -76,8 +82,9 @@ class MexicoIdValidator implements IdValidator {
             return false;
         }
 
-        return validateCharacters(sanitizedId)
+        return ID_PATTERN.matcher(sanitizedId).matches()
             && validateInappropriateWords(sanitizedId)
+            && validateDateOfBirth(sanitizedId)
             && validateCheckDigit(sanitizedId);
     }
 
@@ -87,16 +94,16 @@ class MexicoIdValidator implements IdValidator {
             .toUpperCase();
     }
 
-    private boolean validateCharacters(final String id) {
-        return StringUtils.isAlpha(id.substring(0, 4))
-            && StringUtils.isNumeric(id.substring(4, 10))
-            && StringUtils.isAlpha(id.substring(10, 16))
-            && StringUtils.isNumeric(id.substring(16, 18))
-            && Normalizer.isNormalized(id, Normalizer.Form.NFD);
-    }
-
     private boolean validateInappropriateWords(final String id) {
         return Arrays.stream(INAPPROPRIATE_WORDS).noneMatch(id::contains);
+    }
+
+    private boolean validateDateOfBirth(final String id) {
+        final int year = twoYearDateParser.parse(id.substring(4, 6)).orElse(0);
+        final int month = Integer.parseInt(id.substring(6, 8));
+        final int day = Integer.parseInt(id.substring(8, 10));
+
+        return DateValidator.validate(year, month, day);
     }
 
     private boolean validateCheckDigit(final String id) {
