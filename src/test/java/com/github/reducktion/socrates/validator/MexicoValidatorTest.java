@@ -33,6 +33,29 @@ class MexicoValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {
+        "AAIM901112VBCNMN08", // V, instead of H or M
+        "JOIMAAAAAAHHGSMN08", // AAAAAA, instead of valid date with pattern yyyyMMdd
+        "JOTA950616HBCSWSAA", // AA, instead of numeric characters (at the end)
+        "0000101109MHGNMN01",  // 0000, instead of alpha characters (at the start)
+        "AAIT101109M1111101"  // 11111, instead of alpha characters (at the end)
+    })
+    void validate_shouldReturnFalse_whenPatternIsNotCorrect(final String idOfIncorrectPattern) {
+        assertThat(mexicoIdValidator.validate(idOfIncorrectPattern), is(false));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "AAIM901312MBCNMN08", // month too high
+        "AAIM901131MBCNMN08", // November has 30 days
+        "AAIM901232MBCNMN08", // day too high
+        "AAIM010229MBCNMN08", // 29 February only exists in leap year
+    })
+    void validate_shouldReturnFalse_whenDateOfBirthDoesNotExist(final String idWithNonExistingDateOfBirth) {
+        assertThat(mexicoIdValidator.validate(idWithNonExistingDateOfBirth), is(false));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
         "BUEI000000AAAAAA01",
         "CACA000000AAAAAA01",
         "CAGA000000AAAAAA01",
