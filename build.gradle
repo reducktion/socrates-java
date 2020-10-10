@@ -100,8 +100,8 @@ publishing {
 
                 developers {
                     developer {
-                        id = System.getenv('DEVELOPER_ID')
-                        name =System.getenv('DEVELOPER_NAME')
+                        id = 'reducktion'
+                        name = 'Reducktion'
                         email = System.getenv('DEVELOPER_EMAIL')
                     }
                 }
