@@ -31,8 +31,6 @@ jobs:
         env:
           BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
           BINTRAY_API_KEY: ${{ secrets.BINTRAY_API_KEY }}
-          DEVELOPER_ID: ${{ secrets.DEVELOPER_ID }}
-          DEVELOPER_NAME: ${{ secrets.DEVELOPER_NAME }}
           DEVELOPER_EMAIL: ${{ secrets.DEVELOPER_EMAIL }}
           RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
         run: |
