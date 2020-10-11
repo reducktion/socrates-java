@@ -47,6 +47,7 @@ class DenmarkCitizenExtractorTest {
                 "090792-1395",
                 Citizen
                     .builder()
+                    .gender(Gender.FEMALE)
                     .yearOfBirth(1992)
                     .monthOfBirth(7)
                     .dayOfBirth(9)
@@ -56,6 +57,7 @@ class DenmarkCitizenExtractorTest {
                 "070593-0600",
                 Citizen
                     .builder()
+                    .gender(Gender.MALE)
                     .yearOfBirth(1993)
                     .monthOfBirth(5)
                     .dayOfBirth(7)
@@ -65,6 +67,7 @@ class DenmarkCitizenExtractorTest {
                 "150437-3068",
                 Citizen
                     .builder()
+                    .gender(Gender.MALE)
                     .yearOfBirth(1937)
                     .monthOfBirth(4)
                     .dayOfBirth(15)
@@ -74,6 +77,7 @@ class DenmarkCitizenExtractorTest {
                 "160888-1995",
                 Citizen
                     .builder()
+                    .gender(Gender.FEMALE)
                     .yearOfBirth(1988)
                     .monthOfBirth(8)
                     .dayOfBirth(16)
@@ -83,6 +87,7 @@ class DenmarkCitizenExtractorTest {
                 "040404-7094",
                 Citizen
                     .builder()
+                    .gender(Gender.MALE)
                     .yearOfBirth(2004)
                     .monthOfBirth(4)
                     .dayOfBirth(4)

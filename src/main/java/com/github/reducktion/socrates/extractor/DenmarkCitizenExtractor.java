@@ -26,6 +26,7 @@ class DenmarkCitizenExtractor implements CitizenExtractor {
 
         final Citizen citizen = Citizen
             .builder()
+            .gender(extractGender(sanitizedId))
             .yearOfBirth(extractYearOfBirth(sanitizedId))
             .monthOfBirth(extractMonthOfBirth(sanitizedId))
             .dayOfBirth(extractDayOfBirth(sanitizedId))
@@ -36,6 +37,11 @@ class DenmarkCitizenExtractor implements CitizenExtractor {
 
     private String sanitize(final String id) {
         return id.replaceAll("[ -]", "");
+    }
+
+    private Gender extractGender(final String id) {
+        final String genderCharacters = id.substring(8, 10);
+        return Integer.parseInt(genderCharacters) % 2 == 0 ? Gender.MALE : Gender.FEMALE;
     }
 
     private Integer extractYearOfBirth(final String id) {
