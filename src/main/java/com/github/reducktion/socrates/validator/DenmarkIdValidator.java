@@ -1,10 +1,8 @@
 package com.github.reducktion.socrates.validator;
 
-import java.time.Year;
+import java.util.regex.Pattern;
 
 import com.github.reducktion.socrates.internal.DateValidator;
-import com.github.reducktion.socrates.internal.StringUtils;
-import com.github.reducktion.socrates.internal.TwoYearDateParser;
 
 /**
  * National Identification Number validator for Denmark.
@@ -14,11 +12,9 @@ import com.github.reducktion.socrates.internal.TwoYearDateParser;
  */
 class DenmarkIdValidator implements IdValidator {
 
-    private static final int ID_NUMBER_OF_CHARACTERS = 10;
+    private static final Pattern ID_PATTERN = Pattern.compile("\\d{10}");
     private static final int BASE_10_RADIX = 10;
     private static final int[] MULTIPLIERS = { 4, 3, 2, 7, 6, 5, 4, 3, 2, 1 };
-
-    private final TwoYearDateParser twoYearDateParser = new TwoYearDateParser(Year.now().getValue());
 
     @Override
     public boolean validate(final String id) {
@@ -28,11 +24,9 @@ class DenmarkIdValidator implements IdValidator {
 
         final String sanitizedId = sanitize(id);
 
-        if (sanitizedId.length() != ID_NUMBER_OF_CHARACTERS || !StringUtils.isNumeric(sanitizedId)) {
-            return false;
-        }
-
-        return validateDateOfBirth(sanitizedId) && validateChecksum(sanitizedId);
+        return ID_PATTERN.matcher(sanitizedId).matches()
+            && validateDateOfBirth(sanitizedId)
+            && validateChecksum(sanitizedId);
     }
 
     private String sanitize(final String id) {
@@ -51,8 +45,32 @@ class DenmarkIdValidator implements IdValidator {
     private boolean validateDateOfBirth(final String id) {
         final int day = Integer.parseInt(id.substring(0, 2));
         final int month = Integer.parseInt(id.substring(2, 4));
-        final int year = twoYearDateParser.parse(id.substring(4, 6)).orElse(0);
+        final int year = extractYearOfBirth(id);
 
         return DateValidator.validate(year, month, day);
+    }
+
+    private int extractYearOfBirth(final String id) {
+        final int centuryDigit = Integer.parseInt(id.substring(6, 7));
+        final int twoDigitsYear = Integer.parseInt(id.substring(4, 6));
+
+        final int century;
+        if (centuryDigit < 4) {
+            century = 1900;
+        } else if (centuryDigit == 4 || centuryDigit == 9) {
+            if (twoDigitsYear <= 36) {
+                century = 2000;
+            } else {
+                century = 1900;
+            }
+        } else {
+            if (twoDigitsYear >= 58) {
+                century = 1800;
+            } else {
+                century = 2000;
+            }
+        }
+
+        return century + twoDigitsYear;
     }
 }
