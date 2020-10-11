@@ -20,21 +20,15 @@ class BelgiumCitizenExtractor implements CitizenExtractor {
 
         final String sanitizedId = sanitize(id);
 
-        final Citizen.Builder citizenBuilder = Citizen.builder()
+        final Citizen citizen = Citizen
+            .builder()
             .gender(extractGender(sanitizedId))
-            .yearOfBirth(extractYearOfBirth(sanitizedId));
+            .yearOfBirth(extractYearOfBirth(sanitizedId))
+            .monthOfBirth(extractMonthOfBirth(sanitizedId))
+            .dayOfBirth(extractDayOfBirth(sanitizedId))
+            .build();
 
-        final Integer month = extractMonthOfBirth(sanitizedId);
-        if (month != null) {
-            citizenBuilder.monthOfBirth(month);
-        }
-
-        final Integer day = extractDayOfBirth(sanitizedId);
-        if (day != null) {
-            citizenBuilder.dayOfBirth(day);
-        }
-
-        return Optional.of(citizenBuilder.build());
+        return Optional.of(citizen);
     }
 
     private String sanitize(final String id) {
