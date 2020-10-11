@@ -104,7 +104,7 @@ publishing {
                 }
 
                 scm {
-                    connection = 'scm:git:https://github.com/reducktion/socrates-java.git'
+                    connection = 'scm:git:' + projectRepository + '.git'
                     url = projectRepository
                 }
             }
