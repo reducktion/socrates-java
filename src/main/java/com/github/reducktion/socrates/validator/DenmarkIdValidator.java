@@ -2,9 +2,8 @@ package com.github.reducktion.socrates.validator;
 
 import java.time.Year;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.github.reducktion.socrates.internal.DateValidator;
+import com.github.reducktion.socrates.internal.StringUtils;
 import com.github.reducktion.socrates.internal.TwoYearDateParser;
 
 /**

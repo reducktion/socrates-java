@@ -1,6 +1,6 @@
 package com.github.reducktion.socrates.validator;
 
-import org.apache.commons.lang3.StringUtils;
+import com.github.reducktion.socrates.internal.StringUtils;
 
 /**
  * National Identification Number validator for France.

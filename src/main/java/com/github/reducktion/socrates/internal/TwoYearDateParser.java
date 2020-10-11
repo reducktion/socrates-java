@@ -5,8 +5,6 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 import java.util.Optional;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * Date time parser that is capable of returning a year (e.g. 1999), given the last two digits of the year as a
  * String (e.g. "99").
