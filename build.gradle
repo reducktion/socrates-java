@@ -32,7 +32,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.apache.commons:commons-lang3:3.11'
     implementation 'nl.jqno.equalsverifier:equalsverifier:3.4.3'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
