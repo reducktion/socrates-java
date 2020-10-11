@@ -1,9 +1,7 @@
 package com.github.reducktion.socrates.extractor;
 
-import java.time.Year;
 import java.util.Optional;
 
-import com.github.reducktion.socrates.internal.TwoYearDateParser;
 import com.github.reducktion.socrates.validator.IdValidator;
 
 /**
@@ -13,8 +11,6 @@ import com.github.reducktion.socrates.validator.IdValidator;
  * https://en.wikipedia.org/wiki/Unique_Population_Registry_Code
  */
 class DenmarkCitizenExtractor implements CitizenExtractor {
-
-    private final TwoYearDateParser twoYearDateParser = new TwoYearDateParser(Year.now().getValue());
 
     @Override
     public Optional<Citizen> extractFromId(final String id, final IdValidator idValidator) {
@@ -45,10 +41,27 @@ class DenmarkCitizenExtractor implements CitizenExtractor {
     }
 
     private Integer extractYearOfBirth(final String id) {
-        final String yearOfBirthCharacters = id.substring(4, 6);
-        return twoYearDateParser
-            .parse(yearOfBirthCharacters)
-            .orElse(null);
+        final int centuryDigit = Integer.parseInt(id.substring(6, 7));
+        final int twoDigitsYear = Integer.parseInt(id.substring(4, 6));
+
+        final int century;
+        if (centuryDigit < 4) {
+            century = 1900;
+        } else if (centuryDigit == 4 || centuryDigit == 9) {
+            if (twoDigitsYear <= 36) {
+                century = 2000;
+            } else {
+                century = 1900;
+            }
+        } else {
+            if (twoDigitsYear >= 58) {
+                century = 1800;
+            } else {
+                century = 2000;
+            }
+        }
+
+        return century + twoDigitsYear;
     }
 
     private Integer extractMonthOfBirth(final String id) {
