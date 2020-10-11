@@ -3,7 +3,7 @@ package com.github.reducktion.socrates.validator;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
+import com.github.reducktion.socrates.internal.StringUtils;
 
 /**
  * National Identification Number validator for United States of America.

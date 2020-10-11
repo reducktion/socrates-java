@@ -2,8 +2,6 @@ package com.github.reducktion.socrates.internal;
 
 import java.util.Optional;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * Implementation of the Verhoeff algorithm.
  *

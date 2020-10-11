@@ -2,11 +2,9 @@ package com.github.reducktion.socrates.internal;
 
 import java.util.Optional;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * Implementation of the Luhn algorithm.
- *
+ * <p>
  * Source: https://en.wikipedia.org/wiki/Luhn_algorithm
  */
 public final class LuhnAlgorithm {
