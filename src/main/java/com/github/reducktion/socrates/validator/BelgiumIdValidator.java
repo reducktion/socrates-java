@@ -63,13 +63,7 @@ class BelgiumIdValidator implements IdValidator {
             return false;
         }
 
-        // sanity check
-        if (month != 0 && day != 0) {
-            year = y2k ? 2000 : 1900 + year;
-            if (!DateValidator.validate(year, month, day)) {
-                return false;
-            }
-        }
-        return true;
+        year = y2k ? 2000 : 1900 + year;
+        return DateValidator.validate(year, month, day);
     }
 }
