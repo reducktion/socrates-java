@@ -73,8 +73,8 @@ public class GermanyIdValidator implements IdValidator {
      * This approach considers each digit in a specific way for being able
      * to detect falsely edited IdNr in a reliable and efficient way.
      *
-     * @param idnrString -- a string consisting of ten numeric digits
-     * @return -- calculated check digit returned as an integer value
+     * @param idnrString a string consisting of ten numeric digits
+     * @return calculated check digit returned as an integer value
      * @see <a href="https://www.zfa.deutsche-rentenversicherung-bund.de/de/Inhalt/public/4_ID/47_Pruefziffernberechnung/001_Pruefziffernberechnung.pdf">
      * Informations Technik Zentrum Bund
      * Steueridentifikationsnummer (IdNr) nach § 139b AO
