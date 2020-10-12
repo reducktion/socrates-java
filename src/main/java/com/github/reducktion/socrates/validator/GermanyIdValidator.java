@@ -1,9 +1,11 @@
 package com.github.reducktion.socrates.validator;
 
-import java.util.*;
-import java.util.function.Function;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
 
-import static java.util.stream.Collectors.*;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
 
 /**
  * A national identification number does not really exists within Germany.
@@ -24,24 +26,36 @@ public class GermanyIdValidator implements IdValidator {
     private static final int CHECKSUM_INDEX = 10;
 
     @Override
-    public boolean validate(String value) {
-        if (value == null) return false;
-        if (value.length() != ID_NUMBER_OF_CHARACTERS) return false;
-        if (containsNonDigits(value)) return false;
-        if (hasTestIdentifierPrefix(value)) return false;
-        String identifier = value.substring(0, 10);
-        String calculatedChecksum = Integer.toString(calculateCheckDigit(identifier));
-        String givenChecksum = Character.toString(value.charAt(CHECKSUM_INDEX));
-        if (!calculatedChecksum.equals(givenChecksum)) return false;
-        if (hasMoreThan3EqualDigits(identifier)) return false;
+    public boolean validate(final String value) {
+        if (value == null) {
+            return false;
+        }
+        if (value.length() != ID_NUMBER_OF_CHARACTERS) {
+            return false;
+        }
+        if (containsNonDigits(value)) {
+            return false;
+        }
+        if (hasTestIdentifierPrefix(value)) {
+            return false;
+        }
+        final String identifier = value.substring(0, 10);
+        final String calculatedChecksum = Integer.toString(calculateCheckDigit(identifier));
+        final String givenChecksum = Character.toString(value.charAt(CHECKSUM_INDEX));
+        if (!calculatedChecksum.equals(givenChecksum)) {
+            return false;
+        }
+        if (hasMoreThan3EqualDigits(identifier)) {
+            return false;
+        }
         return !hasThreeOrMoreConsecutiveDigits(identifier);
     }
 
-    private boolean hasTestIdentifierPrefix(String id) {
+    private boolean hasTestIdentifierPrefix(final String id) {
         return id.charAt(0) == '0';
     }
 
-    private boolean containsNonDigits(String id) {
+    private boolean containsNonDigits(final String id) {
         return !id.chars().allMatch(Character::isDigit);
     }
 
@@ -67,50 +81,54 @@ public class GermanyIdValidator implements IdValidator {
      * Informationen zur Berechnung gültiger Prüfziffern
      * </a>
      */
-    private int calculateCheckDigit(String idnrString) {
+    private int calculateCheckDigit(final String idnrString) {
         final int ten = 10;
         final int eleven = 11;
-        char[] chars = idnrString.toCharArray();
-        int remainder_mod_ten = 0;
-        int remainder_mod_eleven = ten;
+        final char[] chars = idnrString.toCharArray();
+        int remainderModTen = 0;
+        int remainderModEleven = ten;
         int digit = 0;
         final int length = idnrString.length();
         for (int counter = 0; counter < length; counter++) {
             digit = Character.getNumericValue(chars[counter]);
-            remainder_mod_ten = (digit + remainder_mod_eleven) % ten;
-            if (remainder_mod_ten == 0)
-                remainder_mod_ten = ten;
-            remainder_mod_eleven = (2 * remainder_mod_ten) % eleven;
+            remainderModTen = (digit + remainderModEleven) % ten;
+            if (remainderModTen == 0) {
+                remainderModTen = ten;
+            }
+            remainderModEleven = (2 * remainderModTen) % eleven;
         } // for
-        digit = eleven - remainder_mod_eleven;
-        if (digit == 10)
+        digit = eleven - remainderModEleven;
+        if (digit == 10) {
             digit = 0;
+        }
         return digit;
     }
 
-    private boolean hasMoreThan3EqualDigits(String id) {
-        Optional<Long> occurrences = calculateDigitFrequency(id).values().stream()
+    private boolean hasMoreThan3EqualDigits(final String id) {
+        final Optional<Long> occurrences = calculateDigitFrequency(id).values().stream()
             .filter(l -> l > 3)
             .findFirst();
         return occurrences.isPresent();
     }
 
-    private Map<String, Long> calculateDigitFrequency(String id) {
+    private Map<String, Long> calculateDigitFrequency(final String id) {
         return id.chars().mapToObj(String::valueOf)
             .collect(groupingBy(Function.identity(), counting()));
     }
 
-    private boolean hasThreeOrMoreConsecutiveDigits(String id) {
+    private boolean hasThreeOrMoreConsecutiveDigits(final String id) {
         int counter = 0;
         char lastChar = '?';
-        for (char c : id.toCharArray()) {
+        for (final char c : id.toCharArray()) {
             if (c == lastChar) {
                 counter++;
             } else {
                 counter = 1;
             }
             lastChar = c;
-            if (counter >= 3) return true;
+            if (counter >= 3) {
+                return true;
+            }
         }
         return false;
     }

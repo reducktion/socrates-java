@@ -1,13 +1,12 @@
 package com.github.reducktion.socrates.validator;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class GermanyIdValidatorTest {
     private GermanyIdValidator germanyIdValidator;
@@ -19,7 +18,7 @@ class GermanyIdValidatorTest {
 
     /**
      * These valid numbers are taken from the official document,
-     * mentioned in the JavaDoc of $GermanyIdValidator#validate
+     * mentioned in the JavaDoc of $GermanyIdValidator#validate.
      *
      * @param validId an ID to test
      */
@@ -31,12 +30,12 @@ class GermanyIdValidatorTest {
         "57549285017",
         "25768131411"
     })
-    void these_valid_numbers_should_pass_the_test(String validId) {
+    void these_valid_numbers_should_pass_the_test(final String validId) {
         assertThat(germanyIdValidator.validate(validId), is(true));
     }
 
     @Test
-    void a_leading_zero_indicates_a_test_ID_and_is_not_allowed() {
+    void leading_zero_indicates_a_test_identifier_and_is_not_allowed() {
         assertThat(
             germanyIdValidator.validate("02476291358"),
             is(false)
@@ -53,7 +52,7 @@ class GermanyIdValidatorTest {
         "99999999960",
         "11111111119",
     })
-    void no_digit_occurs_more_than_3_times(String id) {
+    void no_digit_occurs_more_than_3_times(final String id) {
         assertThat(germanyIdValidator.validate(id), is(false));
     }
 
@@ -70,7 +69,7 @@ class GermanyIdValidatorTest {
         "11215678903",
         "12115678907",
     })
-    void digits_can_occur_3_times_when_not_consecutive(String id) {
+    void digits_can_occur_3_times_when_not_consecutive(final String id) {
         assertThat(germanyIdValidator.validate(id), is(true));
     }
 }
