@@ -18,7 +18,7 @@ class GermanyIdValidatorTest {
 
     /**
      * These valid numbers are taken from the official document,
-     * mentioned in the JavaDoc of $GermanyIdValidator#validate.
+     * mentioned in the JavaDoc of {@link GermanyIdValidator#validate}.
      *
      * @param validId an ID to test
      */
