@@ -9,8 +9,6 @@ import java.util.Optional;
  */
 public final class VerhoeffAlgorithm {
 
-    private static final int BASE_10_RADIX = 10;
-
     private static final int[][] MULTIPLICATION_TABLE = new int[][] {
         { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 },
         { 1, 2, 3, 4, 0, 6, 7, 8, 9, 5 },
@@ -74,7 +72,7 @@ public final class VerhoeffAlgorithm {
 
         int c = 0;
         for (int i = 0; i < reversedId.length(); i++) {
-            final int digit = Character.digit(reversedId.charAt(i), BASE_10_RADIX);
+            final int digit = Character.getNumericValue(reversedId.charAt(i));
             final int p = PERMUTATION_TABLE[i % 8][digit];
             c = MULTIPLICATION_TABLE[c][p];
         }

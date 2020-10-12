@@ -12,7 +12,6 @@ import com.github.reducktion.socrates.internal.StringUtils;
 class BrazilIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 11;
-    private static final int BASE_10_RADIX = 10;
 
     @Override
     public boolean validate(final String id) {
@@ -45,8 +44,8 @@ class BrazilIdValidator implements IdValidator {
         int v2 = 0;
 
         for (int i = 0; i < reversedPartialId.length(); i++) {
-            v1 = v1 + Character.digit(reversedPartialId.charAt(i), BASE_10_RADIX) * (9 - (i % 10));
-            v2 = v2 + Character.digit(reversedPartialId.charAt(i), BASE_10_RADIX) * (9 - ((i + 1) % 10));
+            v1 = v1 + Character.getNumericValue(reversedPartialId.charAt(i)) * (9 - (i % 10));
+            v2 = v2 + Character.getNumericValue(reversedPartialId.charAt(i)) * (9 - ((i + 1) % 10));
         }
 
         v1 = (v1 % 11) % 10;
