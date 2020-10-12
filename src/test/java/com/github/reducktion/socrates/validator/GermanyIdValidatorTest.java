@@ -30,12 +30,12 @@ class GermanyIdValidatorTest {
         "57549285017",
         "25768131411"
     })
-    void these_valid_numbers_should_pass_the_test(final String validId) {
+    void validate_shouldReturnTrue_whenIdMatchesDocumentedOne(final String validId) {
         assertThat(germanyIdValidator.validate(validId), is(true));
     }
 
     @Test
-    void leading_zero_indicates_a_test_identifier_and_is_not_allowed() {
+    void validate_shouldReturnFalse_whenLeadingZeroIndicatesaTestIdentifierAndIsNotAllowed() {
         assertThat(
             germanyIdValidator.validate("02476291358"),
             is(false)
@@ -52,15 +52,47 @@ class GermanyIdValidatorTest {
         "99999999960",
         "11111111119",
     })
-    void no_digit_occurs_more_than_3_times(final String id) {
+    void validate_shouldReturnFalse_whenNoDigitOccursMoreThan3Times(final String id) {
         assertThat(germanyIdValidator.validate(id), is(false));
     }
 
     @Test
-    void if_3_times_a_digit_exists_they_must_be_not_consecutive() {
+    void validate_shouldReturnFalse_when3TimesaDigitExistsTheyMustBeNotConsecutive() {
         assertThat(
             germanyIdValidator.validate("11145678908"),
             is(false)
+        );
+    }
+
+    @Test
+    void validate_shouldReturnFalse_whenNullIsGiven() {
+        assertThat(
+            germanyIdValidator.validate(null),
+            is(false)
+        );
+    }
+
+    @Test
+    void validate_shouldReturnFalse_whenCharactersAreGiven() {
+        assertThat(
+            germanyIdValidator.validate("random string with characters"),
+            is(false)
+        );
+    }
+
+    @Test
+    void validate_shouldReturnFalse_whenMoreThan11DigitsAreGiven() {
+        assertThat(
+            germanyIdValidator.validate("123456789012"),
+            is(false)
+        );
+    }
+
+    @Test
+    void validate_shouldReturnTrue_whenTrailingOrLeadingSpacesAreGiven() {
+        assertThat(
+            germanyIdValidator.validate(" 86095742719 "),
+            is(true)
         );
     }
 
@@ -69,7 +101,7 @@ class GermanyIdValidatorTest {
         "11215678903",
         "12115678907",
     })
-    void digits_can_occur_3_times_when_not_consecutive(final String id) {
+    void validate_shouldReturnTrue_whenDigitsOccur3TimesNotConsecutive(final String id) {
         assertThat(germanyIdValidator.validate(id), is(true));
     }
 }

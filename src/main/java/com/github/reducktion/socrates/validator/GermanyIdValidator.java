@@ -1,5 +1,6 @@
 package com.github.reducktion.socrates.validator;
 
+import static com.github.reducktion.socrates.internal.StringUtils.isNumeric;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
@@ -30,33 +31,22 @@ public class GermanyIdValidator implements IdValidator {
         if (value == null) {
             return false;
         }
-        if (value.length() != ID_NUMBER_OF_CHARACTERS) {
+        final String sanitizedValue = value.trim();
+        if (sanitizedValue.length() != ID_NUMBER_OF_CHARACTERS
+            || !isNumeric(sanitizedValue)
+            || hasTestIdentifierPrefix(sanitizedValue)) {
             return false;
         }
-        if (containsNonDigits(value)) {
-            return false;
-        }
-        if (hasTestIdentifierPrefix(value)) {
-            return false;
-        }
-        final String identifier = value.substring(0, 10);
+        final String identifier = sanitizedValue.substring(0, 10);
         final String calculatedChecksum = Integer.toString(calculateCheckDigit(identifier));
-        final String givenChecksum = Character.toString(value.charAt(CHECKSUM_INDEX));
-        if (!calculatedChecksum.equals(givenChecksum)) {
-            return false;
-        }
-        if (hasMoreThan3EqualDigits(identifier)) {
-            return false;
-        }
-        return !hasThreeOrMoreConsecutiveDigits(identifier);
+        final String givenChecksum = Character.toString(sanitizedValue.charAt(CHECKSUM_INDEX));
+        return calculatedChecksum.equals(givenChecksum)
+            && !hasMoreThan3EqualDigits(identifier)
+            && !hasThreeOrMoreConsecutiveDigits(identifier);
     }
 
     private boolean hasTestIdentifierPrefix(final String id) {
         return id.charAt(0) == '0';
-    }
-
-    private boolean containsNonDigits(final String id) {
-        return !id.chars().allMatch(Character::isDigit);
     }
 
     /**
