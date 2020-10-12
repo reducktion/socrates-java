@@ -13,7 +13,6 @@ import com.github.reducktion.socrates.internal.DateValidator;
 class DenmarkIdValidator implements IdValidator {
 
     private static final Pattern ID_PATTERN = Pattern.compile("\\d{10}");
-    private static final int BASE_10_RADIX = 10;
     private static final int[] MULTIPLIERS = { 4, 3, 2, 7, 6, 5, 4, 3, 2, 1 };
 
     @Override
@@ -36,7 +35,7 @@ class DenmarkIdValidator implements IdValidator {
     private boolean validateChecksum(final String id) {
         int sum = 0;
         for (int i = 0; i < id.length() && i < MULTIPLIERS.length; i++) {
-            final int digit = Character.digit(id.charAt(i), BASE_10_RADIX);
+            final int digit = Character.getNumericValue(id.charAt(i));
             sum += digit * MULTIPLIERS[i];
         }
         return sum % 11 == 0;

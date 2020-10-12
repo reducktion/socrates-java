@@ -13,7 +13,6 @@ import com.github.reducktion.socrates.internal.ItalyOmocodiaSwapper;
 class ItalyIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 16;
-    private static final int BASE_36_RADIX = 36;
 
     @Override
     public boolean validate(final String id) {
@@ -103,7 +102,7 @@ class ItalyIdValidator implements IdValidator {
     }
 
     private int getValueForEvenCharacter(final String evenCharacter) {
-        final int value = Character.digit(evenCharacter.charAt(0), BASE_36_RADIX);
+        final int value = Character.getNumericValue(evenCharacter.charAt(0));
 
         return value > 9 ? value - 10 : value;
     }
