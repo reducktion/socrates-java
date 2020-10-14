@@ -53,7 +53,7 @@ class GermanyIdValidatorTest {
         "99999999960",
         "11111111119",
     })
-    void validate_shouldReturnFalse_whenNoDigitOccursMoreThan3Times(final String id) {
+    void validate_shouldReturnFalse_whenOneDigitOccurMoreThan3Times(final String id) {
         assertThat(germanyIdValidator.validate(id), is(false));
     }
 
