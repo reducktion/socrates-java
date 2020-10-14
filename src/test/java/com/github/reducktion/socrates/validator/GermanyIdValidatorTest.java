@@ -58,7 +58,7 @@ class GermanyIdValidatorTest {
     }
 
     @Test
-    void validate_shouldReturnFalse_when3TimesaDigitExistsTheyMustBeNotConsecutive() {
+    void validate_shouldReturnFalse_whenDigitsOccurMoreThan3TimesConsecutively() {
         assertThat(
             germanyIdValidator.validate("11145678908"),
             is(false)
