@@ -74,7 +74,7 @@ class GermanyIdValidatorTest {
     }
 
     @Test
-    void validate_shouldReturnFalse_whenCharactersAreGiven() {
+    void validate_shouldReturnFalse_whenIdIsNotNumeric() {
         assertThat(
             germanyIdValidator.validate("random string with characters"),
             is(false)
