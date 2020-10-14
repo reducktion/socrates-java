@@ -7,6 +7,7 @@ public enum Country {
     BE,
     BR,
     CA,
+    DE,
     DK,
     FR,
     IT,

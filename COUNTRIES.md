@@ -7,6 +7,7 @@
 | Canada 🇨🇦                   |      CA      | :heavy_check_mark: | :x:                |
 | Denmark 🇩🇰                  |      DK      | :heavy_check_mark: | :heavy_check_mark: |
 | France 🇫🇷                   |      FR      | :heavy_check_mark: | :heavy_check_mark: |
+| Germany 🇩🇪                  |      DE      | :heavy_check_mark: | :x: |
 | Italy 🇮🇹                    |      IT      | :heavy_check_mark: | :heavy_check_mark: |
 | Luxembourg 🇱🇺               |      LU      | :heavy_check_mark: | :x:                |
 | Mexico 🇲🇽                   |      MX      | :heavy_check_mark: | :heavy_check_mark: |
