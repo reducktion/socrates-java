@@ -35,7 +35,8 @@ class GermanyIdValidatorTest {
     }
 
     @Test
-    void validate_shouldReturnFalse_whenLeadingZeroIndicatesaTestIdentifierAndIsNotAllowed() {
+    // a leading zero indicates a test and it is not allowed
+    void validate_shouldReturnFalse_whenIdContainsLeadingZero() {
         assertThat(
             germanyIdValidator.validate("02476291358"),
             is(false)
