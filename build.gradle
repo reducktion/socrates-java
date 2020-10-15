@@ -90,7 +90,7 @@ publishing {
                 licenses {
                     license {
                         name = 'MIT'
-                        url =  projectRepository + '/master/LICENSE.md'
+                        url =  projectRepository + '/blob/master/LICENSE.md'
                         distribution = projectRepository
                     }
                 }
