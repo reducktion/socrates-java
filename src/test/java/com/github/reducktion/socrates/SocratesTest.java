@@ -51,4 +51,20 @@ class SocratesTest {
         assertThat(result.isPresent(), is(true));
         assertThat(result.get(), is(expectedCitizen));
     }
+
+    @Test
+    void generateIdFromCitizen_shouldReturnId_whenDenmarkCitizenIsValid() {
+        final Citizen citizen = Citizen
+            .builder()
+            .gender(Gender.MALE)
+            .yearOfBirth(1991)
+            .monthOfBirth(6)
+            .dayOfBirth(16)
+            .gender(Gender.MALE)
+            .build();
+
+        final String id = socrates.generateId(citizen, Country.DK);
+
+        assertThat(id, is("160691-3113"));
+    }
 }
