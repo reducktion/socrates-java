@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import com.github.reducktion.socrates.extractor.Citizen;
 import com.github.reducktion.socrates.extractor.CitizenExtractor;
+import com.github.reducktion.socrates.generator.IdGenerator;
 import com.github.reducktion.socrates.validator.IdValidator;
 
 /**
@@ -36,5 +37,18 @@ public class Socrates {
         final IdValidator idValidator = IdValidator.newInstance(country);
         final CitizenExtractor citizenExtractor = CitizenExtractor.newInstance(country);
         return citizenExtractor.extractFromId(id, idValidator);
+    }
+
+    /**
+     * Generates an National Identification Number based on a citizen information.
+     *
+     * @param citizen the citizen information
+     * @param country the country of the national identification number
+     * @return national identifier string
+     * @throws UnsupportedOperationException if the country is not supported
+     */
+    public String generateId(final Citizen citizen, final Country country) {
+        final IdGenerator idGenerator = IdGenerator.newInstance(country);
+        return idGenerator.generate(citizen);
     }
 }
