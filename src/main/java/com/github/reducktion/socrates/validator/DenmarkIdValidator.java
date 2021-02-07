@@ -10,6 +10,7 @@ import com.github.reducktion.socrates.internal.DateValidator;
  * This validation algorithm is based on the following wikipedia page:
  * https://en.wikipedia.org/wiki/Personal_identification_number_(Denmark)
  */
+@Deprecated
 class DenmarkIdValidator implements IdValidator {
 
     private static final Pattern ID_PATTERN = Pattern.compile("\\d{10}");

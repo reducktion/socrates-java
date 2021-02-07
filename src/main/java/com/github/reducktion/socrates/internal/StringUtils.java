@@ -1,5 +1,7 @@
 package com.github.reducktion.socrates.internal;
 
+import java.util.Optional;
+
 /**
  * Utility class for managing Strings.
  */
@@ -43,5 +45,22 @@ public final class StringUtils {
      */
     private static boolean isEmpty(final CharSequence cs) {
         return cs == null || cs.length() == 0;
+    }
+
+    /**
+     * Parse an {@code Integer} from a {@code String}.
+     *
+     * @param s the {@code String}
+     * @return the int wrapped in an {@link Optional} if the {@code String} can be parsed into an {@code Integer},
+     * {@link Optional#empty()} otherwise
+     */
+    public static Optional<Integer> parseInt(final String s) {
+        Optional<Integer> integer;
+        try {
+            integer = Optional.of(Integer.parseInt(s));
+        } catch (NumberFormatException e) {
+            integer = Optional.empty();
+        }
+        return integer;
     }
 }
