@@ -1,4 +1,4 @@
-package com.github.reducktion.socrates.id;
+package com.github.reducktion.socrates.nationalid;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
@@ -13,19 +13,19 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.github.reducktion.socrates.Country;
 
-class IdInfoExtractorFactoryTest {
+class NationalIdFactoryTest {
 
     @ParameterizedTest(name = "#{index} - Test with Argument={0},{1}")
-    @MethodSource("idForCountry")
-    void getNationalIdInfoExtractor_shouldReturnCorrectInstanceForCountry(final Country country, final Class clazz) {
-        final IdInfoExtractor idInfoExtractor = NationalIdInfoExtractorFactory.getNationalIdInfoExtractor(null, country);
+    @MethodSource("nationalIdForCountry")
+    void getNationalId_shouldReturnCorrectInstanceForCountry(final Country country, final Class clazz) {
+        final NationalId nationalId = NationalIdFactory.getNationalId(null, country);
 
-        assertThat(idInfoExtractor, is(instanceOf(clazz)));
+        assertThat(nationalId, is(instanceOf(clazz)));
     }
 
-    private static List<Arguments> idForCountry() {
+    private static List<Arguments> nationalIdForCountry() {
         return Arrays.asList(
-            Arguments.arguments(Country.DK, DenmarkId.class)
+            Arguments.arguments(Country.DK, DenmarkNationalId.class)
         );
     }
 }

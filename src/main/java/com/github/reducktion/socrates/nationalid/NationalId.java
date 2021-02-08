@@ -1,10 +1,12 @@
-package com.github.reducktion.socrates.id;
+package com.github.reducktion.socrates.nationalid;
 
 import java.util.Optional;
 
 import com.github.reducktion.socrates.extractor.Gender;
 
-public interface IdInfoExtractor {
+public interface NationalId {
+
+    boolean isValid();
 
     Optional<Integer> getYearOfBirth();
 

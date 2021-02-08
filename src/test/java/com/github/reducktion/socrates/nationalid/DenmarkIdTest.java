@@ -1,4 +1,4 @@
-package com.github.reducktion.socrates.id;
+package com.github.reducktion.socrates.nationalid;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,9 +15,9 @@ class DenmarkIdTest {
 
     @Test
     void validate_shouldReturnFalse_whenIdIsNull() {
-        final DenmarkId denmarkId = new DenmarkId(null);
+        final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(null);
 
-        final boolean result = denmarkId.isValid();
+        final boolean result = denmarkNationalId.isValid();
 
         assertThat(result, is(false));
     }
@@ -34,9 +34,9 @@ class DenmarkIdTest {
         "2343212454"   // bad checksum
     })
     void validate_shouldReturnFalse_whenIdNotValid(final String notValidId) {
-        final DenmarkId denmarkId = new DenmarkId(notValidId);
+        final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(notValidId);
 
-        final boolean result = denmarkId.isValid();
+        final boolean result = denmarkNationalId.isValid();
 
         assertThat(result, is(false));
     }
@@ -50,90 +50,90 @@ class DenmarkIdTest {
         "0404047094"
     })
     void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
-        final DenmarkId denmarkId = new DenmarkId(validId);
+        final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(validId);
 
-        final boolean result = denmarkId.isValid();
+        final boolean result = denmarkNationalId.isValid();
 
         assertThat(result, is(true));
     }
 
     @Test
     void getYearOfBirth_shouldReturnEmptyOptional_whenIdNotValid() {
-        final DenmarkId denmarkId = new DenmarkId(null);
+        final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(null);
 
-        final Optional<Integer> yearOfBirth = denmarkId.getYearOfBirth();
+        final Optional<Integer> yearOfBirth = denmarkNationalId.getYearOfBirth();
 
         assertThat(yearOfBirth, is(Optional.empty()));
     }
 
     @Test
     void getYearOfBirth_shouldReturnValidYear_whenIdIsValid() {
-        final DenmarkId denmarkId = new DenmarkId("0705930600");
+        final DenmarkNationalId denmarkNationalId = new DenmarkNationalId("0705930600");
 
-        final Optional<Integer> yearOfBirth = denmarkId.getYearOfBirth();
+        final Optional<Integer> yearOfBirth = denmarkNationalId.getYearOfBirth();
 
         assertThat(yearOfBirth, is(Optional.of(1993)));
     }
 
     @Test
     void getMonthOfBirth_shouldReturnEmptyOptional_whenIdNotValid() {
-        final DenmarkId denmarkId = new DenmarkId(null);
+        final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(null);
 
-        final Optional<Integer> monthOfBirth = denmarkId.getMonthOfBirth();
+        final Optional<Integer> monthOfBirth = denmarkNationalId.getMonthOfBirth();
 
         assertThat(monthOfBirth, is(Optional.empty()));
     }
 
     @Test
     void getMonthOfBirth_shouldReturnValidMonth_whenIdIsValid() {
-        final DenmarkId denmarkId = new DenmarkId("0705930600");
+        final DenmarkNationalId denmarkNationalId = new DenmarkNationalId("0705930600");
 
-        final Optional<Integer> monthOfBirth = denmarkId.getMonthOfBirth();
+        final Optional<Integer> monthOfBirth = denmarkNationalId.getMonthOfBirth();
 
         assertThat(monthOfBirth, is(Optional.of(5)));
     }
 
     @Test
     void getDayOfBirth_shouldReturnEmptyOptional_whenIdNotValid() {
-        final DenmarkId denmarkId = new DenmarkId(null);
+        final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(null);
 
-        final Optional<Integer> dayOfBirth = denmarkId.getDayOfBirth();
+        final Optional<Integer> dayOfBirth = denmarkNationalId.getDayOfBirth();
 
         assertThat(dayOfBirth, is(Optional.empty()));
     }
 
     @Test
     void getDayOfBirth_shouldReturnValidDay_whenIdIsValid() {
-        final DenmarkId denmarkId = new DenmarkId("0705930600");
+        final DenmarkNationalId denmarkNationalId = new DenmarkNationalId("0705930600");
 
-        final Optional<Integer> dayOfBirth = denmarkId.getDayOfBirth();
+        final Optional<Integer> dayOfBirth = denmarkNationalId.getDayOfBirth();
 
         assertThat(dayOfBirth, is(Optional.of(7)));
     }
 
     @Test
     void getGender_shouldReturnEmptyOptional_whenIdNotValid() {
-        final DenmarkId denmarkId = new DenmarkId(null);
+        final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(null);
 
-        final Optional<Gender> gender = denmarkId.getGender();
+        final Optional<Gender> gender = denmarkNationalId.getGender();
 
         assertThat(gender, is(Optional.empty()));
     }
 
     @Test
     void getGender_shouldReturnValidGender_whenIdIsValid() {
-        final DenmarkId denmarkId = new DenmarkId("0705930600");
+        final DenmarkNationalId denmarkNationalId = new DenmarkNationalId("0705930600");
 
-        final Optional<Gender> gender = denmarkId.getGender();
+        final Optional<Gender> gender = denmarkNationalId.getGender();
 
         assertThat(gender, is(Optional.of(Gender.MALE)));
     }
 
     @Test
     void getPlaceOfBirth_shouldReturnEmptyOptional() {
-        final DenmarkId denmarkId = new DenmarkId(null);
+        final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(null);
 
-        final Optional<String> placeOfBirth = denmarkId.getPlaceOfBirth();
+        final Optional<String> placeOfBirth = denmarkNationalId.getPlaceOfBirth();
 
         assertThat(placeOfBirth, is(Optional.empty()));
     }
@@ -141,9 +141,9 @@ class DenmarkIdTest {
     @Test
     void toString_shouldReturnIdString() {
         final String id = "";
-        final DenmarkId denmarkId = new DenmarkId(id);
+        final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(id);
 
-        final String result = denmarkId.toString();
+        final String result = denmarkNationalId.toString();
 
         assertThat(result, is(id));
     }
