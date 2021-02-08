@@ -1,4 +1,4 @@
-package com.github.reducktion.socrates.nationalid;
+package com.github.reducktion.socrates.id;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;

@@ -1,4 +1,4 @@
-package com.github.reducktion.socrates.nationalid;
+package com.github.reducktion.socrates.id;
 
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -14,7 +14,7 @@ import com.github.reducktion.socrates.internal.StringUtils;
  *  - https://en.wikipedia.org/wiki/Personal_identification_number_(Denmark)
  *  - https://en.wikipedia.org/wiki/Unique_Population_Registry_Code
  */
-class DenmarkId implements NationalId {
+class DenmarkId implements IdValidator, IdInfoExtractor {
 
     private static final Pattern ID_PATTERN = Pattern.compile("\\d{10}");
     private static final int[] MULTIPLIERS = { 4, 3, 2, 7, 6, 5, 4, 3, 2, 1 };
