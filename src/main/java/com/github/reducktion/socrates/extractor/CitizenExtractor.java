@@ -8,6 +8,7 @@ import com.github.reducktion.socrates.validator.IdValidator;
 /**
  * {@link Citizen} extractor.
  */
+@Deprecated
 public interface CitizenExtractor {
 
     /**
