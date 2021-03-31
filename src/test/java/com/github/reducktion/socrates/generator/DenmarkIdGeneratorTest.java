@@ -25,16 +25,19 @@ class DenmarkIdGeneratorTest {
     }
 
     @Test
-    void validate_exceptionIsThrown_withInvalidCitizen() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            denmarkIdGenerator.generate(new Citizen.Builder().build());
-        });
+    void validate_shouldThrowException_whenCitizenIsNotValid() {
+        assertThrows(IllegalArgumentException.class, () -> denmarkIdGenerator.generate(new Citizen.Builder().build()));
     }
 
     @ParameterizedTest(name = "#{index} - Test with Argument={0},{1},{2}")
-    @MethodSource("testCitizenProvider")
-    void validate_cprIsReturned_withValidCitizen(final int year, final int month, final int day,
-         final Gender gender, final String cpr) {
+    @MethodSource("citizenProvider")
+    void validate_shouldReturnCpr_whenCitizenIsValid(
+        final int year,
+        final int month,
+        final int day,
+        final Gender gender,
+        final String cpr
+    ) {
         assertThat(denmarkIdGenerator.generate(
             new Citizen.Builder()
                 .yearOfBirth(year)
@@ -45,7 +48,7 @@ class DenmarkIdGeneratorTest {
         ), is(cpr));
     }
 
-    static Stream<Arguments> testCitizenProvider() {
+    static Stream<Arguments> citizenProvider() {
         return Stream.of(
             Arguments.arguments(1991, 6, 16, Gender.MALE, "160691-3113"),
             Arguments.arguments(1984, 10, 8, Gender.FEMALE, "081084-3012")
