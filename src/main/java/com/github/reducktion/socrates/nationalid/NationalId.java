@@ -1,8 +1,6 @@
 package com.github.reducktion.socrates.nationalid;
 
-import java.util.Optional;
-
-import com.github.reducktion.socrates.extractor.Gender;
+import com.github.reducktion.socrates.extractor.Citizen;
 
 public interface NationalId {
 
@@ -11,25 +9,5 @@ public interface NationalId {
     /**
      * May throw a {@link RuntimeException} exception if {@link #isValid()} returns false.
      */
-    Optional<Integer> getYearOfBirth();
-
-    /**
-     * May throw a {@link RuntimeException} exception if {@link #isValid()} returns false.
-     */
-    Optional<Integer> getMonthOfBirth();
-
-    /**
-     * May throw a {@link RuntimeException} exception if {@link #isValid()} returns false.
-     */
-    Optional<Integer> getDayOfBirth();
-
-    /**
-     * May throw a {@link RuntimeException} exception if {@link #isValid()} returns false.
-     */
-    Optional<Gender> getGender();
-
-    /**
-     * May throw a {@link RuntimeException} exception if {@link #isValid()} returns false.
-     */
-    Optional<String> getPlaceOfBirth();
+    Citizen getCitizen();
 }

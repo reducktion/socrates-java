@@ -1,8 +1,8 @@
 package com.github.reducktion.socrates.nationalid;
 
-import java.util.Optional;
 import java.util.regex.Pattern;
 
+import com.github.reducktion.socrates.extractor.Citizen;
 import com.github.reducktion.socrates.extractor.Gender;
 import com.github.reducktion.socrates.internal.DateValidator;
 
@@ -42,15 +42,15 @@ class DenmarkNationalId implements NationalId {
     }
 
     private boolean isValidDateOfBirth() {
-        final Optional<Integer> year = getYearOfBirth();
-        final Optional<Integer> month = getMonthOfBirth();
-        final Optional<Integer> day = getDayOfBirth();
+        final Integer year = getYearOfBirth();
+        final Integer month = getMonthOfBirth();
+        final Integer day = getDayOfBirth();
 
-        if (!year.isPresent() || !month.isPresent() || !day.isPresent()) {
+        if (year == null || month == null || day == null) {
             return false;
         }
 
-        return DateValidator.validate(year.get(), month.get(), day.get());
+        return DateValidator.validate(year, month, day);
     }
 
     private boolean isValidChecksum() {
@@ -62,10 +62,9 @@ class DenmarkNationalId implements NationalId {
         return sum % 11 == 0;
     }
 
-    @Override
-    public Optional<Integer> getYearOfBirth() {
+    private Integer getYearOfBirth() {
         if (sanitizedId == null) {
-            return Optional.empty();
+            return null;
         }
 
         final int centuryDigit = Integer.parseInt(sanitizedId.substring(6, 7));
@@ -88,46 +87,43 @@ class DenmarkNationalId implements NationalId {
             }
         }
 
-        return Optional.of(century + twoDigitsYear);
+        return century + twoDigitsYear;
     }
 
-    @Override
-    public Optional<Integer> getMonthOfBirth() {
+    private Integer getMonthOfBirth() {
         if (sanitizedId == null) {
-            return Optional.empty();
+            return null;
         }
 
-        final int monthOfBirth = Integer.parseInt(sanitizedId.substring(2, 4));
-
-        return Optional.of(monthOfBirth);
+        return Integer.parseInt(sanitizedId.substring(2, 4));
     }
 
-    @Override
-    public Optional<Integer> getDayOfBirth() {
+    private Integer getDayOfBirth() {
         if (sanitizedId == null) {
-            return Optional.empty();
+            return null;
         }
 
-        final int dayOfBirth = Integer.parseInt(sanitizedId.substring(0, 2));
-
-        return Optional.of(dayOfBirth);
+        return Integer.parseInt(sanitizedId.substring(0, 2));
     }
 
     @Override
-    public Optional<Gender> getGender() {
+    public Citizen getCitizen() {
+        return Citizen.builder()
+            .gender(getGender())
+            .yearOfBirth(getYearOfBirth())
+            .monthOfBirth(getMonthOfBirth())
+            .dayOfBirth(getDayOfBirth())
+            .build();
+    }
+
+    private Gender getGender() {
         if (sanitizedId == null) {
-            return Optional.empty();
+            return null;
         }
 
         final int genderInt = Integer.parseInt(sanitizedId.substring(8, 10));
 
-        final Gender gender = genderInt % 2 == 0 ? Gender.MALE : Gender.FEMALE;
-        return Optional.of(gender);
-    }
-
-    @Override
-    public Optional<String> getPlaceOfBirth() {
-        return Optional.empty();
+        return genderInt % 2 == 0 ? Gender.MALE : Gender.FEMALE;
     }
 
     @Override
