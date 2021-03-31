@@ -2,6 +2,7 @@ package com.github.reducktion.socrates.validator;
 
 import com.github.reducktion.socrates.Country;
 
+@Deprecated
 public interface IdValidator {
 
     boolean validate(String id);
