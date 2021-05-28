@@ -1,18 +1,19 @@
 package com.github.reducktion.socrates.nationalid;
 
-import com.github.reducktion.socrates.extractor.Citizen;
-import com.github.reducktion.socrates.extractor.Gender;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import com.github.reducktion.socrates.extractor.Citizen;
+import com.github.reducktion.socrates.extractor.Gender;
 
 class BelgiumIdTest {
 
