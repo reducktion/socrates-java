@@ -10,7 +10,7 @@ import com.github.reducktion.socrates.validator.IdValidator;
  * Information about the ID can be found in this wikipedia article:
  * https://en.wikipedia.org/wiki/Unique_Population_Registry_Code
  */
-@Deprecated
+@Deprecated // Use the class DenmarkNationalId instead
 class DenmarkCitizenExtractor implements CitizenExtractor {
 
     @Override
