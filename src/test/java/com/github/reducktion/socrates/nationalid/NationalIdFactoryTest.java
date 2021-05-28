@@ -25,6 +25,7 @@ class NationalIdFactoryTest {
 
     private static List<Arguments> nationalIdForCountry() {
         return Arrays.asList(
+            Arguments.arguments(Country.BE, BelgiumNationalId.class),
             Arguments.arguments(Country.DK, DenmarkNationalId.class)
         );
     }
