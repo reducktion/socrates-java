@@ -37,11 +37,11 @@ class DenmarkNationalId implements NationalId {
         }
 
         return ID_PATTERN.matcher(sanitizedId).matches()
-            && isValidDateOfBirth()
-            && isValidChecksum();
+            && hasValidDateOfBirth()
+            && hasValidChecksum();
     }
 
-    private boolean isValidDateOfBirth() {
+    private boolean hasValidDateOfBirth() {
         final Integer year = getYearOfBirth();
         final Integer month = getMonthOfBirth();
         final Integer day = getDayOfBirth();
@@ -53,7 +53,7 @@ class DenmarkNationalId implements NationalId {
         return DateValidator.validate(year, month, day);
     }
 
-    private boolean isValidChecksum() {
+    private boolean hasValidChecksum() {
         int sum = 0;
         for (int i = 0; i < sanitizedId.length() && i < MULTIPLIERS.length; i++) {
             final int digit = Character.getNumericValue(sanitizedId.charAt(i));
