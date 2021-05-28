@@ -60,11 +60,11 @@ class BelgiumNationalId implements NationalId {
     }
 
     private boolean hasValidChecksum(final boolean y2k) {
-        final String input = (y2k ? "2" : "") + getY2KChecksumInput();
+        final String input = (y2k ? "2" : "") + getY2kChecksumInput();
         return getChecksum() == calculateChecksum(input);
     }
 
-    private String getY2KChecksumInput() {
+    private String getY2kChecksumInput() {
         return sanitizedId.substring(0, 9);
     }
 
@@ -120,7 +120,7 @@ class BelgiumNationalId implements NationalId {
     }
 
     private Integer extractYearOfBirth() {
-        final boolean y2k = getChecksum() != calculateChecksum(getY2KChecksumInput());
+        final boolean y2k = getChecksum() != calculateChecksum(getY2kChecksumInput());
         return Integer.parseInt((y2k ? "20" : "19") + getYearOfBirthCharacters());
     }
 
