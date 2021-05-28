@@ -16,6 +16,7 @@ public final class NationalIdFactory {
      */
     static NationalId getNationalId(final String id, final Country country) {
         switch (country) {
+            case BE: return new BelgiumNationalId(id);
             case DK: return new DenmarkNationalId(id);
             default: throw new UnsupportedOperationException("Country not supported.");
         }
