@@ -9,7 +9,7 @@ import com.github.reducktion.socrates.internal.DateValidator;
 /**
  * National Id for Denmark.
  *
- * Information about the Denmark's national id following wikipedia pages:
+ * Information about this national id can be found at:
  *  - https://en.wikipedia.org/wiki/Personal_identification_number_(Denmark)
  *  - https://en.wikipedia.org/wiki/Unique_Population_Registry_Code
  */
