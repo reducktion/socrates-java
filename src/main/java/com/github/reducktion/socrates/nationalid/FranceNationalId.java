@@ -59,8 +59,9 @@ class FranceNationalId implements NationalId {
     }
 
     private boolean validateControlDigit(final String id) {
+        final long controlDigit = extractControlDigit(id);
         final String partialId = stripControlDigit(id);
-        return extractControlDigit(id) == CONTROL_DIGIT_MAX_VALUE - (Long.parseLong(partialId) % CONTROL_DIGIT_MAX_VALUE);
+        return controlDigit == CONTROL_DIGIT_MAX_VALUE - (Long.parseLong(partialId) % CONTROL_DIGIT_MAX_VALUE);
     }
 
     private String stripControlDigit(final String id) {
