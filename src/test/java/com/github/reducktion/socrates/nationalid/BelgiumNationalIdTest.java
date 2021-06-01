@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import com.github.reducktion.socrates.extractor.Citizen;
 import com.github.reducktion.socrates.extractor.Gender;
 
-class BelgiumIdTest {
+class BelgiumNationalIdTest {
 
     @Test
     void validate_shouldReturnFalse_whenIdIsNull() {
