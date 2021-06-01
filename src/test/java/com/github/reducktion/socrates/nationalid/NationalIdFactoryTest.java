@@ -16,17 +16,18 @@ import com.github.reducktion.socrates.Country;
 class NationalIdFactoryTest {
 
     @ParameterizedTest(name = "#{index} - Test with Argument={0},{1}")
-    @MethodSource("nationalIdForCountry")
+    @MethodSource("nationalIdForCountryProvider")
     void getNationalId_shouldReturnCorrectInstanceForCountry(final Country country, final Class clazz) {
         final NationalId nationalId = NationalIdFactory.getNationalId(null, country);
 
         assertThat(nationalId, is(instanceOf(clazz)));
     }
 
-    private static List<Arguments> nationalIdForCountry() {
+    private static List<Arguments> nationalIdForCountryProvider() {
         return Arrays.asList(
             Arguments.arguments(Country.BE, BelgiumNationalId.class),
-            Arguments.arguments(Country.DK, DenmarkNationalId.class)
+            Arguments.arguments(Country.DK, DenmarkNationalId.class),
+            Arguments.arguments(Country.FR, FranceNationalId.class)
         );
     }
 }
