@@ -9,8 +9,10 @@ import com.github.reducktion.socrates.internal.ItalyOmocodiaSwapper;
  * http://www.dossier.net/utilities/codice-fiscale/decreto1974_2227.html
  *
  * An english version is available in wikipedia: https://en.wikipedia.org/wiki/Italian_fiscal_code
+ *
+ * @deprecated Use class ItalyNationalId instead
  */
-@Deprecated // Use the class ItalyNationalId instead
+@Deprecated
 class ItalyIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 16;
