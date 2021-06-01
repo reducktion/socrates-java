@@ -8,8 +8,10 @@ import com.github.reducktion.socrates.internal.StringUtils;
  *
  * This validation algorithm is based on the official documentation:
  * http://www.ibz.rrn.fgov.be/fileadmin/user_upload/nl/rr/instructies/IT-lijst/IT000_Rijksregisternummer.pdf
+ *
+ * @deprecated Use class BelgiumNationalId instead
  */
-@Deprecated // Use the class BelgiumNationalId instead
+@Deprecated
 class BelgiumIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 11;

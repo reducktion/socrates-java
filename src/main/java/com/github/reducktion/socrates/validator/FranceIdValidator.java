@@ -12,8 +12,10 @@ import com.github.reducktion.socrates.internal.StringUtils;
  *
  * Also, there is extra info in https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France,
  * specially about the algorithm for Corsica (2A -> 19, 2B -> 20).
+ *
+ * @deprecated Use class FranceNationalId instead
  */
-@Deprecated // Use the class FranceNationalId instead
+@Deprecated
 class FranceIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 15;

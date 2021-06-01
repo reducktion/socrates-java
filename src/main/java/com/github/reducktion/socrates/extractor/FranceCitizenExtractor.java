@@ -17,8 +17,10 @@ import com.github.reducktion.socrates.validator.IdValidator;
  * Information about the region codes can be found in
  * https://fr.wikipedia.org/wiki/Codes_g%C3%A9ographiques_de_la_France and
  * https://en.wikipedia.org/wiki/Departments_of_France
+ *
+ * @deprecated Use class FranceNationalId instead
  */
-@Deprecated // Use the class FranceNationalId instead
+@Deprecated
 class FranceCitizenExtractor implements CitizenExtractor {
 
     private static final String CHARACTER_MALE = "1";
