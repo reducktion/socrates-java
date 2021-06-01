@@ -9,8 +9,10 @@ import com.github.reducktion.socrates.validator.IdValidator;
  * <p>
  * Information about the ID can be found here:
  * http://www.ibz.rrn.fgov.be/fileadmin/user_upload/nl/rr/instructies/IT-lijst/IT000_Rijksregisternummer.pdf
+ *
+ * @deprecated Use class BelgiumNationalId instead
  */
-@Deprecated // Use the class BelgiumNationalId instead
+@Deprecated
 class BelgiumCitizenExtractor implements CitizenExtractor {
 
     @Override

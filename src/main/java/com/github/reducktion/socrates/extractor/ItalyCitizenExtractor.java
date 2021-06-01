@@ -22,8 +22,10 @@ import com.github.reducktion.socrates.validator.IdValidator;
  *
  * Information about the region codes can be found in
  * https://web.archive.org/web/20160819012136/http://www.agenziaentrate.gov.it/wps/wcm/connect/321b0500426a5e2492629bc065cef0e8/codicicatastali_comuni_29_11_2010.pdf?MOD=AJPERES&CACHEID=321b500426a5e2492629bc065cef0e8
+ *
+ * @deprecated Use class ItalyNationalId instead
  */
-@Deprecated // Use the class ItalyNationalId instead
+@Deprecated
 class ItalyCitizenExtractor implements CitizenExtractor {
 
     private static final String MONTH_CODES = "ABCDEHLMPRST";
