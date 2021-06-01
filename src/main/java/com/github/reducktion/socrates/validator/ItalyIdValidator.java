@@ -10,6 +10,7 @@ import com.github.reducktion.socrates.internal.ItalyOmocodiaSwapper;
  *
  * An english version is available in wikipedia: https://en.wikipedia.org/wiki/Italian_fiscal_code
  */
+@Deprecated // Use the class ItalyNationalId instead
 class ItalyIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 16;
