@@ -47,24 +47,24 @@ class BelgiumNationalId implements NationalId {
     }
 
     private boolean hasValidSequenceNumber() {
-        final int sequenceNumber = getSequenceNumber();
+        final int sequenceNumber = extractSequenceNumber();
         return sequenceNumber != 0 && sequenceNumber != 999; // range from 001 to 998
     }
 
-    private int getSequenceNumber() {
+    private int extractSequenceNumber() {
         return Integer.parseInt(sanitizedId.substring(6, 9));
     }
 
     private boolean hasValidChecksum(final boolean y2k) {
-        final String input = (y2k ? "2" : "") + getY2kChecksumInput();
-        return getChecksum() == calculateChecksum(input);
+        final String input = (y2k ? "2" : "") + getY2kChecksumCharacters();
+        return extractChecksum() == calculateChecksum(input);
     }
 
-    private String getY2kChecksumInput() {
+    private String getY2kChecksumCharacters() {
         return sanitizedId.substring(0, 9);
     }
 
-    private int getChecksum() {
+    private int extractChecksum() {
         return Integer.parseInt(sanitizedId.substring(9));
     }
 
@@ -103,20 +103,20 @@ class BelgiumNationalId implements NationalId {
     public Citizen getCitizen() {
         return Citizen
             .builder()
-            .gender(getGender())
+            .gender(extractGender())
             .yearOfBirth(extractYearOfBirth())
             .monthOfBirth(extractMonthOfBirth())
             .dayOfBirth(extractDayOfBirth())
             .build();
     }
 
-    private Gender getGender() {
-        final int sequenceNumber = getSequenceNumber();
+    private Gender extractGender() {
+        final int sequenceNumber = extractSequenceNumber();
         return sequenceNumber % 2 == 0 ? Gender.FEMALE : Gender.MALE;
     }
 
     private Integer extractYearOfBirth() {
-        final boolean y2k = getChecksum() != calculateChecksum(getY2kChecksumInput());
+        final boolean y2k = extractChecksum() != calculateChecksum(getY2kChecksumCharacters());
         return Integer.parseInt((y2k ? "20" : "19") + getYearOfBirthCharacters());
     }
 
