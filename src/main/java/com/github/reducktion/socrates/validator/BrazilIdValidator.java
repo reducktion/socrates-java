@@ -8,7 +8,10 @@ import com.github.reducktion.socrates.internal.StringUtils;
  *
  * The validation algorithm was based on the following wikipedia source:
  * https://pt.wikipedia.org/wiki/Cadastro_de_pessoas_f%C3%ADsicas#Algoritmo
+ *
+ * @deprecated Use class BrazilNationalId instead
  */
+@Deprecated
 class BrazilIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 11;
