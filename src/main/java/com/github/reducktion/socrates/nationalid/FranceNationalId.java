@@ -1,11 +1,11 @@
 package com.github.reducktion.socrates.nationalid;
 
+import java.time.Year;
+
 import com.github.reducktion.socrates.extractor.Citizen;
 import com.github.reducktion.socrates.extractor.Gender;
 import com.github.reducktion.socrates.internal.StringUtils;
 import com.github.reducktion.socrates.internal.TwoYearDateParser;
-
-import java.time.Year;
 
 /**
  * National Id for France.
