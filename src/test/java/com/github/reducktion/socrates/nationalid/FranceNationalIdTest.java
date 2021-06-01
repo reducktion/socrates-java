@@ -183,7 +183,7 @@ class FranceNationalIdTest {
 
     @Test
     void toString_shouldReturnIdString() {
-        final String id = "01.11.16-001.05";
+        final String id = "2820819398814 09";
         final FranceNationalId franceNationalId = new FranceNationalId(id);
 
         final String result = franceNationalId.toString();
