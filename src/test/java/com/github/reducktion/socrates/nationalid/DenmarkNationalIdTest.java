@@ -61,7 +61,7 @@ class DenmarkNationalIdTest {
         assertThat(result, is(true));
     }
 
-    @ParameterizedTest(name = "#{index} - Test with Argument={0},{1}")
+    @ParameterizedTest(name = "#{index} - Test with Arguments={0},{1}")
     @MethodSource("citizenByIdProvider")
     void getCitizen_shouldReturnCorrectCitizenInfo_whenIdIsValid(final String id, final Citizen expectedCitizen) {
         final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(id);
