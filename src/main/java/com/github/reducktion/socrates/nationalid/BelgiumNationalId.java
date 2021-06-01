@@ -29,10 +29,6 @@ class BelgiumNationalId implements NationalId {
 
     @Override
     public boolean isValid() {
-        if (id == null) {
-            return false;
-        }
-
         if (!StringUtils.isNumeric(sanitizedId)
             || sanitizedId.length() != ID_NUMBER_OF_CHARACTERS
             || !hasValidSequenceNumber()) {
