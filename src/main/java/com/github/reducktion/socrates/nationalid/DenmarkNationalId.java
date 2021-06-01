@@ -1,5 +1,6 @@
 package com.github.reducktion.socrates.nationalid;
 
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import com.github.reducktion.socrates.extractor.Citizen;
@@ -104,13 +105,19 @@ class DenmarkNationalId implements NationalId {
     }
 
     @Override
-    public Citizen getCitizen() {
-        return Citizen.builder()
-            .gender(extractGender())
-            .yearOfBirth(extractYearOfBirth())
-            .monthOfBirth(extractMonthOfBirth())
-            .dayOfBirth(extractDayOfBirth())
-            .build();
+    public Optional<Citizen> getCitizen() {
+        if (!isValid()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(
+            Citizen.builder()
+                .gender(extractGender())
+                .yearOfBirth(extractYearOfBirth())
+                .monthOfBirth(extractMonthOfBirth())
+                .dayOfBirth(extractDayOfBirth())
+                .build()
+        );
     }
 
     private Gender extractGender() {

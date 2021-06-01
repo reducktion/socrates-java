@@ -1,6 +1,7 @@
 package com.github.reducktion.socrates.nationalid;
 
 import java.time.Year;
+import java.util.Optional;
 
 import com.github.reducktion.socrates.extractor.Citizen;
 import com.github.reducktion.socrates.extractor.Gender;
@@ -74,14 +75,20 @@ class FranceNationalId implements NationalId {
     }
 
     @Override
-    public Citizen getCitizen() {
-        return Citizen
-            .builder()
-            .gender(extractGender())
-            .yearOfBirth(extractYearOfBirth())
-            .monthOfBirth(extractMonthOfBirth())
-            .placeOfBirth(extractPlaceOfBirth())
-            .build();
+    public Optional<Citizen> getCitizen() {
+        if (!isValid()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(
+            Citizen
+                .builder()
+                .gender(extractGender())
+                .yearOfBirth(extractYearOfBirth())
+                .monthOfBirth(extractMonthOfBirth())
+                .placeOfBirth(extractPlaceOfBirth())
+                .build()
+        );
     }
 
     private Gender extractGender() {
