@@ -18,6 +18,7 @@ public final class NationalIdFactory {
         switch (country) {
             case BE: return new BelgiumNationalId(id);
             case DK: return new DenmarkNationalId(id);
+            case FR: return new FranceNationalId(id);
             default: throw new UnsupportedOperationException("Country not supported.");
         }
     }
