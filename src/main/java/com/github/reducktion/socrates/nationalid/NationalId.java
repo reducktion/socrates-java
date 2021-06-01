@@ -1,5 +1,7 @@
 package com.github.reducktion.socrates.nationalid;
 
+import java.util.Optional;
+
 import com.github.reducktion.socrates.extractor.Citizen;
 
 public interface NationalId {
@@ -7,7 +9,11 @@ public interface NationalId {
     boolean isValid();
 
     /**
-     * May throw a {@link RuntimeException} exception if {@link #isValid()} returns false.
+     * Return the citizen information present in the national id.
+     *
+     * @return a valid {@link Citizen} if {@link #isValid()} returns {@code true}, empty otherwise. It can also return
+     *      empty if it is impossible to retrieve the citizen information from the national id or if the feature is not
+     *      implemented yet.
      */
-    Citizen getCitizen();
+    Optional<Citizen> getCitizen();
 }

@@ -121,15 +121,21 @@ class ItalyNationalId implements NationalId {
     }
 
     @Override
-    public Citizen getCitizen() {
-        return Citizen
-            .builder()
-            .gender(extractGender())
-            .yearOfBirth(extractYearOfBirth())
-            .monthOfBirth(extractMonthOfBirth())
-            .dayOfBirth(extractDayOfBirth())
-            .placeOfBirth(extractPlaceOfBirth())
-            .build();
+    public Optional<Citizen> getCitizen() {
+        if (!isValid()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(
+            Citizen
+                .builder()
+                .gender(extractGender())
+                .yearOfBirth(extractYearOfBirth())
+                .monthOfBirth(extractMonthOfBirth())
+                .dayOfBirth(extractDayOfBirth())
+                .placeOfBirth(extractPlaceOfBirth())
+                .build()
+        );
     }
 
     private Gender extractGender() {

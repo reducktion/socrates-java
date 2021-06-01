@@ -5,6 +5,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -69,9 +70,9 @@ class BelgiumNationalIdTest {
     void getCitizen_shouldReturnCorrectCitizenInfo_whenIdIsValid(final String id, final Citizen expectedCitizen) {
         final BelgiumNationalId belgiumNationalId = new BelgiumNationalId(id);
 
-        final Citizen resultCitizen = belgiumNationalId.getCitizen();
+        final Optional<Citizen> resultCitizen = belgiumNationalId.getCitizen();
 
-        assertThat(resultCitizen, is(expectedCitizen));
+        assertThat(resultCitizen, is(Optional.of(expectedCitizen)));
     }
 
     private static List<Arguments> citizenByIdProvider() {
@@ -114,6 +115,15 @@ class BelgiumNationalIdTest {
                     .build()
             )
         );
+    }
+
+    @Test
+    void getCitizen_shouldReturnEmpty_whenIdIsNotValid() {
+        final BelgiumNationalId belgiumNationalId = new BelgiumNationalId(null);
+
+        final Optional<Citizen> resultCitizen = belgiumNationalId.getCitizen();
+
+        assertThat(resultCitizen, is(Optional.empty()));
     }
 
     @Test
