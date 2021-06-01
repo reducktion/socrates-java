@@ -32,11 +32,8 @@ class DenmarkNationalId implements NationalId {
 
     @Override
     public boolean isValid() {
-        if (id == null) {
-            return false;
-        }
-
-        return ID_PATTERN.matcher(sanitizedId).matches()
+        return sanitizedId != null
+            && ID_PATTERN.matcher(sanitizedId).matches()
             && hasValidDateOfBirth()
             && hasValidChecksum();
     }
