@@ -7,7 +7,10 @@ import com.github.reducktion.socrates.internal.StringUtils;
  *
  * This validation algorithm is based on the official documentation:
  * http://www.interior.gob.es/web/servicios-al-ciudadano/dni/calculo-del-digito-de-control-del-nif-nie
+ *
+ * @deprecated Use class SpainNationalId instead
  */
+@Deprecated
 class SpainIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 9;
