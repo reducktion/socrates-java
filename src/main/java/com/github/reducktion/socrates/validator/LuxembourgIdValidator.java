@@ -8,7 +8,10 @@ import com.github.reducktion.socrates.internal.VerhoeffAlgorithm;
  * National Identification Number validator for Luxembourg.
  *
  * This validation algorithm is based on this pdf: https://www.oecd.org/tax/automatic-exchange/crs-implementation-and-assistance/tax-identification-numbers/Luxembourg-TIN.pdf
+ *
+ *  @deprecated Use class LuxembourgNationalId instead
  */
+@Deprecated
 class LuxembourgIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 13;
