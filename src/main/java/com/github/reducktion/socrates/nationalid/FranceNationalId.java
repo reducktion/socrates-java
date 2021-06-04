@@ -15,8 +15,8 @@ import com.github.reducktion.socrates.internal.TwoYearDateParser;
  *  - http://resoo.org/docs/_docs/regles-numero-insee.pdf
  *  - https://en.wikipedia.org/wiki/INSEE_code
  *  - https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France
- *  - https://fr.wikipedia.org/wiki/Codes_g%C3%A9ographiques_de_la_France
- *  - https://en.wikipedia.org/wiki/Departments_of_France
+ *  - (Geographic codes) https://fr.wikipedia.org/wiki/Codes_g%C3%A9ographiques_de_la_France
+ *  - (Departments) https://en.wikipedia.org/wiki/Departments_of_France
  */
 class FranceNationalId implements NationalId {
 
