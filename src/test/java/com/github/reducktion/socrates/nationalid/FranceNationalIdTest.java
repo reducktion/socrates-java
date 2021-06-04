@@ -192,7 +192,7 @@ class FranceNationalIdTest {
     }
 
     @Test
-    void toString_shouldReturnIdString() {
+    void toString_shouldReturnId() {
         final String id = "2820819398814 09";
         final FranceNationalId franceNationalId = new FranceNationalId(id);
 

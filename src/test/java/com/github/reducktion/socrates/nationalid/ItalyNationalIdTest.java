@@ -148,7 +148,7 @@ class ItalyNationalIdTest {
     }
 
     @Test
-    void toString_shouldReturnIdString() {
+    void toString_shouldReturnId() {
         final String id = "MRCDRALMAMPALSRE";
         final ItalyNationalId italyNationalId = new ItalyNationalId(id);
 

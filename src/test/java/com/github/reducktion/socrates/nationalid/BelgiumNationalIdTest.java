@@ -127,7 +127,7 @@ class BelgiumNationalIdTest {
     }
 
     @Test
-    void toString_shouldReturnIdString() {
+    void toString_shouldReturnId() {
         final String id = "01.11.16-001.05";
         final BelgiumNationalId belgiumNationalId = new BelgiumNationalId(id);
 

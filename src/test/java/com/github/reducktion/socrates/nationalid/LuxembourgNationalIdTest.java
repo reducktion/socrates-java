@@ -63,7 +63,7 @@ class LuxembourgNationalIdTest {
     }
 
     @Test
-    void toString_shouldReturnIdString() {
+    void toString_shouldReturnId() {
         final String id = "1994092874550";
         final LuxembourgNationalId luxembourgNationalId = new LuxembourgNationalId(id);
 
