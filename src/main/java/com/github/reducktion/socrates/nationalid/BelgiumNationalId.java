@@ -49,28 +49,28 @@ class BelgiumNationalId implements NationalId {
     }
 
     private boolean hasValidSequenceNumber() {
-        final int sequenceNumber = extractSequenceNumber();
+        final int sequenceNumber = getSequenceNumber();
         return sequenceNumber != 0 && sequenceNumber != 999; // range from 001 to 998
     }
 
-    private int extractSequenceNumber() {
+    private int getSequenceNumber() {
         return Integer.parseInt(sanitizedId.substring(6, 9));
     }
 
     private boolean hasValidChecksum(final boolean y2k) {
         final String input = (y2k ? "2" : "") + getY2kChecksumCharacters();
-        return extractChecksum() == calculateChecksum(input);
+        return getChecksum() == computeChecksum(input);
     }
 
     private String getY2kChecksumCharacters() {
         return sanitizedId.substring(0, 9);
     }
 
-    private int extractChecksum() {
+    private int getChecksum() {
         return Integer.parseInt(sanitizedId.substring(9));
     }
 
-    private long calculateChecksum(final String input) {
+    private long computeChecksum(final String input) {
         return 97 - (Long.parseLong(input) % 97);
     }
 
@@ -110,30 +110,30 @@ class BelgiumNationalId implements NationalId {
         return Optional.of(
             Citizen
                 .builder()
-                .gender(extractGender())
-                .yearOfBirth(extractYearOfBirth())
-                .monthOfBirth(extractMonthOfBirth())
-                .dayOfBirth(extractDayOfBirth())
+                .gender(getGender())
+                .yearOfBirth(getYearOfBirth())
+                .monthOfBirth(getMonthOfBirth())
+                .dayOfBirth(getDayOfBirth())
                 .build()
         );
     }
 
-    private Gender extractGender() {
-        final int sequenceNumber = extractSequenceNumber();
+    private Gender getGender() {
+        final int sequenceNumber = getSequenceNumber();
         return sequenceNumber % 2 == 0 ? Gender.FEMALE : Gender.MALE;
     }
 
-    private Integer extractYearOfBirth() {
-        final boolean y2k = extractChecksum() != calculateChecksum(getY2kChecksumCharacters());
+    private Integer getYearOfBirth() {
+        final boolean y2k = getChecksum() != computeChecksum(getY2kChecksumCharacters());
         return Integer.parseInt((y2k ? "20" : "19") + getYearOfBirthCharacters());
     }
 
-    private Integer extractMonthOfBirth() {
+    private Integer getMonthOfBirth() {
         final String monthOfBirthCharacters = getMonthOfBirthCharacters();
         return "00".equals(monthOfBirthCharacters) ? null : Integer.parseInt(monthOfBirthCharacters);
     }
 
-    private Integer extractDayOfBirth() {
+    private Integer getDayOfBirth() {
         final String dayOfBirthCharacters = getDayOfBirthCharacters();
         return "00".equals(dayOfBirthCharacters) ? null : Integer.parseInt(dayOfBirthCharacters);
     }

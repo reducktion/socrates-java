@@ -39,9 +39,9 @@ class DenmarkNationalId implements NationalId {
     }
 
     private boolean hasValidDateOfBirth() {
-        final Integer year = extractYearOfBirth();
-        final Integer month = extractMonthOfBirth();
-        final Integer day = extractDayOfBirth();
+        final Integer year = getYearOfBirth();
+        final Integer month = getMonthOfBirth();
+        final Integer day = getDayOfBirth();
 
         if (year == null || month == null || day == null) {
             return false;
@@ -59,7 +59,7 @@ class DenmarkNationalId implements NationalId {
         return sum % 11 == 0;
     }
 
-    private Integer extractYearOfBirth() {
+    private Integer getYearOfBirth() {
         if (sanitizedId == null) {
             return null;
         }
@@ -87,7 +87,7 @@ class DenmarkNationalId implements NationalId {
         return century + twoDigitsYear;
     }
 
-    private Integer extractMonthOfBirth() {
+    private Integer getMonthOfBirth() {
         if (sanitizedId == null) {
             return null;
         }
@@ -95,7 +95,7 @@ class DenmarkNationalId implements NationalId {
         return Integer.parseInt(sanitizedId.substring(2, 4));
     }
 
-    private Integer extractDayOfBirth() {
+    private Integer getDayOfBirth() {
         if (sanitizedId == null) {
             return null;
         }
@@ -111,15 +111,15 @@ class DenmarkNationalId implements NationalId {
 
         return Optional.of(
             Citizen.builder()
-                .gender(extractGender())
-                .yearOfBirth(extractYearOfBirth())
-                .monthOfBirth(extractMonthOfBirth())
-                .dayOfBirth(extractDayOfBirth())
+                .gender(getGender())
+                .yearOfBirth(getYearOfBirth())
+                .monthOfBirth(getMonthOfBirth())
+                .dayOfBirth(getDayOfBirth())
                 .build()
         );
     }
 
-    private Gender extractGender() {
+    private Gender getGender() {
         if (sanitizedId == null) {
             return null;
         }

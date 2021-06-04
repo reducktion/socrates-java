@@ -61,17 +61,8 @@ class GermanyNationalId implements NationalId {
 
     private boolean hasValidChecksum() {
         final String expectedChecksum = sanitizedId.substring(10, 11);
-        final String calculatedChecksum = computeCheckDigit();
-        return expectedChecksum.equals(calculatedChecksum);
-    }
-
-    /**
-     * Extract the German tax identification number (IdNr).
-     *
-     * @return the IdNr, which is a string consisting of ten numeric digits
-     */
-    private String extractIdNr() {
-        return sanitizedId.substring(0, 10);
+        final String computedChecksum = computeCheckDigit();
+        return expectedChecksum.equals(computedChecksum);
     }
 
     /**
@@ -88,7 +79,7 @@ class GermanyNationalId implements NationalId {
      * This approach considers each digit in a specific way for being able
      * to detect falsely edited IdNr in a reliable and efficient way.
      *
-     * @return calculated check digit returned as an string value
+     * @return computed check digit returned as an string value
      * @see <a href="https://www.zfa.deutsche-rentenversicherung-bund.de/de/Inhalt/public/4_ID/47_Pruefziffernberechnung/001_Pruefziffernberechnung.pdf">
      * Informations Technik Zentrum Bund
      * Steueridentifikationsnummer (IdNr) nach § 139b AO
@@ -96,7 +87,7 @@ class GermanyNationalId implements NationalId {
      * </a>
      */
     private String computeCheckDigit() {
-        final String idNr = extractIdNr();
+        final String idNr = getIdNr();
         final int ten = 10;
         final int eleven = 11;
         final char[] chars = idNr.toCharArray();
@@ -119,21 +110,30 @@ class GermanyNationalId implements NationalId {
         return String.valueOf(digit);
     }
 
+    /**
+     * Return the German tax identification number (IdNr).
+     *
+     * @return the IdNr, which is a string consisting of ten numeric digits
+     */
+    private String getIdNr() {
+        return sanitizedId.substring(0, 10);
+    }
+
     private boolean hasMoreThan3EqualDigits() {
-        final Optional<Long> occurrences = calculateDigitFrequency().values().stream()
+        final Optional<Long> occurrences = computeDigitFrequency().values().stream()
             .filter(l -> l > 3)
             .findFirst();
         return occurrences.isPresent();
     }
 
-    private Map<String, Long> calculateDigitFrequency() {
-        final String idNr = extractIdNr();
+    private Map<String, Long> computeDigitFrequency() {
+        final String idNr = getIdNr();
         return idNr.chars().mapToObj(String::valueOf)
             .collect(groupingBy(Function.identity(), counting()));
     }
 
     private boolean hasThreeOrMoreConsecutiveDigits() {
-        final String idNr = extractIdNr();
+        final String idNr = getIdNr();
         int counter = 0;
         char lastChar = '?';
         for (final char c : idNr.toCharArray()) {
