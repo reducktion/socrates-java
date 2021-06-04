@@ -20,7 +20,10 @@ import java.util.function.Function;
  * The algorithm is published in an official document
  * from: Informations Technik Zentrum Bund
  * title: Steueridentifikationsnummer (IdNr) nach § 139b AO; Informationen zur Berechnung gültiger Prüfziffern
+ *
+ * @deprecated Use class GermanyNationalId instead
  */
+@Deprecated
 public class GermanyIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 11;
