@@ -22,6 +22,7 @@ public final class NationalIdFactory {
             case FR: return new FranceNationalId(id);
             case IT: return new ItalyNationalId(id);
             case LU: return new LuxembourgNationalId(id);
+            case PT: return new PortugalNationalId(id);
             default: throw new UnsupportedOperationException("Country not supported.");
         }
     }
