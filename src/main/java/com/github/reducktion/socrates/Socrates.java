@@ -3,11 +3,9 @@ package com.github.reducktion.socrates;
 import java.util.Optional;
 
 import com.github.reducktion.socrates.extractor.Citizen;
-import com.github.reducktion.socrates.extractor.CitizenExtractor;
 import com.github.reducktion.socrates.generator.IdGenerator;
 import com.github.reducktion.socrates.nationalid.NationalId;
 import com.github.reducktion.socrates.nationalid.NationalIdFactory;
-import com.github.reducktion.socrates.validator.IdValidator;
 
 /**
  * Socrates allows you to validate and retrieve personal data from National Identification Numbers across the world.
