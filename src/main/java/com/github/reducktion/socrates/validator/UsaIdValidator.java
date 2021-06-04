@@ -13,7 +13,10 @@ import com.github.reducktion.socrates.internal.StringUtils;
  * A wikipedia source can be found in: https://en.wikipedia.org/wiki/Social_Security_number#Valid_SSNs
  *
  * Blacklisted SSN can be found in: https://www.ssa.gov/history/ssn/misused.html
- **/
+ *
+ * @deprecated Use class UsaNationalId instead
+ */
+@Deprecated
 class UsaIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 9;
