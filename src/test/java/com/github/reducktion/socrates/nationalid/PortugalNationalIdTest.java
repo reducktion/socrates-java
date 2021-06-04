@@ -14,7 +14,7 @@ import com.github.reducktion.socrates.extractor.Citizen;
 class PortugalNationalIdTest {
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsNull() {
+    void isValid_shouldReturnFalse_whenIdIsNull() {
         final PortugalNationalId portugalNationalId = new PortugalNationalId(null);
 
         final boolean result = portugalNationalId.isValid();
@@ -28,7 +28,7 @@ class PortugalNationalIdTest {
         "12345678901",      // less than 12 digits
         "154A03556ZX9"      // Luhn's algorithm fails
     })
-    void validate_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
+    void isValid_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
         final PortugalNationalId portugalNationalId = new PortugalNationalId(notValidId);
 
         final boolean result = portugalNationalId.isValid();
@@ -44,7 +44,7 @@ class PortugalNationalIdTest {
         "174886721ZX1",
         "148984754ZY5"
     })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void isValid_shouldReturnTrue_whenIdIsValid(final String validId) {
         final PortugalNationalId portugalNationalId = new PortugalNationalId(validId);
 
         final boolean result = portugalNationalId.isValid();

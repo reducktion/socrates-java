@@ -14,7 +14,7 @@ import com.github.reducktion.socrates.extractor.Citizen;
 class BrazilNationalIdTest {
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsNull() {
+    void isValid_shouldReturnFalse_whenIdIsNull() {
         final BrazilNationalId brazilNationalId = new BrazilNationalId(null);
 
         final boolean result = brazilNationalId.isValid();
@@ -29,7 +29,7 @@ class BrazilNationalIdTest {
         "1234567890",   // less than 11 digits
         "23294954040"   // bad checksum
     })
-    void validate_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
+    void isValid_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
         final BrazilNationalId brazilNationalId = new BrazilNationalId(notValidId);
 
         final boolean result = brazilNationalId.isValid();
@@ -68,7 +68,7 @@ class BrazilNationalIdTest {
         "26363102820",
         "17758534112"
     })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void isValid_shouldReturnTrue_whenIdIsValid(final String validId) {
         final BrazilNationalId brazilNationalId = new BrazilNationalId(validId);
 
         final boolean result = brazilNationalId.isValid();

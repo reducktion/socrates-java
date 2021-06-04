@@ -14,7 +14,7 @@ import com.github.reducktion.socrates.extractor.Citizen;
 class UsaNationalIdTest {
     
     @Test
-    void validate_shouldReturnFalse_whenIdIsNull() {
+    void isValid_shouldReturnFalse_whenIdIsNull() {
         final UsaNationalId usaNationalId = new UsaNationalId(null);
 
         final boolean result = usaNationalId.isValid();
@@ -32,7 +32,7 @@ class UsaNationalIdTest {
         "457555462",    // blacklisted
         "078051120"     // invalid area codes
     })
-    void validate_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
+    void isValid_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
         final UsaNationalId usaNationalId = new UsaNationalId(notValidId);
 
         final boolean result = usaNationalId.isValid();
@@ -48,7 +48,7 @@ class UsaNationalIdTest {
         "574227664",
         "671269121"
     })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void isValid_shouldReturnTrue_whenIdIsValid(final String validId) {
         final UsaNationalId usaNationalId = new UsaNationalId(validId);
 
         final boolean result = usaNationalId.isValid();

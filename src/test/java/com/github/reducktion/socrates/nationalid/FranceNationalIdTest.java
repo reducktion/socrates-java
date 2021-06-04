@@ -19,7 +19,7 @@ import com.github.reducktion.socrates.extractor.Gender;
 class FranceNationalIdTest {
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsNull() {
+    void isValid_shouldReturnFalse_whenIdIsNull() {
         final FranceNationalId franceNationalId = new FranceNationalId(null);
 
         final boolean result = franceNationalId.isValid();
@@ -34,7 +34,7 @@ class FranceNationalIdTest {
         "12345678901234A",  // has alpha characters in the wrong position
         "103162989566972"   // bad control digit
     })
-    void validate_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
+    void isValid_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
         final FranceNationalId franceNationalId = new FranceNationalId(notValidId);
 
         final boolean result = franceNationalId.isValid();
@@ -50,7 +50,7 @@ class FranceNationalIdTest {
         "182089740115475",
         "199072A22807010"
     })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void isValid_shouldReturnTrue_whenIdIsValid(final String validId) {
         final FranceNationalId franceNationalId = new FranceNationalId(validId);
 
         final boolean result = franceNationalId.isValid();

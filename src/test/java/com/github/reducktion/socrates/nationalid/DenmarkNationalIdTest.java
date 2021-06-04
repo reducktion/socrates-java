@@ -19,7 +19,7 @@ import com.github.reducktion.socrates.extractor.Gender;
 class DenmarkNationalIdTest {
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsNull() {
+    void isValid_shouldReturnFalse_whenIdIsNull() {
         final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(null);
 
         final boolean result = denmarkNationalId.isValid();
@@ -38,7 +38,7 @@ class DenmarkNationalIdTest {
         "290201-0001",  // 29 February only exists in leap year
         "2343212454"    // bad checksum
     })
-    void validate_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
+    void isValid_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
         final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(notValidId);
 
         final boolean result = denmarkNationalId.isValid();
@@ -54,7 +54,7 @@ class DenmarkNationalIdTest {
         "1608881995",
         "0404047094"
     })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void isValid_shouldReturnTrue_whenIdIsValid(final String validId) {
         final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(validId);
 
         final boolean result = denmarkNationalId.isValid();

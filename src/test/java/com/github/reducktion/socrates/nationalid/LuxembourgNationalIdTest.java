@@ -14,7 +14,7 @@ import com.github.reducktion.socrates.extractor.Citizen;
 class LuxembourgNationalIdTest {
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsNull() {
+    void isValid_shouldReturnFalse_whenIdIsNull() {
         final LuxembourgNationalId luxembourgNationalId = new LuxembourgNationalId(null);
 
         final boolean result = luxembourgNationalId.isValid();
@@ -29,7 +29,7 @@ class LuxembourgNationalIdTest {
         "123456789012",     // less than 13 digits
         "1994789587182"     // bad check digit
     })
-    void validate_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
+    void isValid_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
         final LuxembourgNationalId luxembourgNationalId = new LuxembourgNationalId(notValidId);
 
         final boolean result = luxembourgNationalId.isValid();
@@ -45,7 +45,7 @@ class LuxembourgNationalIdTest {
         "2012051469331",
         "1994092874550"
     })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void isValid_shouldReturnTrue_whenIdIsValid(final String validId) {
         final LuxembourgNationalId luxembourgNationalId = new LuxembourgNationalId(validId);
 
         final boolean result = luxembourgNationalId.isValid();
