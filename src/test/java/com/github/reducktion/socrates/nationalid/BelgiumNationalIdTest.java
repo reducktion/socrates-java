@@ -19,7 +19,7 @@ import com.github.reducktion.socrates.extractor.Gender;
 class BelgiumNationalIdTest {
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsNull() {
+    void isValid_shouldReturnFalse_whenIdIsNull() {
         final BelgiumNationalId belgiumNationalId = new BelgiumNationalId(null);
 
         final boolean result = belgiumNationalId.isValid();
@@ -39,7 +39,7 @@ class BelgiumNationalIdTest {
         "01.02.29-001.37",  // 29 February only exists in leap year
         "01.11.16-001.06"   // bad checksum
     })
-    void validate_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
+    void isValid_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
         final BelgiumNationalId belgiumNationalId = new BelgiumNationalId(notValidId);
 
         final boolean result = belgiumNationalId.isValid();
@@ -57,7 +57,7 @@ class BelgiumNationalIdTest {
         "40.00.01-001.33",  // unknown month
         "00.00.00-001.96"   // unknown month and day and y2k
     })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void isValid_shouldReturnTrue_whenIdIsValid(final String validId) {
         final BelgiumNationalId belgiumNationalId = new BelgiumNationalId(validId);
 
         final boolean result = belgiumNationalId.isValid();
