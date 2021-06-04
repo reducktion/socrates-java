@@ -12,7 +12,10 @@ import com.github.reducktion.socrates.validator.IdValidator;
  * Information about the ID can be found in at: http://sistemas.uaeh.edu.mx/dce/admisiones/docs/guia_CURP.pdf
  *
  * Also, there is this wikipedia article: https://en.wikipedia.org/wiki/Unique_Population_Registry_Code
+ *
+ * @deprecated Use class MexicoNationalId instead
  */
+@Deprecated
 class MexicoCitizenExtractor implements CitizenExtractor {
 
     private static final String FEMALE_CHARACTER = "M";
