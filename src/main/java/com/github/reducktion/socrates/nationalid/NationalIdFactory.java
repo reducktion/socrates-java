@@ -14,7 +14,7 @@ public final class NationalIdFactory {
      * @return a new instance of {@link NationalId}
      * @throws UnsupportedOperationException if the country is not supported
      */
-    static NationalId getNationalId(final String id, final Country country) {
+    public static NationalId getNationalId(final String id, final Country country) {
         switch (country) {
             case BE: return new BelgiumNationalId(id);
             case BR: return new BrazilNationalId(id);

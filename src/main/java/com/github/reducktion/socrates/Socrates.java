@@ -5,6 +5,8 @@ import java.util.Optional;
 import com.github.reducktion.socrates.extractor.Citizen;
 import com.github.reducktion.socrates.extractor.CitizenExtractor;
 import com.github.reducktion.socrates.generator.IdGenerator;
+import com.github.reducktion.socrates.nationalid.NationalId;
+import com.github.reducktion.socrates.nationalid.NationalIdFactory;
 import com.github.reducktion.socrates.validator.IdValidator;
 
 /**
@@ -21,8 +23,8 @@ public class Socrates {
      * @throws UnsupportedOperationException if the country is not supported
      */
     public boolean validateId(final String id, final Country country) {
-        final IdValidator idValidator = IdValidator.newInstance(country);
-        return idValidator.validate(id);
+        final NationalId nationalId = NationalIdFactory.getNationalId(id, country);
+        return nationalId.isValid();
     }
 
     /**
@@ -34,9 +36,8 @@ public class Socrates {
      * @throws UnsupportedOperationException if the country is not supported
      */
     public Optional<Citizen> extractCitizenFromId(final String id, final Country country) {
-        final IdValidator idValidator = IdValidator.newInstance(country);
-        final CitizenExtractor citizenExtractor = CitizenExtractor.newInstance(country);
-        return citizenExtractor.extractFromId(id, idValidator);
+        final NationalId nationalId = NationalIdFactory.getNationalId(id, country);
+        return nationalId.getCitizen();
     }
 
     /**
