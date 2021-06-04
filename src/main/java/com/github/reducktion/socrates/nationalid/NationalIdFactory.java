@@ -17,6 +17,7 @@ public final class NationalIdFactory {
     static NationalId getNationalId(final String id, final Country country) {
         switch (country) {
             case BE: return new BelgiumNationalId(id);
+            case BR: return new BrazilNationalId(id);
             case DK: return new DenmarkNationalId(id);
             case FR: return new FranceNationalId(id);
             case IT: return new ItalyNationalId(id);
