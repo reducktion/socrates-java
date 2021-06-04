@@ -30,7 +30,8 @@ class NationalIdFactoryTest {
             Arguments.arguments(Country.DK, DenmarkNationalId.class),
             Arguments.arguments(Country.FR, FranceNationalId.class),
             Arguments.arguments(Country.IT, ItalyNationalId.class),
-            Arguments.arguments(Country.LU, LuxembourgNationalId.class)
+            Arguments.arguments(Country.LU, LuxembourgNationalId.class),
+            Arguments.arguments(Country.PT, PortugalNationalId.class)
         );
     }
 }
