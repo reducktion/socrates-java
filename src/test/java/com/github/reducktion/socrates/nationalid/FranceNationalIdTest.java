@@ -32,7 +32,7 @@ class FranceNationalIdTest {
         "1234567890123456", // more than 15 digits
         "12345678901234",   // less than 15 digits
         "12345678901234A",  // has alpha characters in the wrong position
-        "103162989566972"  // bad control digit
+        "103162989566972"   // bad control digit
     })
     void validate_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
         final FranceNationalId franceNationalId = new FranceNationalId(notValidId);

@@ -29,9 +29,9 @@ class ItalyNationalIdTest {
 
     @ParameterizedTest(name = "#{index} - Test with Argument={0}")
     @ValueSource(strings = {
-        "123456789012345",     // more than 16 digits
-        "12345678901234567",   // less than 16 digits
-        "MECDRE01A11A025E"    // bad control character
+        "123456789012345",      // more than 16 digits
+        "12345678901234567",    // less than 16 digits
+        "MECDRE01A11A025E"      // bad control character
     })
     void validate_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
         final ItalyNationalId italyNationalId = new ItalyNationalId(notValidId);
