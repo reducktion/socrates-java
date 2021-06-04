@@ -21,6 +21,7 @@ public final class NationalIdFactory {
             case DK: return new DenmarkNationalId(id);
             case FR: return new FranceNationalId(id);
             case IT: return new ItalyNationalId(id);
+            case LU: return new LuxembourgNationalId(id);
             default: throw new UnsupportedOperationException("Country not supported.");
         }
     }
