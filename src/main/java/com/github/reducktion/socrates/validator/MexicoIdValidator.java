@@ -18,7 +18,10 @@ import com.github.reducktion.socrates.internal.TwoYearDateParser;
  *
  * The list of inappropriate words can be found at:
  * https://solucionfactible.com/sfic/resources/files/palabrasInconvenientes-rfc.pdf
+ *
+ * @deprecated Use class MexicoNationalId instead
  */
+@Deprecated
 class MexicoIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 18;
