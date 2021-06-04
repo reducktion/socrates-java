@@ -5,6 +5,12 @@ import java.util.Optional;
 import com.github.reducktion.socrates.extractor.Citizen;
 import com.github.reducktion.socrates.internal.LuhnAlgorithm;
 
+/**
+ * National Id for Portugal.
+ *
+ * Information about this national id can be found at:
+ *  - https://www.autenticacao.gov.pt/documents/20126/115760/Valida%C3%A7%C3%A3o+de+N%C3%BAmero+de+Documento+do+Cart%C3%A3o+de+Cidad%C3%A3o.pdf/bdc4eb37-7316-3ff4-164a-f869382b7053
+ */
 class PortugalNationalId implements NationalId {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 12;
