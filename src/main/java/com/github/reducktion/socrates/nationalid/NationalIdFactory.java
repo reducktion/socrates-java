@@ -21,6 +21,7 @@ public final class NationalIdFactory {
             case CA: return new CanadaNationalId(id);
             case DE: return new GermanyNationalId(id);
             case DK: return new DenmarkNationalId(id);
+            case ES: return new SpainNationalId(id);
             case FR: return new FranceNationalId(id);
             case IT: return new ItalyNationalId(id);
             case LU: return new LuxembourgNationalId(id);
