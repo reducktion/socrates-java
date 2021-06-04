@@ -14,7 +14,7 @@ import com.github.reducktion.socrates.extractor.Citizen;
 class CanadaNationalIdTest {
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsNull() {
+    void isValid_shouldReturnFalse_whenIdIsNull() {
         final CanadaNationalId canadaNationalId = new CanadaNationalId(null);
 
         final boolean result = canadaNationalId.isValid();
@@ -29,7 +29,7 @@ class CanadaNationalIdTest {
         "12345678",     // less than 9 digits
         "046 454 287"   // Luhn's algorithm fails
     })
-    void validate_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
+    void isValid_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
         final CanadaNationalId canadaNationalId = new CanadaNationalId(notValidId);
 
         final boolean result = canadaNationalId.isValid();
@@ -38,7 +38,7 @@ class CanadaNationalIdTest {
     }
 
     @Test
-    void validate_shouldReturnTrue_whenIdIsValid() {
+    void isValid_shouldReturnTrue_whenIdIsValid() {
         final CanadaNationalId canadaNationalId = new CanadaNationalId("046 454 286");
 
         final boolean result = canadaNationalId.isValid();

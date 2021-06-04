@@ -14,7 +14,7 @@ import com.github.reducktion.socrates.extractor.Citizen;
 class GermanyNationalIdTest {
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsNull() {
+    void isValid_shouldReturnFalse_whenIdIsNull() {
         final GermanyNationalId germanyNationalId = new GermanyNationalId(null);
 
         final boolean result = germanyNationalId.isValid();
@@ -31,7 +31,7 @@ class GermanyNationalIdTest {
         "44491234560",      // has more than 3 digits (in the IdNr) that are equal
         "11145678908"       // has 3 consecutive digits (in the IdNr) that are equal
     })
-    void validate_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
+    void isValid_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
         final GermanyNationalId germanyNationalId = new GermanyNationalId(notValidId);
 
         final boolean result = germanyNationalId.isValid();
@@ -47,7 +47,7 @@ class GermanyNationalIdTest {
         "57549285017",
         "25768131411"
     })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void isValid_shouldReturnTrue_whenIdIsValid(final String validId) {
         final GermanyNationalId germanyNationalId = new GermanyNationalId(validId);
 
         final boolean result = germanyNationalId.isValid();

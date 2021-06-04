@@ -19,7 +19,7 @@ import com.github.reducktion.socrates.extractor.Gender;
 class ItalyNationalIdTest {
 
     @Test
-    void validate_shouldReturnFalse_whenIdIsNull() {
+    void isValid_shouldReturnFalse_whenIdIsNull() {
         final ItalyNationalId italyNationalId = new ItalyNationalId(null);
 
         final boolean result = italyNationalId.isValid();
@@ -33,7 +33,7 @@ class ItalyNationalIdTest {
         "12345678901234567",    // less than 16 digits
         "MECDRE01A11A025E"      // bad control character
     })
-    void validate_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
+    void isValid_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
         final ItalyNationalId italyNationalId = new ItalyNationalId(notValidId);
 
         final boolean result = italyNationalId.isValid();
@@ -49,7 +49,7 @@ class ItalyNationalIdTest {
         "BRSLSE08D50H987B",
         "MRCDRALMAMPALSRE"
     })
-    void validate_shouldReturnTrue_whenIdIsValid(final String validId) {
+    void isValid_shouldReturnTrue_whenIdIsValid(final String validId) {
         final ItalyNationalId italyNationalId = new ItalyNationalId(validId);
 
         final boolean result = italyNationalId.isValid();
