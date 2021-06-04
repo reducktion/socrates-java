@@ -29,14 +29,14 @@ class DenmarkNationalIdTest {
 
     @ParameterizedTest(name = "#{index} - Test with Argument={0}")
     @ValueSource(strings = {
-        "123456789A",  // not numeric
-        "12345678901", // more than 10 digits
-        "123456789",   // less than 10 digits
-        "161301-0001", // month too high
-        "311101-0001", // November has 30 days
-        "321201-0001", // day too high
-        "290201-0001", // 29 February only exists in leap year
-        "2343212454"   // bad checksum
+        "123456789A",   // not numeric
+        "12345678901",  // more than 10 digits
+        "123456789",    // less than 10 digits
+        "161301-0001",  // month too high
+        "311101-0001",  // November has 30 days
+        "321201-0001",  // day too high
+        "290201-0001",  // 29 February only exists in leap year
+        "2343212454"    // bad checksum
     })
     void validate_shouldReturnFalse_whenIdIsNotValid(final String notValidId) {
         final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(notValidId);
