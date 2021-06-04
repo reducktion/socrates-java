@@ -86,7 +86,7 @@ class BrazilNationalIdTest {
     }
 
     @Test
-    void toString_shouldReturnIdString() {
+    void toString_shouldReturnId() {
         final String id = "17758534112";
         final BrazilNationalId brazilNationalId = new BrazilNationalId(id);
 

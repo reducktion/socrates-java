@@ -137,7 +137,7 @@ class DenmarkNationalIdTest {
     }
 
     @Test
-    void toString_shouldReturnIdString() {
+    void toString_shouldReturnId() {
         final String id = "0404047094";
         final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(id);
 
