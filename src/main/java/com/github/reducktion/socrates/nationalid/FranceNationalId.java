@@ -60,7 +60,7 @@ class FranceNationalId implements NationalId {
     }
 
     private boolean validateControlDigit(final String id) {
-        final long controlDigit = extractControlDigit(id);
+        final long controlDigit = getControlDigit();
         final String partialId = stripControlDigit(id);
         return controlDigit == CONTROL_DIGIT_MAX_VALUE - (Long.parseLong(partialId) % CONTROL_DIGIT_MAX_VALUE);
     }
@@ -69,8 +69,8 @@ class FranceNationalId implements NationalId {
         return id.substring(0, id.length() - 2);
     }
 
-    private long extractControlDigit(final String id) {
-        final String controlDigit = id.substring(id.length() - 2);
+    private long getControlDigit() {
+        final String controlDigit = sanitizedId.substring(sanitizedId.length() - 2);
         return Integer.parseInt(controlDigit);
     }
 
@@ -83,15 +83,15 @@ class FranceNationalId implements NationalId {
         return Optional.of(
             Citizen
                 .builder()
-                .gender(extractGender())
-                .yearOfBirth(extractYearOfBirth())
-                .monthOfBirth(extractMonthOfBirth())
-                .placeOfBirth(extractPlaceOfBirth())
+                .gender(getGender())
+                .yearOfBirth(getYearOfBirth())
+                .monthOfBirth(getMonthOfBirth())
+                .placeOfBirth(getPlaceOfBirth())
                 .build()
         );
     }
 
-    private Gender extractGender() {
+    private Gender getGender() {
         if (CHARACTER_MALE.equals(sanitizedId.substring(0, 1))) {
             return Gender.MALE;
         } else {
@@ -99,13 +99,13 @@ class FranceNationalId implements NationalId {
         }
     }
 
-    private Integer extractYearOfBirth() {
+    private Integer getYearOfBirth() {
         return twoYearDateParser
             .parse(sanitizedId.substring(1, 3))
             .orElse(null);
     }
 
-    private Integer extractMonthOfBirth() {
+    private Integer getMonthOfBirth() {
         final int month = Integer.parseInt(sanitizedId.substring(3, 5));
 
         if (month >= JANUARY && month <= DECEMBER) {
@@ -117,7 +117,7 @@ class FranceNationalId implements NationalId {
         }
     }
 
-    private String extractPlaceOfBirth() {
+    private String getPlaceOfBirth() {
         final String placeOfBirthTwoCharacters = sanitizedId.substring(5, 7);
         final String placeOfBirthThreeCharacters = sanitizedId.substring(5, 8);
 

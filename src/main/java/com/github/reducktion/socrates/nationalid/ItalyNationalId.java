@@ -129,16 +129,16 @@ class ItalyNationalId implements NationalId {
         return Optional.of(
             Citizen
                 .builder()
-                .gender(extractGender())
-                .yearOfBirth(extractYearOfBirth())
-                .monthOfBirth(extractMonthOfBirth())
-                .dayOfBirth(extractDayOfBirth())
-                .placeOfBirth(extractPlaceOfBirth())
+                .gender(getGender())
+                .yearOfBirth(getYearOfBirth())
+                .monthOfBirth(getMonthOfBirth())
+                .dayOfBirth(getDayOfBirth())
+                .placeOfBirth(getPlaceOfBirth())
                 .build()
         );
     }
 
-    private Gender extractGender() {
+    private Gender getGender() {
         final String dayOfBirthCharacters = getDayOfBirthCharacters();
 
         if (Integer.parseInt(dayOfBirthCharacters) > 40) {
@@ -152,27 +152,27 @@ class ItalyNationalId implements NationalId {
         return sanitizedId.substring(9, 11);
     }
 
-    private Integer extractYearOfBirth() {
+    private Integer getYearOfBirth() {
         final String yearOfBirthCharacters = sanitizedId.substring(6, 8);
         return twoYearDateParser
             .parse(yearOfBirthCharacters)
             .orElse(null);
     }
 
-    private Integer extractMonthOfBirth() {
+    private Integer getMonthOfBirth() {
         final String monthOfBirthCharacter = sanitizedId.substring(8, 9);
 
         return MONTH_CODES.indexOf(monthOfBirthCharacter) + 1;
     }
 
-    private Integer extractDayOfBirth() {
+    private Integer getDayOfBirth() {
         final String dayOfBirthCharacter = getDayOfBirthCharacters();
         final int dayOfBirth = Integer.parseInt(dayOfBirthCharacter);
 
         return dayOfBirth > 40 ? dayOfBirth - 40 : dayOfBirth;
     }
 
-    private String extractPlaceOfBirth() {
+    private String getPlaceOfBirth() {
         final String placeOfBirthCharacter = getPlaceOfBirthCharacters();
 
         final Optional<String> placeOfBirthConfig = fetchPlaceOfBirthConfig(placeOfBirthCharacter);
