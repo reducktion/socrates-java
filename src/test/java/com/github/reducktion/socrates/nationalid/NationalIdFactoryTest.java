@@ -28,6 +28,7 @@ class NationalIdFactoryTest {
             Arguments.arguments(Country.BE, BelgiumNationalId.class),
             Arguments.arguments(Country.BR, BrazilNationalId.class),
             Arguments.arguments(Country.CA, CanadaNationalId.class),
+            Arguments.arguments(Country.DE, GermanyNationalId.class),
             Arguments.arguments(Country.DK, DenmarkNationalId.class),
             Arguments.arguments(Country.FR, FranceNationalId.class),
             Arguments.arguments(Country.IT, ItalyNationalId.class),
