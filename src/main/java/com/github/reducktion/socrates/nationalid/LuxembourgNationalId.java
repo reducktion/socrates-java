@@ -8,7 +8,7 @@ import com.github.reducktion.socrates.internal.StringUtils;
 import com.github.reducktion.socrates.internal.VerhoeffAlgorithm;
 
 /**
- * National Id for Brazil.
+ * National Id for Luxembourg.
  *
  * Information about this national id can be found at:
  *  - https://www.oecd.org/tax/automatic-exchange/crs-implementation-and-assistance/tax-identification-numbers/Luxembourg-TIN.pdf
