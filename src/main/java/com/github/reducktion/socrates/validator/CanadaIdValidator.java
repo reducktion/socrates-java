@@ -8,7 +8,9 @@ import com.github.reducktion.socrates.internal.StringUtils;
  *
  * A wikipedia source can be found in: https://en.wikipedia.org/wiki/Social_Insurance_Number
  *
- **/
+ * @deprecated Use class CanadaNationalId instead
+ */
+@Deprecated
 class CanadaIdValidator implements IdValidator {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 9;
