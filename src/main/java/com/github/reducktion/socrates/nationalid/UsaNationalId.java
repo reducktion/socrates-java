@@ -38,24 +38,24 @@ class UsaNationalId implements NationalId {
             && sanitizedId.length() == ID_NUMBER_OF_CHARACTERS
             && StringUtils.isNumeric(sanitizedId)
             && !BLACKLISTED_IDS.contains(sanitizedId)
-            && hasValidAreaCodes(sanitizedId);
+            && hasValidAreaCodes();
     }
 
-    private boolean hasValidAreaCodes(final String id) {
-        return hasValidFirstAreaCode(id) && hasValidSecondAreaCode(id) && hasValidThirdAreaCode(id);
+    private boolean hasValidAreaCodes() {
+        return hasValidFirstAreaCode() && hasValidSecondAreaCode() && hasValidThirdAreaCode();
     }
 
-    private boolean hasValidFirstAreaCode(final String id) {
-        final int firstAreaCode = Integer.parseInt(id.substring(0, 3));
+    private boolean hasValidFirstAreaCode() {
+        final int firstAreaCode = Integer.parseInt(sanitizedId.substring(0, 3));
         return firstAreaCode != 0 && firstAreaCode != 666 && firstAreaCode < 900;
     }
 
-    private boolean hasValidSecondAreaCode(final String id) {
-        return Integer.parseInt(id.substring(3, 5)) != 0;
+    private boolean hasValidSecondAreaCode() {
+        return Integer.parseInt(sanitizedId.substring(3, 5)) != 0;
     }
 
-    private boolean hasValidThirdAreaCode(final String id) {
-        return Integer.parseInt(id.substring(5)) != 0;
+    private boolean hasValidThirdAreaCode() {
+        return Integer.parseInt(sanitizedId.substring(5)) != 0;
     }
 
     @Override
