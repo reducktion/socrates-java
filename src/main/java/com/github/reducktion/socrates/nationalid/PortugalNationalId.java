@@ -36,7 +36,7 @@ class PortugalNationalId implements NationalId {
     }
 
     @Override
-    public Optional<Citizen> getCitizen() {
+    public Optional<Citizen> extractCitizen() {
         return Optional.empty();
     }
 

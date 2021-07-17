@@ -47,12 +47,12 @@ class CanadaNationalIdTest {
     }
 
     @Test
-    void getCitizen_shouldReturnEmpty() {
+    void extractCitizen_shouldReturnEmpty() {
         final CanadaNationalId canadaNationalId = new CanadaNationalId("046454286");
 
-        final Optional<Citizen> resultCitizen = canadaNationalId.getCitizen();
+        final Optional<Citizen> extractedCitizen = canadaNationalId.extractCitizen();
 
-        assertThat(resultCitizen, is(Optional.empty()));
+        assertThat(extractedCitizen, is(Optional.empty()));
     }
 
     @Test

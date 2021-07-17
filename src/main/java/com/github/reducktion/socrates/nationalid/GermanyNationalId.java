@@ -87,7 +87,7 @@ class GermanyNationalId implements NationalId {
      * </a>
      */
     private String computeCheckDigit() {
-        final String idNr = getIdNr();
+        final String idNr = extractIdNr();
         final int ten = 10;
         final int eleven = 11;
         final char[] chars = idNr.toCharArray();
@@ -115,7 +115,7 @@ class GermanyNationalId implements NationalId {
      *
      * @return the IdNr, which is a string consisting of ten numeric digits
      */
-    private String getIdNr() {
+    private String extractIdNr() {
         return sanitizedId.substring(0, 10);
     }
 
@@ -127,13 +127,13 @@ class GermanyNationalId implements NationalId {
     }
 
     private Map<String, Long> computeDigitFrequency() {
-        final String idNr = getIdNr();
+        final String idNr = extractIdNr();
         return idNr.chars().mapToObj(String::valueOf)
             .collect(groupingBy(Function.identity(), counting()));
     }
 
     private boolean hasThreeOrMoreConsecutiveDigits() {
-        final String idNr = getIdNr();
+        final String idNr = extractIdNr();
         int counter = 0;
         char lastChar = '?';
         for (final char c : idNr.toCharArray()) {
@@ -151,7 +151,7 @@ class GermanyNationalId implements NationalId {
     }
 
     @Override
-    public Optional<Citizen> getCitizen() {
+    public Optional<Citizen> extractCitizen() {
         return Optional.empty();
     }
 

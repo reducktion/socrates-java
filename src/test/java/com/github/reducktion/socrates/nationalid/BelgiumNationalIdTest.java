@@ -67,12 +67,12 @@ class BelgiumNationalIdTest {
 
     @ParameterizedTest(name = "#{index} - Test with Arguments={0},{1}")
     @MethodSource("citizenByIdProvider")
-    void getCitizen_shouldReturnCorrectCitizenInfo_whenIdIsValid(final String id, final Citizen expectedCitizen) {
+    void extractCitizen_shouldReturnCorrectCitizenInfo_whenIdIsValid(final String id, final Citizen expectedCitizen) {
         final BelgiumNationalId belgiumNationalId = new BelgiumNationalId(id);
 
-        final Optional<Citizen> resultCitizen = belgiumNationalId.getCitizen();
+        final Optional<Citizen> extractedCitizen = belgiumNationalId.extractCitizen();
 
-        assertThat(resultCitizen, is(Optional.of(expectedCitizen)));
+        assertThat(extractedCitizen, is(Optional.of(expectedCitizen)));
     }
 
     private static List<Arguments> citizenByIdProvider() {
@@ -118,12 +118,12 @@ class BelgiumNationalIdTest {
     }
 
     @Test
-    void getCitizen_shouldReturnEmpty_whenIdIsNotValid() {
+    void extractCitizen_shouldReturnEmpty_whenIdIsNotValid() {
         final BelgiumNationalId belgiumNationalId = new BelgiumNationalId(null);
 
-        final Optional<Citizen> resultCitizen = belgiumNationalId.getCitizen();
+        final Optional<Citizen> extractedCitizen = belgiumNationalId.extractCitizen();
 
-        assertThat(resultCitizen, is(Optional.empty()));
+        assertThat(extractedCitizen, is(Optional.empty()));
     }
 
     @Test
