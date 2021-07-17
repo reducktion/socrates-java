@@ -36,7 +36,7 @@ public class Socrates {
      */
     public Optional<Citizen> extractCitizenFromId(final String id, final Country country) {
         final NationalId nationalId = NationalIdFactory.getNationalId(id, country);
-        return nationalId.getCitizen();
+        return nationalId.extractCitizen();
     }
 
     /**

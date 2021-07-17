@@ -150,7 +150,7 @@ class MexicoNationalId implements NationalId {
     }
 
     private boolean hasValidCheckDigit() {
-        final int expectedCheckDigit = getCheckDigit();
+        final int expectedCheckDigit = extractCheckDigit();
         final int resultCheckDigit = computeCheckDigit();
         return expectedCheckDigit == resultCheckDigit;
     }
@@ -165,13 +165,13 @@ class MexicoNationalId implements NationalId {
         return (10 - (sum % 10)) % 10;
     }
 
-    private int getCheckDigit() {
+    private int extractCheckDigit() {
         final String checkCharacter = sanitizedId.substring(sanitizedId.length() - 1);
         return Integer.parseInt(checkCharacter);
     }
 
     @Override
-    public Optional<Citizen> getCitizen() {
+    public Optional<Citizen> extractCitizen() {
         if (!isValid()) {
             return Optional.empty();
         }
@@ -179,16 +179,16 @@ class MexicoNationalId implements NationalId {
         return Optional.of(
             Citizen
                 .builder()
-                .gender(getGender())
-                .yearOfBirth(getYearOfBirth())
-                .monthOfBirth(getMonthOfBirth())
-                .dayOfBirth(getDayOfBirth())
-                .placeOfBirth(getPlaceOfBirth())
+                .gender(extractGender())
+                .yearOfBirth(extractYearOfBirth())
+                .monthOfBirth(extractMonthOfBirth())
+                .dayOfBirth(extractDayOfBirth())
+                .placeOfBirth(extractPlaceOfBirth())
                 .build()
         );
     }
 
-    private Gender getGender() {
+    private Gender extractGender() {
         final String genderCharacter = sanitizedId.substring(10, 11);
         if (genderCharacter.equals(FEMALE_CHARACTER)) {
             return Gender.FEMALE;
@@ -197,24 +197,24 @@ class MexicoNationalId implements NationalId {
         }
     }
 
-    private Integer getYearOfBirth() {
+    private Integer extractYearOfBirth() {
         final String yearOfBirthCharacters = sanitizedId.substring(4, 6);
         return twoYearDateParser
             .parse(yearOfBirthCharacters)
             .orElse(null);
     }
 
-    private Integer getMonthOfBirth() {
+    private Integer extractMonthOfBirth() {
         final String monthOfBirthCharacters = sanitizedId.substring(6, 8);
         return Integer.parseInt(monthOfBirthCharacters);
     }
 
-    private Integer getDayOfBirth() {
+    private Integer extractDayOfBirth() {
         final String dayOfBirthCharacters = sanitizedId.substring(8, 10);
         return Integer.parseInt(dayOfBirthCharacters);
     }
 
-    private String getPlaceOfBirth() {
+    private String extractPlaceOfBirth() {
         final String placeOfBirthCharacters = sanitizedId.substring(11, 13);
         return getRegionByCode(placeOfBirthCharacters);
     }

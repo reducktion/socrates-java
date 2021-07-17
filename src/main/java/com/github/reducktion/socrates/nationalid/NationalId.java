@@ -9,11 +9,11 @@ public interface NationalId {
     boolean isValid();
 
     /**
-     * Return the citizen information present in the national id.
+     * Extracts the citizen information present in the national id.
      *
      * @return a valid {@link Citizen} if {@link #isValid()} returns {@code true}, empty otherwise. It can also return
-     *      empty if it is impossible to retrieve the citizen information from the national id or if the feature is not
+     *      empty if it is impossible to extract the citizen information from the national id or if the feature is not
      *      implemented yet.
      */
-    Optional<Citizen> getCitizen();
+    Optional<Citizen> extractCitizen();
 }

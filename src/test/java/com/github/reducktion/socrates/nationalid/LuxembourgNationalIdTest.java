@@ -54,12 +54,12 @@ class LuxembourgNationalIdTest {
     }
 
     @Test
-    void getCitizen_shouldReturnEmpty() {
+    void extractCitizen_shouldReturnEmpty() {
         final LuxembourgNationalId luxembourgNationalId = new LuxembourgNationalId("1994092874550");
 
-        final Optional<Citizen> resultCitizen = luxembourgNationalId.getCitizen();
+        final Optional<Citizen> extractedCitizen = luxembourgNationalId.extractCitizen();
 
-        assertThat(resultCitizen, is(Optional.empty()));
+        assertThat(extractedCitizen, is(Optional.empty()));
     }
 
     @Test

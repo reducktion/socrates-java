@@ -39,9 +39,9 @@ class DenmarkNationalId implements NationalId {
     }
 
     private boolean hasValidDateOfBirth() {
-        final Integer year = getYearOfBirth();
-        final Integer month = getMonthOfBirth();
-        final Integer day = getDayOfBirth();
+        final Integer year = extractYearOfBirth();
+        final Integer month = extractMonthOfBirth();
+        final Integer day = extractDayOfBirth();
 
         if (year == null || month == null || day == null) {
             return false;
@@ -59,7 +59,7 @@ class DenmarkNationalId implements NationalId {
         return sum % 11 == 0;
     }
 
-    private Integer getYearOfBirth() {
+    private Integer extractYearOfBirth() {
         if (sanitizedId == null) {
             return null;
         }
@@ -87,7 +87,7 @@ class DenmarkNationalId implements NationalId {
         return century + twoDigitsYear;
     }
 
-    private Integer getMonthOfBirth() {
+    private Integer extractMonthOfBirth() {
         if (sanitizedId == null) {
             return null;
         }
@@ -95,7 +95,7 @@ class DenmarkNationalId implements NationalId {
         return Integer.parseInt(sanitizedId.substring(2, 4));
     }
 
-    private Integer getDayOfBirth() {
+    private Integer extractDayOfBirth() {
         if (sanitizedId == null) {
             return null;
         }
@@ -104,22 +104,22 @@ class DenmarkNationalId implements NationalId {
     }
 
     @Override
-    public Optional<Citizen> getCitizen() {
+    public Optional<Citizen> extractCitizen() {
         if (!isValid()) {
             return Optional.empty();
         }
 
         return Optional.of(
             Citizen.builder()
-                .gender(getGender())
-                .yearOfBirth(getYearOfBirth())
-                .monthOfBirth(getMonthOfBirth())
-                .dayOfBirth(getDayOfBirth())
+                .gender(extractGender())
+                .yearOfBirth(extractYearOfBirth())
+                .monthOfBirth(extractMonthOfBirth())
+                .dayOfBirth(extractDayOfBirth())
                 .build()
         );
     }
 
-    private Gender getGender() {
+    private Gender extractGender() {
         if (sanitizedId == null) {
             return null;
         }

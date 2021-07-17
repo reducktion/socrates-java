@@ -49,24 +49,24 @@ class BelgiumNationalId implements NationalId {
     }
 
     private boolean hasValidSequenceNumber() {
-        final int sequenceNumber = getSequenceNumber();
+        final int sequenceNumber = extractSequenceNumber();
         return sequenceNumber != 0 && sequenceNumber != 999; // range from 001 to 998
     }
 
-    private int getSequenceNumber() {
+    private int extractSequenceNumber() {
         return Integer.parseInt(sanitizedId.substring(6, 9));
     }
 
     private boolean hasValidChecksum(final boolean y2k) {
-        final String input = (y2k ? "2" : "") + getY2kChecksumCharacters();
-        return getChecksum() == computeChecksum(input);
+        final String input = (y2k ? "2" : "") + extractY2kChecksumCharacters();
+        return extractChecksum() == computeChecksum(input);
     }
 
-    private String getY2kChecksumCharacters() {
+    private String extractY2kChecksumCharacters() {
         return sanitizedId.substring(0, 9);
     }
 
-    private int getChecksum() {
+    private int extractChecksum() {
         return Integer.parseInt(sanitizedId.substring(9));
     }
 
@@ -75,9 +75,9 @@ class BelgiumNationalId implements NationalId {
     }
 
     private boolean hasValidBirthOfDate(final boolean y2k) {
-        int year = Integer.parseInt(getYearOfBirthCharacters());
-        final int month = Integer.parseInt(getMonthOfBirthCharacters());
-        final int day = Integer.parseInt(getDayOfBirthCharacters());
+        int year = Integer.parseInt(extractYearOfBirthCharacters());
+        final int month = Integer.parseInt(extractMonthOfBirthCharacters());
+        final int day = Integer.parseInt(extractDayOfBirthCharacters());
 
         if (month > 12 || day > 31) {
             return false;
@@ -87,22 +87,22 @@ class BelgiumNationalId implements NationalId {
         return DateValidator.validate(year, month, day);
     }
 
-    private String getYearOfBirthCharacters() {
+    private String extractYearOfBirthCharacters() {
         return sanitizedId.substring(0, 2);
     }
 
     // returns "00" if the month of birth is unknown
-    private String getMonthOfBirthCharacters() {
+    private String extractMonthOfBirthCharacters() {
         return sanitizedId.substring(2, 4);
     }
 
     // returns "00" if the day of birth is unknown
-    private String getDayOfBirthCharacters() {
+    private String extractDayOfBirthCharacters() {
         return sanitizedId.substring(4, 6);
     }
 
     @Override
-    public Optional<Citizen> getCitizen() {
+    public Optional<Citizen> extractCitizen() {
         if (!isValid()) {
             return Optional.empty();
         }
@@ -110,31 +110,31 @@ class BelgiumNationalId implements NationalId {
         return Optional.of(
             Citizen
                 .builder()
-                .gender(getGender())
-                .yearOfBirth(getYearOfBirth())
-                .monthOfBirth(getMonthOfBirth())
-                .dayOfBirth(getDayOfBirth())
+                .gender(extractGender())
+                .yearOfBirth(extractYearOfBirth())
+                .monthOfBirth(extractMonthOfBirth())
+                .dayOfBirth(extractDayOfBirth())
                 .build()
         );
     }
 
-    private Gender getGender() {
-        final int sequenceNumber = getSequenceNumber();
+    private Gender extractGender() {
+        final int sequenceNumber = extractSequenceNumber();
         return sequenceNumber % 2 == 0 ? Gender.FEMALE : Gender.MALE;
     }
 
-    private Integer getYearOfBirth() {
-        final boolean y2k = getChecksum() != computeChecksum(getY2kChecksumCharacters());
-        return Integer.parseInt((y2k ? "20" : "19") + getYearOfBirthCharacters());
+    private Integer extractYearOfBirth() {
+        final boolean y2k = extractChecksum() != computeChecksum(extractY2kChecksumCharacters());
+        return Integer.parseInt((y2k ? "20" : "19") + extractYearOfBirthCharacters());
     }
 
-    private Integer getMonthOfBirth() {
-        final String monthOfBirthCharacters = getMonthOfBirthCharacters();
+    private Integer extractMonthOfBirth() {
+        final String monthOfBirthCharacters = extractMonthOfBirthCharacters();
         return "00".equals(monthOfBirthCharacters) ? null : Integer.parseInt(monthOfBirthCharacters);
     }
 
-    private Integer getDayOfBirth() {
-        final String dayOfBirthCharacters = getDayOfBirthCharacters();
+    private Integer extractDayOfBirth() {
+        final String dayOfBirthCharacters = extractDayOfBirthCharacters();
         return "00".equals(dayOfBirthCharacters) ? null : Integer.parseInt(dayOfBirthCharacters);
     }
 

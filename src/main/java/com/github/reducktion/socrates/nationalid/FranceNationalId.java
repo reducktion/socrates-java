@@ -75,7 +75,7 @@ class FranceNationalId implements NationalId {
     }
 
     @Override
-    public Optional<Citizen> getCitizen() {
+    public Optional<Citizen> extractCitizen() {
         if (!isValid()) {
             return Optional.empty();
         }
@@ -83,15 +83,15 @@ class FranceNationalId implements NationalId {
         return Optional.of(
             Citizen
                 .builder()
-                .gender(getGender())
-                .yearOfBirth(getYearOfBirth())
-                .monthOfBirth(getMonthOfBirth())
-                .placeOfBirth(getPlaceOfBirth())
+                .gender(extractGender())
+                .yearOfBirth(extractYearOfBirth())
+                .monthOfBirth(extractMonthOfBirth())
+                .placeOfBirth(extractPlaceOfBirth())
                 .build()
         );
     }
 
-    private Gender getGender() {
+    private Gender extractGender() {
         if (CHARACTER_MALE.equals(sanitizedId.substring(0, 1))) {
             return Gender.MALE;
         } else {
@@ -99,13 +99,13 @@ class FranceNationalId implements NationalId {
         }
     }
 
-    private Integer getYearOfBirth() {
+    private Integer extractYearOfBirth() {
         return twoYearDateParser
             .parse(sanitizedId.substring(1, 3))
             .orElse(null);
     }
 
-    private Integer getMonthOfBirth() {
+    private Integer extractMonthOfBirth() {
         final int month = Integer.parseInt(sanitizedId.substring(3, 5));
 
         if (month >= JANUARY && month <= DECEMBER) {
@@ -117,7 +117,7 @@ class FranceNationalId implements NationalId {
         }
     }
 
-    private String getPlaceOfBirth() {
+    private String extractPlaceOfBirth() {
         final String placeOfBirthTwoCharacters = sanitizedId.substring(5, 7);
         final String placeOfBirthThreeCharacters = sanitizedId.substring(5, 8);
 
