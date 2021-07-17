@@ -7,7 +7,6 @@
 <p align="center">
     <img alt="Build" src="https://github.com/reducktion/socrates-java/workflows/Build/badge.svg?branch=master">
     <img alt="License" src="https://img.shields.io/github/license/reducktion/socrates-java">
-    <img alt="Bintray" src="https://img.shields.io/bintray/v/reducktion/com.github.reducktion/socrates-java">
     <img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.github.reducktion/socrates-java">
 </p>
 
