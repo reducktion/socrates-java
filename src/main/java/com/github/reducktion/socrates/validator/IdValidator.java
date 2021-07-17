@@ -2,6 +2,11 @@ package com.github.reducktion.socrates.validator;
 
 import com.github.reducktion.socrates.Country;
 
+/**
+ * Used to validate national ids.
+ *
+ * @deprecated Use class NationalId instead
+ */
 @Deprecated
 public interface IdValidator {
 
