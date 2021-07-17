@@ -3,7 +3,8 @@ package com.github.reducktion.socrates;
 import java.util.Optional;
 
 import com.github.reducktion.socrates.extractor.Citizen;
-import com.github.reducktion.socrates.generator.IdGenerator;
+import com.github.reducktion.socrates.generator.NationalIdGenerator;
+import com.github.reducktion.socrates.generator.NationalIdGeneratorFactory;
 import com.github.reducktion.socrates.nationalid.NationalId;
 import com.github.reducktion.socrates.nationalid.NationalIdFactory;
 
@@ -47,7 +48,7 @@ public class Socrates {
      * @throws UnsupportedOperationException if the country is not supported
      */
     public String generateId(final Citizen citizen, final Country country) {
-        final IdGenerator idGenerator = IdGenerator.newInstance(country);
-        return idGenerator.generate(citizen);
+        final NationalIdGenerator nationalIdGenerator = NationalIdGeneratorFactory.newInstance(country);
+        return nationalIdGenerator.generate(citizen);
     }
 }
