@@ -7,6 +7,8 @@ import com.github.reducktion.socrates.validator.IdValidator;
 
 /**
  * {@link Citizen} extractor.
+ *
+ * @deprecated Use class NationalId instead
  */
 @Deprecated
 public interface CitizenExtractor {
