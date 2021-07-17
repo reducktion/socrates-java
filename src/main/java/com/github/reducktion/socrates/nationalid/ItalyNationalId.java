@@ -121,7 +121,7 @@ class ItalyNationalId implements NationalId {
     }
 
     @Override
-    public Optional<Citizen> getCitizen() {
+    public Optional<Citizen> extractCitizen() {
         if (!isValid()) {
             return Optional.empty();
         }
@@ -129,17 +129,17 @@ class ItalyNationalId implements NationalId {
         return Optional.of(
             Citizen
                 .builder()
-                .gender(getGender())
-                .yearOfBirth(getYearOfBirth())
-                .monthOfBirth(getMonthOfBirth())
-                .dayOfBirth(getDayOfBirth())
-                .placeOfBirth(getPlaceOfBirth())
+                .gender(extractGender())
+                .yearOfBirth(extractYearOfBirth())
+                .monthOfBirth(extractMonthOfBirth())
+                .dayOfBirth(extractDayOfBirth())
+                .placeOfBirth(extractPlaceOfBirth())
                 .build()
         );
     }
 
-    private Gender getGender() {
-        final String dayOfBirthCharacters = getDayOfBirthCharacters();
+    private Gender extractGender() {
+        final String dayOfBirthCharacters = extractDayOfBirthCharacters();
 
         if (Integer.parseInt(dayOfBirthCharacters) > 40) {
             return Gender.FEMALE;
@@ -148,39 +148,39 @@ class ItalyNationalId implements NationalId {
         }
     }
 
-    private String getDayOfBirthCharacters() {
+    private String extractDayOfBirthCharacters() {
         return sanitizedId.substring(9, 11);
     }
 
-    private Integer getYearOfBirth() {
+    private Integer extractYearOfBirth() {
         final String yearOfBirthCharacters = sanitizedId.substring(6, 8);
         return twoYearDateParser
             .parse(yearOfBirthCharacters)
             .orElse(null);
     }
 
-    private Integer getMonthOfBirth() {
+    private Integer extractMonthOfBirth() {
         final String monthOfBirthCharacter = sanitizedId.substring(8, 9);
 
         return MONTH_CODES.indexOf(monthOfBirthCharacter) + 1;
     }
 
-    private Integer getDayOfBirth() {
-        final String dayOfBirthCharacter = getDayOfBirthCharacters();
+    private Integer extractDayOfBirth() {
+        final String dayOfBirthCharacter = extractDayOfBirthCharacters();
         final int dayOfBirth = Integer.parseInt(dayOfBirthCharacter);
 
         return dayOfBirth > 40 ? dayOfBirth - 40 : dayOfBirth;
     }
 
-    private String getPlaceOfBirth() {
-        final String placeOfBirthCharacter = getPlaceOfBirthCharacters();
+    private String extractPlaceOfBirth() {
+        final String placeOfBirthCharacter = extractPlaceOfBirthCharacters();
 
         final Optional<String> placeOfBirthConfig = fetchPlaceOfBirthConfig(placeOfBirthCharacter);
 
         return placeOfBirthConfig.map(c -> c.split(",")[1]).orElse(null);
     }
 
-    private String getPlaceOfBirthCharacters() {
+    private String extractPlaceOfBirthCharacters() {
         return sanitizedId.substring(11, 15);
     }
 

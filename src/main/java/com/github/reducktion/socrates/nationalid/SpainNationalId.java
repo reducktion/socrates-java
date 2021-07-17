@@ -54,15 +54,15 @@ class SpainNationalId implements NationalId {
         final int result = Integer.parseInt(partialId) % CONTROL_CHARACTERS.length();
         final char computedControlCharacter = CONTROL_CHARACTERS.charAt(result);
 
-        return getControlCharacter() == computedControlCharacter;
+        return extractControlCharacter() == computedControlCharacter;
     }
 
-    private char getControlCharacter() {
+    private char extractControlCharacter() {
         return sanitizedId.substring(sanitizedId.length() - 1).charAt(0);
     }
 
     @Override
-    public Optional<Citizen> getCitizen() {
+    public Optional<Citizen> extractCitizen() {
         return Optional.empty();
     }
 
