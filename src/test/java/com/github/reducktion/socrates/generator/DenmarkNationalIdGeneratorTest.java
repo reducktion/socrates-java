@@ -15,30 +15,33 @@ import org.junit.jupiter.params.provider.MethodSource;
 import com.github.reducktion.socrates.extractor.Citizen;
 import com.github.reducktion.socrates.extractor.Gender;
 
-class DenmarkIdGeneratorTest {
+class DenmarkNationalIdGeneratorTest {
 
-    private DenmarkIdGenerator denmarkIdGenerator;
+    private DenmarkNationalIdGenerator denmarkNationalIdGenerator;
 
     @BeforeEach
     void setup() {
-        denmarkIdGenerator = new DenmarkIdGenerator();
+        denmarkNationalIdGenerator = new DenmarkNationalIdGenerator();
     }
 
     @Test
-    void validate_shouldThrowException_whenCitizenIsNotValid() {
-        assertThrows(IllegalArgumentException.class, () -> denmarkIdGenerator.generate(new Citizen.Builder().build()));
+    void generate_shouldThrowException_whenCitizenIsNotValid() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> denmarkNationalIdGenerator.generate(new Citizen.Builder().build())
+        );
     }
 
     @ParameterizedTest(name = "#{index} - Test with Argument={0},{1},{2}")
     @MethodSource("citizenProvider")
-    void validate_shouldReturnCpr_whenCitizenIsValid(
+    void generate_shouldReturnCpr_whenCitizenIsValid(
         final int year,
         final int month,
         final int day,
         final Gender gender,
         final String cpr
     ) {
-        assertThat(denmarkIdGenerator.generate(
+        assertThat(denmarkNationalIdGenerator.generate(
             new Citizen.Builder()
                 .yearOfBirth(year)
                 .monthOfBirth(month)

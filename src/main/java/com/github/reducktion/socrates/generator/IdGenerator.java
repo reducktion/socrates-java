@@ -3,6 +3,12 @@ package com.github.reducktion.socrates.generator;
 import com.github.reducktion.socrates.Country;
 import com.github.reducktion.socrates.extractor.Citizen;
 
+/**
+ * Used to generate a national id based on the {@link Citizen} information provided.
+ *
+ * @deprecated Use class {@link NationalIdGenerator} instead
+ */
+@Deprecated
 public interface IdGenerator {
 
     /**
@@ -17,7 +23,7 @@ public interface IdGenerator {
      */
     static IdGenerator newInstance(final Country country) {
         switch (country) {
-            case DK: return new DenmarkIdGenerator();
+            case DK: return new DenmarkNationalIdGenerator();
             default: throw new UnsupportedOperationException("Country not supported.");
         }
     }
