@@ -36,7 +36,7 @@ public final class StringUtils {
     }
 
     /**
-     * Check if a CharSequence is empty ("") or null.
+     * Checks if a CharSequence is empty ("") or null.
      *
      * @param cs the CharSequence to check, may be null
      * @return {@code true} if the CharSequence is empty or null, false otherwise

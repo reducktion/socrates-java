@@ -10,7 +10,7 @@ public final class DateValidator {
     private DateValidator() {}
 
     /**
-     * Validate the date, given the {@code year}, {@code month} and {@code day}.
+     * Validates the date, given the {@code year}, {@code month} and {@code day}.
      *
      * @param year the year
      * @param month the month

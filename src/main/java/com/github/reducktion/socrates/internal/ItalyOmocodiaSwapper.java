@@ -19,7 +19,7 @@ public final class ItalyOmocodiaSwapper {
     private ItalyOmocodiaSwapper() {}
 
     /**
-     * Swap characters according to the algorithm for Italy.
+     * Swaps characters according to the algorithm for Italy.
      * <p>
      * <b>Note:</b> The {@code id} must not contain spaces or other special characters and the alpha characters must be
      * upper case.
