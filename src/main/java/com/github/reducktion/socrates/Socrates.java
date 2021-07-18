@@ -14,7 +14,7 @@ import com.github.reducktion.socrates.nationalid.NationalIdFactory;
 public class Socrates {
 
     /**
-     * Validate the National Identification Number.
+     * Validates the National Identification Number.
      *
      * @param id the national identification number
      * @param country the country of the national identification number

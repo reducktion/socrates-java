@@ -7,7 +7,7 @@ public final class NationalIdFactory {
     private NationalIdFactory() {}
 
     /**
-     * Return a new instance of {@link NationalId}, that is specific for the country parameter.
+     * Returns a new instance of {@link NationalId}, that is specific for the country parameter.
      *
      * @param id the national id
      * @param country the {@link Country}
