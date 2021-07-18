@@ -7,7 +7,7 @@ public final class NationalIdGeneratorFactory {
     private NationalIdGeneratorFactory() {}
 
     /**
-     * Return a new instance of {@link NationalIdGenerator}, that is specific for the country parameter.
+     * Returns a new instance of {@link NationalIdGenerator}, that is specific for the country parameter.
      *
      * @throws UnsupportedOperationException if the country is not supported
      */

@@ -14,7 +14,7 @@ public final class LuhnAlgorithm {
     private LuhnAlgorithm() {}
 
     /**
-     * Validate the Luhn Algorithm, with the radix 10, i.e. it only accepts numerical characters.
+     * Validates the Luhn Algorithm, with the radix 10, i.e. it only accepts numerical characters.
      *
      * @param id the id to be validated
      * @return true if the {@code id} is valid, false otherwise
@@ -28,7 +28,7 @@ public final class LuhnAlgorithm {
     }
 
     /**
-     * Validate the Luhn Algorithm.
+     * Validates the Luhn Algorithm.
      * <p>
      * The radix is used to map characters to code-point (for more information check
      * https://en.wikipedia.org/wiki/Luhn_mod_N_algorithm).
