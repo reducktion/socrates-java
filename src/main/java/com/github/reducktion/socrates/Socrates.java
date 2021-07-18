@@ -22,7 +22,7 @@ public class Socrates {
      * @throws UnsupportedOperationException if the country is not supported
      */
     public boolean validateId(final String id, final Country country) {
-        final NationalId nationalId = NationalIdFactory.getNationalId(id, country);
+        final NationalId nationalId = NationalIdFactory.newInstance(id, country);
         return nationalId.isValid();
     }
 
@@ -35,7 +35,7 @@ public class Socrates {
      * @throws UnsupportedOperationException if the country is not supported
      */
     public Optional<Citizen> extractCitizenFromId(final String id, final Country country) {
-        final NationalId nationalId = NationalIdFactory.getNationalId(id, country);
+        final NationalId nationalId = NationalIdFactory.newInstance(id, country);
         return nationalId.extractCitizen();
     }
 
