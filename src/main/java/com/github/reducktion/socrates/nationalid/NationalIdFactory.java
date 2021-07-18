@@ -9,12 +9,28 @@ public final class NationalIdFactory {
     /**
      * Returns a new instance of {@link NationalId}, that is specific for the country parameter.
      *
+     * @deprecated use {@link #newInstance(String, Country)} instead
+     *
+     * @param id the national id
+     * @param country the {@link Country}
+     * @return a new instance of {@link NationalId}
+     * @throws UnsupportedOperationException if the country is not supported
+     *
+     */
+    @Deprecated
+    public static NationalId getNationalId(final String id, final Country country) {
+        return newInstance(id, country);
+    }
+
+    /**
+     * Returns a new instance of {@link NationalId}, that is specific for the country parameter.
+     *
      * @param id the national id
      * @param country the {@link Country}
      * @return a new instance of {@link NationalId}
      * @throws UnsupportedOperationException if the country is not supported
      */
-    public static NationalId getNationalId(final String id, final Country country) {
+    public static NationalId newInstance(final String id, final Country country) {
         switch (country) {
             case BE: return new BelgiumNationalId(id);
             case BR: return new BrazilNationalId(id);
