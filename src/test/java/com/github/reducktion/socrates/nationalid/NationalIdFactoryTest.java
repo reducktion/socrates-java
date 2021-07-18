@@ -17,8 +17,8 @@ class NationalIdFactoryTest {
 
     @ParameterizedTest(name = "#{index} - Test with Argument={0},{1}")
     @MethodSource("nationalIdForCountryProvider")
-    void getNationalId_shouldReturnCorrectInstanceForCountry(final Country country, final Class clazz) {
-        final NationalId nationalId = NationalIdFactory.getNationalId(null, country);
+    void newInstance_shouldReturnCorrectInstanceForCountry(final Country country, final Class clazz) {
+        final NationalId nationalId = NationalIdFactory.newInstance(null, country);
 
         assertThat(nationalId, is(instanceOf(clazz)));
     }
