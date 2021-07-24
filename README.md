@@ -24,21 +24,24 @@ It can be useful for many things, such as validating a user's ID for finance rel
 However, we recommend you review your country's data protection laws before storing any information.
 
 ## Usage
-Socrates provides two methods:
+Socrates provides three methods:
 * `validateId`, which returns a boolean indicating if an id is valid in a specific country
-* `extractCitizenFromId`, which returns an Optional `Citizen` with information retrievable from the identifier (gender, date of birth, ...)
+* `extractCitizenFromId`, which returns an Optional `Citizen` with data retrievable from the id (gender, date of birth, ...)
+* `generateId`, which returns an id generated based on the `Citizen` data and country
 
 You can find a list of supported countries [here](COUNTRIES.md).
 
 ### validateId
 ```java
 final Socrates socrates = new Socrates();
+
 socrates.validateId("15420355 6 ZX9", Country.PT); // true
 ```
 
 ### extractCitizenFromId
 ```java
 final Socrates socrates = new Socrates();
+
 final Optional<Citizen> citizen = socrates.extractCitizenFromId("2820819398814 09", Country.FR);
 citizen.ifPresent(c -> {
   c.getGender().ifPresent(System.out::println);       // "FEMALE"
@@ -49,9 +52,26 @@ citizen.ifPresent(c -> {
 });
 ```
 
+### generateId
+```java
+final Socrates socrates = new Socrates();
+final Citizen citizen = Citizen.builder()
+        .yearOfBirth(1984)
+        .monthOfBirth(10)
+        .dayOfBirth(8)
+        .gender(Gender.FEMALE)
+        .build();
+
+final String nationalId = socrates.generateId(citizen, Country.DK); // "081084-3012"
+```
+
+Alternatively, you can use interfaces and classes that are directly available. However, note that this can introduce a lot of unwanted dependencies in your code base.
+
 #### Gender
 `Gender` is an enum that represents the gender of the `Citizen` extracted from the ID. It can have the values `FEMALE` or `MALE`. However, you can get the
 short hand "F" and "M" for `FEMALE` and `MALE` respectively, by using the method `getShortHand()` present in the class.
+
+#### 
 
 ## Contributing
 Did you find a problem in any of the algorithms? 
