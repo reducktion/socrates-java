@@ -11,20 +11,12 @@ import com.github.reducktion.socrates.internal.StringUtils;
  * Information about this national id can be found at:
  *  - https://pt.wikipedia.org/wiki/Cadastro_de_pessoas_f%C3%ADsicas#Algoritmo
  */
-class BrazilNationalId implements NationalId {
+final class BrazilNationalId extends NationalId {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 11;
 
-    private final String id;
-    private final String sanitizedId;
-
     public BrazilNationalId(final String id) {
-        this.id = id;
-        sanitizedId = sanitize(id);
-    }
-
-    private String sanitize(final String id) {
-        return id == null ? null : id.replaceAll("[-. ]+", "");
+        super(id);
     }
 
     @Override
@@ -60,10 +52,5 @@ class BrazilNationalId implements NationalId {
     @Override
     public Optional<Citizen> extractCitizen() {
         return Optional.empty();
-    }
-
-    @Override
-    public String toString() {
-        return id;
     }
 }

@@ -61,14 +61,4 @@ class SpainNationalIdTest {
 
         assertThat(extractedCitizen, is(Optional.empty()));
     }
-
-    @Test
-    void toString_shouldReturnId() {
-        final String id = "09730915Y";
-        final SpainNationalId spainNationalId = new SpainNationalId(id);
-
-        final String result = spainNationalId.toString();
-
-        assertThat(result, is(id));
-    }
 }

@@ -13,21 +13,13 @@ import com.github.reducktion.socrates.internal.DateValidator;
  * Information about this national id can be found at:
  *  - https://en.wikipedia.org/wiki/Personal_identification_number_(Denmark)
  */
-class DenmarkNationalId implements NationalId {
+final class DenmarkNationalId extends NationalId {
 
     private static final Pattern ID_PATTERN = Pattern.compile("\\d{10}");
     private static final int[] MULTIPLIERS = { 4, 3, 2, 7, 6, 5, 4, 3, 2, 1 };
 
-    private final String id;
-    private final String sanitizedId;
-
     public DenmarkNationalId(final String id) {
-        this.id = id;
-        sanitizedId = sanitize(id);
-    }
-
-    private String sanitize(final String id) {
-        return id == null ? null : id.replaceAll("[ -]", "");
+        super(id);
     }
 
     @Override
@@ -127,10 +119,5 @@ class DenmarkNationalId implements NationalId {
         final int genderInt = Integer.parseInt(sanitizedId.substring(8, 10));
 
         return genderInt % 2 == 0 ? Gender.MALE : Gender.FEMALE;
-    }
-
-    @Override
-    public String toString() {
-        return id;
     }
 }

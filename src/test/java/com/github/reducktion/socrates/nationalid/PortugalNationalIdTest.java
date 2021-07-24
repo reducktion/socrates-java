@@ -60,14 +60,4 @@ class PortugalNationalIdTest {
 
         assertThat(extractedCitizen, is(Optional.empty()));
     }
-
-    @Test
-    void toString_shouldReturnId() {
-        final String id = "148984754ZY5";
-        final PortugalNationalId portugalNationalId = new PortugalNationalId(id);
-
-        final String result = portugalNationalId.toString();
-
-        assertThat(result, is(id));
-    }
 }

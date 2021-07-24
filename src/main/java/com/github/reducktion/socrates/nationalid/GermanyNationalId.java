@@ -23,20 +23,12 @@ import com.github.reducktion.socrates.internal.StringUtils;
  * from: Informations Technik Zentrum Bund
  * title: Steueridentifikationsnummer (IdNr) nach § 139b AO; Informationen zur Berechnung gültiger Prüfziffern
  */
-class GermanyNationalId implements NationalId {
+final class GermanyNationalId extends NationalId {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 11;
 
-    private final String id;
-    private final String sanitizedId;
-
     public GermanyNationalId(final String id) {
-        this.id = id;
-        sanitizedId = sanitize(id);
-    }
-
-    private String sanitize(final String id) {
-        return id == null ? null : id.trim();
+        super(id);
     }
 
     @Override
@@ -153,10 +145,5 @@ class GermanyNationalId implements NationalId {
     @Override
     public Optional<Citizen> extractCitizen() {
         return Optional.empty();
-    }
-
-    @Override
-    public String toString() {
-        return id;
     }
 }

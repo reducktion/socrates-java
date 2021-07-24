@@ -173,14 +173,4 @@ class MexicoNationalIdTest {
 
         assertThat(extractedCitizen, is(Optional.empty()));
     }
-
-    @Test
-    void toString_shouldReturnId() {
-        final String id = "AAIT101109MHGNMN01";
-        final MexicoNationalId mexicoNationalId = new MexicoNationalId(id);
-
-        final String result = mexicoNationalId.toString();
-
-        assertThat(result, is(id));
-    }
 }
