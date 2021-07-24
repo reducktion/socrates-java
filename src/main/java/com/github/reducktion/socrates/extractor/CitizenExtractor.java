@@ -2,6 +2,7 @@ package com.github.reducktion.socrates.extractor;
 
 import java.util.Optional;
 
+import com.github.reducktion.socrates.Citizen;
 import com.github.reducktion.socrates.Country;
 import com.github.reducktion.socrates.validator.IdValidator;
 

@@ -1,9 +1,11 @@
-package com.github.reducktion.socrates.extractor;
+package com.github.reducktion.socrates;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.jupiter.api.Test;
+
+import com.github.reducktion.socrates.Gender;
 
 class GenderTest {
 

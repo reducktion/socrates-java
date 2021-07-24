@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-import com.github.reducktion.socrates.extractor.Citizen;
-import com.github.reducktion.socrates.extractor.Gender;
+import com.github.reducktion.socrates.Citizen;
+import com.github.reducktion.socrates.Gender;
 import com.github.reducktion.socrates.internal.DateValidator;
 import com.github.reducktion.socrates.internal.TwoYearDateParser;
 

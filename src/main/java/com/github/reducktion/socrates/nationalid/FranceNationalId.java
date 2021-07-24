@@ -3,8 +3,8 @@ package com.github.reducktion.socrates.nationalid;
 import java.time.Year;
 import java.util.Optional;
 
-import com.github.reducktion.socrates.extractor.Citizen;
-import com.github.reducktion.socrates.extractor.Gender;
+import com.github.reducktion.socrates.Citizen;
+import com.github.reducktion.socrates.Gender;
 import com.github.reducktion.socrates.internal.StringUtils;
 import com.github.reducktion.socrates.internal.TwoYearDateParser;
 

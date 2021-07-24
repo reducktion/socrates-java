@@ -1,4 +1,4 @@
-package com.github.reducktion.socrates.extractor;
+package com.github.reducktion.socrates;
 
 import java.util.Objects;
 import java.util.Optional;

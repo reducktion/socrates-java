@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import com.github.reducktion.socrates.extractor.Citizen;
+import com.github.reducktion.socrates.Citizen;
 import com.github.reducktion.socrates.internal.StringUtils;
 
 /**
