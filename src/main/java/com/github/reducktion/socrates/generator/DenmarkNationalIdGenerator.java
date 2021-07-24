@@ -10,7 +10,7 @@ import com.github.reducktion.socrates.Gender;
  *  * https://en.wikipedia.org/wiki/Personal_identification_number_(Denmark)
  *  * https://da.wikipedia.org/wiki/CPR-nummer
  */
-class DenmarkNationalIdGenerator implements NationalIdGenerator, IdGenerator {
+class DenmarkNationalIdGenerator implements NationalIdGenerator {
     private static final int[] MULTIPLIERS = { 4, 3, 2, 7, 6, 5, 4, 3, 2, 1 };
 
     @Override
