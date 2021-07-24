@@ -1,4 +1,4 @@
-package com.github.reducktion.socrates.extractor;
+package com.github.reducktion.socrates;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+
+import com.github.reducktion.socrates.Citizen;
+import com.github.reducktion.socrates.Gender;
 
 class CitizenTest {
 

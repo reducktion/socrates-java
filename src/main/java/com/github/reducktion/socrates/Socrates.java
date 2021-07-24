@@ -2,7 +2,6 @@ package com.github.reducktion.socrates;
 
 import java.util.Optional;
 
-import com.github.reducktion.socrates.extractor.Citizen;
 import com.github.reducktion.socrates.generator.NationalIdGenerator;
 import com.github.reducktion.socrates.generator.NationalIdGeneratorFactory;
 import com.github.reducktion.socrates.nationalid.NationalId;

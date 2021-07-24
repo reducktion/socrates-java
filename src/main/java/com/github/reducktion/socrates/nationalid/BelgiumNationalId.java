@@ -2,8 +2,8 @@ package com.github.reducktion.socrates.nationalid;
 
 import java.util.Optional;
 
-import com.github.reducktion.socrates.extractor.Citizen;
-import com.github.reducktion.socrates.extractor.Gender;
+import com.github.reducktion.socrates.Citizen;
+import com.github.reducktion.socrates.Gender;
 import com.github.reducktion.socrates.internal.DateValidator;
 import com.github.reducktion.socrates.internal.StringUtils;
 
