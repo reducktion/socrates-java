@@ -190,14 +190,4 @@ class FranceNationalIdTest {
 
         assertThat(extractedCitizen, is(Optional.empty()));
     }
-
-    @Test
-    void toString_shouldReturnId() {
-        final String id = "2820819398814 09";
-        final FranceNationalId franceNationalId = new FranceNationalId(id);
-
-        final String result = franceNationalId.toString();
-
-        assertThat(result, is(id));
-    }
 }

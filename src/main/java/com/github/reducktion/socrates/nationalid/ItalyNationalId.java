@@ -21,35 +21,30 @@ import com.github.reducktion.socrates.internal.TwoYearDateParser;
  *  - https://en.wikipedia.org/wiki/Italian_fiscal_code
  *  - https://web.archive.org/web/20160819012136/http://www.agenziaentrate.gov.it/wps/wcm/connect/321b0500426a5e2492629bc065cef0e8/codicicatastali_comuni_29_11_2010.pdf?MOD=AJPERES&CACHEID=321b500426a5e2492629bc065cef0e8
  */
-class ItalyNationalId implements NationalId {
+final class ItalyNationalId extends NationalId {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 16;
     private static final String MONTH_CODES = "ABCDEHLMPRST";
     private static final Path REGIONS_FILE_PATH = Paths.get("./src/main/resources/italy_regions.csv");
 
-    private final String id;
-    private final String sanitizedId;
+    private final String swappedSanitizedId;
 
     private final TwoYearDateParser twoYearDateParser = new TwoYearDateParser(Year.now().getValue());
 
     public ItalyNationalId(final String id) {
-        this.id = id;
-        sanitizedId = ItalyOmocodiaSwapper.swap(sanitize(id));
-    }
-
-    private String sanitize(final String id) {
-        return id == null ? null : id.replace(" ", "").toUpperCase();
+        super(id);
+        swappedSanitizedId = ItalyOmocodiaSwapper.swap(sanitizedId);
     }
 
     @Override
     public boolean isValid() {
-        return sanitizedId != null
-            && sanitizedId.length() == ID_NUMBER_OF_CHARACTERS
+        return swappedSanitizedId != null
+            && swappedSanitizedId.length() == ID_NUMBER_OF_CHARACTERS
             && hasValidControlCharacter();
     }
 
     private boolean hasValidControlCharacter() {
-        final String expectedControlCharacter = sanitizedId.substring(sanitizedId.length() - 1);
+        final String expectedControlCharacter = swappedSanitizedId.substring(swappedSanitizedId.length() - 1);
         final String computedControlCharacter = computeControlCharacter();
 
         return expectedControlCharacter.equals(computedControlCharacter);
@@ -59,7 +54,7 @@ class ItalyNationalId implements NationalId {
         boolean isOdd = true;
         int sum = 0;
 
-        final String partialId = stripControlCharacter(sanitizedId);
+        final String partialId = stripControlCharacter(swappedSanitizedId);
 
         for (final String character : partialId.split("")) {
             if (isOdd) {
@@ -149,18 +144,18 @@ class ItalyNationalId implements NationalId {
     }
 
     private String extractDayOfBirthCharacters() {
-        return sanitizedId.substring(9, 11);
+        return swappedSanitizedId.substring(9, 11);
     }
 
     private Integer extractYearOfBirth() {
-        final String yearOfBirthCharacters = sanitizedId.substring(6, 8);
+        final String yearOfBirthCharacters = swappedSanitizedId.substring(6, 8);
         return twoYearDateParser
             .parse(yearOfBirthCharacters)
             .orElse(null);
     }
 
     private Integer extractMonthOfBirth() {
-        final String monthOfBirthCharacter = sanitizedId.substring(8, 9);
+        final String monthOfBirthCharacter = swappedSanitizedId.substring(8, 9);
 
         return MONTH_CODES.indexOf(monthOfBirthCharacter) + 1;
     }
@@ -181,7 +176,7 @@ class ItalyNationalId implements NationalId {
     }
 
     private String extractPlaceOfBirthCharacters() {
-        return sanitizedId.substring(11, 15);
+        return swappedSanitizedId.substring(11, 15);
     }
 
     private Optional<String> fetchPlaceOfBirthConfig(final String placeOfBirthCharacter) {
@@ -198,10 +193,5 @@ class ItalyNationalId implements NationalId {
         }
 
         return placeOfBirthConfig;
-    }
-
-    @Override
-    public String toString() {
-        return id;
     }
 }

@@ -13,20 +13,12 @@ import com.github.reducktion.socrates.internal.StringUtils;
  * Information about this national id can be found at:
  *  - http://www.ibz.rrn.fgov.be/fileadmin/user_upload/nl/rr/instructies/IT-lijst/IT000_Rijksregisternummer.pdf
  */
-class BelgiumNationalId implements NationalId {
+final class BelgiumNationalId extends NationalId {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 11;
 
-    private final String id;
-    private final String sanitizedId;
-
     public BelgiumNationalId(final String id) {
-        this.id = id;
-        sanitizedId = sanitize(id);
-    }
-
-    private String sanitize(final String id) {
-        return id == null ? null : id.replaceAll("[. -]+", "");
+        super(id);
     }
 
     @Override
@@ -136,10 +128,5 @@ class BelgiumNationalId implements NationalId {
     private Integer extractDayOfBirth() {
         final String dayOfBirthCharacters = extractDayOfBirthCharacters();
         return "00".equals(dayOfBirthCharacters) ? null : Integer.parseInt(dayOfBirthCharacters);
-    }
-
-    @Override
-    public String toString() {
-        return id;
     }
 }

@@ -18,7 +18,7 @@ import com.github.reducktion.socrates.internal.TwoYearDateParser;
  *  - http://sistemas.uaeh.edu.mx/dce/admisiones/docs/guia_CURP.pdf
  *  - (Inappropriate words) https://solucionfactible.com/sfic/resources/files/palabrasInconvenientes-rfc.pdf
  */
-class MexicoNationalId implements NationalId {
+final class MexicoNationalId extends NationalId {
 
     private static final String FEMALE_CHARACTER = "M";
     private static final int ID_NUMBER_OF_CHARACTERS = 18;
@@ -109,22 +109,10 @@ class MexicoNationalId implements NationalId {
         "WUEY"
     };
 
-    private final String id;
-    private final String sanitizedId;
-
     private final TwoYearDateParser twoYearDateParser = new TwoYearDateParser(Year.now().getValue());
 
     public MexicoNationalId(final String id) {
-        this.id = id;
-        sanitizedId = sanitize(id);
-    }
-
-    private String sanitize(final String id) {
-        return id == null
-            ? null
-            : id
-                .replace(" ", "")
-                .toUpperCase();
+        super(id);
     }
 
     @Override
@@ -256,10 +244,5 @@ class MexicoNationalId implements NationalId {
             case "ZS": return "ZACATECAS";
             default: return null;
         }
-    }
-
-    @Override
-    public String toString() {
-        return id;
     }
 }

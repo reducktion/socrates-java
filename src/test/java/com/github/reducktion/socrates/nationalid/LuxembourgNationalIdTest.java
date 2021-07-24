@@ -61,14 +61,4 @@ class LuxembourgNationalIdTest {
 
         assertThat(extractedCitizen, is(Optional.empty()));
     }
-
-    @Test
-    void toString_shouldReturnId() {
-        final String id = "1994092874550";
-        final LuxembourgNationalId luxembourgNationalId = new LuxembourgNationalId(id);
-
-        final String result = luxembourgNationalId.toString();
-
-        assertThat(result, is(id));
-    }
 }

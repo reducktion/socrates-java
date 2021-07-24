@@ -135,14 +135,4 @@ class DenmarkNationalIdTest {
 
         assertThat(extractedCitizen, is(Optional.empty()));
     }
-
-    @Test
-    void toString_shouldReturnId() {
-        final String id = "0404047094";
-        final DenmarkNationalId denmarkNationalId = new DenmarkNationalId(id);
-
-        final String result = denmarkNationalId.toString();
-
-        assertThat(result, is(id));
-    }
 }
