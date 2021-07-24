@@ -12,20 +12,12 @@ import com.github.reducktion.socrates.internal.StringUtils;
  * Information about this national id can be found at:
  *  - https://en.wikipedia.org/wiki/Social_Insurance_Number
  */
-class CanadaNationalId implements NationalId {
+final class CanadaNationalId extends NationalId {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 9;
 
-    private final String id;
-    private final String sanitizedId;
-
     public CanadaNationalId(final String id) {
-        this.id = id;
-        sanitizedId = sanitize(id);
-    }
-
-    private String sanitize(final String id) {
-        return id == null ? null : id.replace(" ", "").replace("-", "");
+        super(id);
     }
 
     @Override
@@ -43,10 +35,5 @@ class CanadaNationalId implements NationalId {
     @Override
     public Optional<Citizen> extractCitizen() {
         return Optional.empty();
-    }
-
-    @Override
-    public String toString() {
-        return id;
     }
 }

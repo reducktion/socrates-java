@@ -125,14 +125,4 @@ class BelgiumNationalIdTest {
 
         assertThat(extractedCitizen, is(Optional.empty()));
     }
-
-    @Test
-    void toString_shouldReturnId() {
-        final String id = "01.11.16-001.05";
-        final BelgiumNationalId belgiumNationalId = new BelgiumNationalId(id);
-
-        final String result = belgiumNationalId.toString();
-
-        assertThat(result, is(id));
-    }
 }

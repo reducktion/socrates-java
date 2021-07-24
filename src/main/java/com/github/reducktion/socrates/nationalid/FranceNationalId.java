@@ -18,7 +18,7 @@ import com.github.reducktion.socrates.internal.TwoYearDateParser;
  *  - (Geographic codes) https://fr.wikipedia.org/wiki/Codes_g%C3%A9ographiques_de_la_France
  *  - (Departments) https://en.wikipedia.org/wiki/Departments_of_France
  */
-class FranceNationalId implements NationalId {
+final class FranceNationalId extends NationalId {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 15;
     private static final int CONTROL_DIGIT_MAX_VALUE = 97;
@@ -28,18 +28,10 @@ class FranceNationalId implements NationalId {
     private static final int PSEUDO_FICTITIOUS_JANUARY = 31;
     private static final int PSEUDO_FICTITIOUS_DECEMBER = 42;
 
-    private final String id;
-    private final String sanitizedId;
-
     private final TwoYearDateParser twoYearDateParser = new TwoYearDateParser(Year.now().getValue());
 
     public FranceNationalId(final String id) {
-        this.id = id;
-        sanitizedId = sanitize(id);
-    }
-
-    private String sanitize(final String id) {
-        return id == null ? null : id.replace(" ", "");
+        super(id);
     }
 
     @Override
@@ -239,10 +231,5 @@ class FranceNationalId implements NationalId {
             case "989": return "Île de Clipperton";
             default: return null;
         }
-    }
-
-    @Override
-    public String toString() {
-        return id;
     }
 }

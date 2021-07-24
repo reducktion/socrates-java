@@ -15,21 +15,13 @@ import com.github.reducktion.socrates.internal.StringUtils;
  *  - https://en.wikipedia.org/wiki/Social_Security_number#Valid_SSNs
  *  - (Blacklisted SSN) https://www.ssa.gov/history/ssn/misused.html
  */
-class UsaNationalId implements NationalId {
+final class UsaNationalId extends NationalId {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 9;
     private static final List<String> BLACKLISTED_IDS = Arrays.asList("078051120", "219099999", "457555462");
 
-    private final String id;
-    private final String sanitizedId;
-
     public UsaNationalId(final String id) {
-        this.id = id;
-        sanitizedId = sanitize(id);
-    }
-
-    private String sanitize(final String id) {
-        return id == null ? null : id.trim().replace("-", "");
+        super(id);
     }
 
     @Override
@@ -61,10 +53,5 @@ class UsaNationalId implements NationalId {
     @Override
     public Optional<Citizen> extractCitizen() {
         return Optional.empty();
-    }
-
-    @Override
-    public String toString() {
-        return id;
     }
 }

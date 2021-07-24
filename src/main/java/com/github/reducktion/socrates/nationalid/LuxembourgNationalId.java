@@ -13,20 +13,12 @@ import com.github.reducktion.socrates.internal.VerhoeffAlgorithm;
  * Information about this national id can be found at:
  *  - https://www.oecd.org/tax/automatic-exchange/crs-implementation-and-assistance/tax-identification-numbers/Luxembourg-TIN.pdf
  */
-class LuxembourgNationalId implements NationalId {
+final class LuxembourgNationalId extends NationalId {
 
     private static final int ID_NUMBER_OF_CHARACTERS = 13;
 
-    private final String id;
-    private final String sanitizedId;
-
     public LuxembourgNationalId(final String id) {
-        this.id = id;
-        sanitizedId = sanitize(id);
-    }
-
-    private String sanitize(final String id) {
-        return id == null ? null : id.replaceAll("[ -]", "");
+        super(id);
     }
 
     @Override
@@ -49,10 +41,5 @@ class LuxembourgNationalId implements NationalId {
     @Override
     public Optional<Citizen> extractCitizen() {
         return Optional.empty();
-    }
-
-    @Override
-    public String toString() {
-        return id;
     }
 }
