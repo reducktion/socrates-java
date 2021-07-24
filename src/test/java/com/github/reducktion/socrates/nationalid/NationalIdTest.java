@@ -92,7 +92,7 @@ class NationalIdTest {
         assertThat(result, is(true));
     }
 
-    @ParameterizedTest(name = "#{index} - Test with Arguments={0},{1}")
+    @ParameterizedTest(name = "#{index} - Test with Arguments={0},{1},{2}")
     @MethodSource("countryBySymmetricIdsProvider")
     void equals_shouldBeSymmetric(final String id, final String symmetricId, final Country country) {
         final NationalId nationalId = NationalIdFactory.newInstance(id, country);
