@@ -1,6 +1,7 @@
 package com.github.reducktion.socrates.nationalid;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Arrays;
@@ -17,30 +18,57 @@ import com.github.reducktion.socrates.Country;
  */
 class NationalIdTest {
 
+    @ParameterizedTest(name = "#{index} - Test with Arguments={0}")
+    @MethodSource("countryProvider")
+    void toString_shouldReturnNull_whenIdIsNull(final Country country) {
+        final NationalId nationalId = NationalIdFactory.newInstance(null, country);
+
+        final String result = nationalId.toString();
+
+        assertThat(result, is(nullValue()));
+    }
+
+    private static List<Arguments> countryProvider() {
+        return Arrays.asList(
+            Arguments.arguments(Country.BE),
+            Arguments.arguments(Country.BR),
+            Arguments.arguments(Country.CA),
+            Arguments.arguments(Country.DE),
+            Arguments.arguments(Country.DK),
+            Arguments.arguments(Country.FR),
+            Arguments.arguments(Country.IT),
+            Arguments.arguments(Country.LU),
+            Arguments.arguments(Country.MX),
+            Arguments.arguments(Country.PT),
+            Arguments.arguments(Country.ES),
+            Arguments.arguments(Country.US)
+        );
+    }
+
     @ParameterizedTest(name = "#{index} - Test with Arguments={0},{1}")
     @MethodSource("countryByIdProvider")
-    void toString_shouldReturnId(final String id, final Country country) {
+    void toString_shouldReturnTrimmedId_whenIdNotNull(final String id, final Country country) {
         final NationalId nationalId = NationalIdFactory.newInstance(id, country);
 
         final String result = nationalId.toString();
 
-        assertThat(result, is(id));
+        assertThat(result, is(id.trim()));
     }
 
     private static List<Arguments> countryByIdProvider() {
         return Arrays.asList(
-            Arguments.arguments("01.11.16-001.05", Country.BE),
-            Arguments.arguments("144-416-762.63", Country.BR),
-            Arguments.arguments("046 454 286", Country.CA),
+            Arguments.arguments(" 01.11.16-001.05 ", Country.BE),
+            Arguments.arguments(" 144-416-762.63 ", Country.BR),
+            Arguments.arguments(" 046 454 286 ", Country.CA),
             Arguments.arguments(" 25768131411 ", Country.DE),
-            Arguments.arguments("040404-7094", Country.DK),
-            Arguments.arguments("2820819398814 09", Country.FR),
+            Arguments.arguments(" 040404-7094 ", Country.DK),
+            Arguments.arguments(" 2820819398814 09 ", Country.FR),
             Arguments.arguments(" MRCDRALMAMPALSRE ", Country.IT),
-            Arguments.arguments("198-308-124-6785", Country.LU),
+            Arguments.arguments(" 198-308-124-6785 ", Country.LU),
             Arguments.arguments(" AAIT101109MHGNMN01 ", Country.MX),
-            Arguments.arguments("14898475 4 ZY5", Country.PT),
-            Arguments.arguments("843-456-42L", Country.ES),
-            Arguments.arguments("167-38-1265", Country.US)
+            Arguments.arguments(" 14898475 4 ZY5 ", Country.PT),
+            Arguments.arguments(" 843-456-42L ", Country.ES),
+            Arguments.arguments(" 167-38-1265 ", Country.US)
         );
     }
 

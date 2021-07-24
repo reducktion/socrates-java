@@ -32,7 +32,7 @@ public abstract class NationalId {
 
     @Override
     public final String toString() {
-        return id;
+        return id == null ? null : id.trim();
     }
 
     @Override
