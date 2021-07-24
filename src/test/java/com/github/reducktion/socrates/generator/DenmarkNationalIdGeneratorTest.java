@@ -28,7 +28,7 @@ class DenmarkNationalIdGeneratorTest {
     void generate_shouldThrowException_whenCitizenIsNotValid() {
         assertThrows(
             IllegalArgumentException.class,
-            () -> denmarkNationalIdGenerator.generate(new Citizen.Builder().build())
+            () -> denmarkNationalIdGenerator.generate(Citizen.builder().build())
         );
     }
 
@@ -42,7 +42,7 @@ class DenmarkNationalIdGeneratorTest {
         final String cpr
     ) {
         assertThat(denmarkNationalIdGenerator.generate(
-            new Citizen.Builder()
+            Citizen.builder()
                 .yearOfBirth(year)
                 .monthOfBirth(month)
                 .dayOfBirth(day)

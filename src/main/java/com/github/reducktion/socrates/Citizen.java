@@ -45,6 +45,8 @@ public final class Citizen {
         private Integer dayOfBirth;
         private String placeOfBirth;
 
+        private Builder() {}
+
         public Builder gender(final Gender gender) {
             this.gender = gender;
             return this;
