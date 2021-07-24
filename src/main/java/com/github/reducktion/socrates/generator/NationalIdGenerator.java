@@ -1,6 +1,6 @@
 package com.github.reducktion.socrates.generator;
 
-import com.github.reducktion.socrates.extractor.Citizen;
+import com.github.reducktion.socrates.Citizen;
 
 public interface NationalIdGenerator {
 

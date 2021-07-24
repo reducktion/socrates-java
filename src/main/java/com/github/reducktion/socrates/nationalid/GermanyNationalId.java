@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
-import com.github.reducktion.socrates.extractor.Citizen;
+import com.github.reducktion.socrates.Citizen;
 import com.github.reducktion.socrates.internal.StringUtils;
 
 /**

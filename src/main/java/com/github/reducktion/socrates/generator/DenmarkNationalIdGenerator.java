@@ -1,7 +1,7 @@
 package com.github.reducktion.socrates.generator;
 
-import com.github.reducktion.socrates.extractor.Citizen;
-import com.github.reducktion.socrates.extractor.Gender;
+import com.github.reducktion.socrates.Citizen;
+import com.github.reducktion.socrates.Gender;
 
 /**
  * Generates a new CPR for the provided information

@@ -1,7 +1,7 @@
 package com.github.reducktion.socrates.generator;
 
+import com.github.reducktion.socrates.Citizen;
 import com.github.reducktion.socrates.Country;
-import com.github.reducktion.socrates.extractor.Citizen;
 
 /**
  * Used to generate a national id based on the {@link Citizen} information provided.
